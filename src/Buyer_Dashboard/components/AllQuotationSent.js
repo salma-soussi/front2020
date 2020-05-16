@@ -118,7 +118,7 @@ class AllQuotationSent extends Component {
         this.setState({keyword: event.target.value});
     }
     componentDidMount() {
-        axios.get('/api/quotations')
+        axios.get('http://localhost:3020/quotation/list')
         .then((res)=> this.props.updateReducer(res.data))
     }
     render(){
@@ -126,7 +126,9 @@ class AllQuotationSent extends Component {
             var pathID = window.location.pathname.substr(-24)
         }
     const { page, rowsPerPage, keyword } = this.state
+    
     const { sentQuots } = this.props
+    
     // const [page, setPage] = React.useState(0);
     // const [rowsPerPage, setRowsPerPage] = React.useState(5);
     // function handleChangePage(event, newPage){
@@ -137,9 +139,13 @@ class AllQuotationSent extends Component {
     //     setPage(0);
     // }
     // const classes = useStyles();
-
-    const sentQuotsFiltered = sentQuots.filter((el, index) => (el.quotationNum.includes(keyword.trim()) || el.details[0].description1.toUpperCase().includes(keyword.toUpperCase().trim()))
-     && el.status === 'Waiting')
+    console.log("sentQuots :")
+    console.log(sentQuots)
+    const sentQuotsFiltered = sentQuots.filter((el, index) => (el.quotationNUM.includes(keyword.trim()) || el.details[0].description1.toUpperCase().includes(keyword.toUpperCase().trim()))
+     && el.status === 'Waiting');
+     console.log("sentQuotsFiltered :")
+     console.log(sentQuotsFiltered)
+     
     return (
         <Main pageName={'All Sent Requests'}>
             <Paper className={useStyles.root} style={{width: '100%'}}>
@@ -171,8 +177,8 @@ class AllQuotationSent extends Component {
                         </TableHead>
                         <TableBody>
                             {sentQuotsFiltered.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => (
-                                    <StyledTableRow className="row-tab-req" key={row.quotationNum} component={Link} to={`/buyer_dashboard/req-sent/o/${row._id}/${row.status}/${pathID}`}>
-                                        <StyledTableCell component="th" scope="row">{row.quotationNum}</StyledTableCell>
+                                    <StyledTableRow className="row-tab-req" key={row.quotationNUM} component={Link} to={`/buyer_dashboard/req-sent/o/${row._id}/${row.status}/${pathID}`}>
+                                        <StyledTableCell component="th" scope="row">{row.quotationNUM}</StyledTableCell>
                                         <StyledTableCell align="left">
                                         {row.details.map(x => (
                                             <div>

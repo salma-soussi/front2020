@@ -8,7 +8,7 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 
 class AllQuotsChart extends Component {
     componentDidMount() {
-        axios.get('/api/quotations')
+        axios.get('http://localhost:3020/quotation/list')
             .then((res) => this.props.updateReducer(res.data))
     }
 

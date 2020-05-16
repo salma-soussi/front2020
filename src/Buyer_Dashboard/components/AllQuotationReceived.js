@@ -30,7 +30,7 @@ class AllQuotationReceived extends Component {
         this.setState({keyword: event.target.value});
     }
     componentDidMount() {
-        axios.get('/api/quotations')
+        axios.get('http://localhost:3020/quotation/list')
         .then((res)=> this.props.updateReducer(res.data))
     }
     
@@ -41,11 +41,11 @@ class AllQuotationReceived extends Component {
     }
     const { page, rowsPerPage, keyword } = this.state
     const { requestsList } = this.props
-    // const requestsListFiltered = requestsList.filter(el => (el.quotationNum.includes(keyword.trim()) || 
+    // const requestsListFiltered = requestsList.filter(el => (el.quotationNUM.includes(keyword.trim()) || 
     //     el.details[0].description.toUpperCase().includes(keyword.toUpperCase().trim()) || 
     //     el.date.includes(keyword.trim()))
     //     && el.status === 'Answered')
-    const requestsListFiltered = requestsList.filter((el, index) => (el.quotationNum.includes(keyword.trim()) || el.details[0].description1.toUpperCase().includes(keyword.toUpperCase().trim())
+    const requestsListFiltered = requestsList.filter((el, index) => (el.quotationNUM.includes(keyword.trim()) || el.details[0].description1.toUpperCase().includes(keyword.toUpperCase().trim())
     || String(el.date).includes(keyword))
      && el.status === 'Answered')
     return (
@@ -83,8 +83,8 @@ class AllQuotationReceived extends Component {
                         </TableHead>
                         <TableBody>
                             {requestsListFiltered.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => row.details.map(el => (
-                                <StyledTableRow className="row-tab-req" key={row.quotationNum} component={Link} to={`/buyer_dashboard/req-received/o/${row._id}/${pathID}`}>
-                                    <StyledTableCell component="th" scope="row">{row.quotationNum}</StyledTableCell>
+                                <StyledTableRow className="row-tab-req" key={row.quotationNUM} component={Link} to={`/buyer_dashboard/req-received/o/${row._id}/${pathID}`}>
+                                    <StyledTableCell component="th" scope="row">{row.quotationNUM}</StyledTableCell>
                                     <StyledTableCell align="left">{row.firstName}</StyledTableCell>
                                     <StyledTableCell align="left">{row.lastName}</StyledTableCell>
                                     <StyledTableCell align="left">{ (el.description2 !== '' || el.description3 !== '' || el.description4 !== '')  ? <Chip className={useStyles.chip} label={el.description1+'  ➕'} color="primary" /> : <Chip className={useStyles.chip} label={el.description1} color="primary" />}</StyledTableCell>

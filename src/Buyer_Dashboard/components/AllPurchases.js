@@ -29,7 +29,7 @@ class AllPurchases extends Component {
         this.setState({keyword: event.target.value});
     }
     componentDidMount() {
-        axios.get('/api/quotations')
+        axios.get('http://localhost:3020/quotation/list')
         .then((res)=> this.props.updateReducer(res.data))
     }
     render(){
@@ -38,7 +38,7 @@ class AllPurchases extends Component {
         }
         const { page, rowsPerPage, keyword } = this.state
         const { soldQuots } = this.props
-        const soldQuotsFiltered = soldQuots.filter(el => (el.quotationNum.includes(keyword.trim())
+        const soldQuotsFiltered = soldQuots.filter(el => (el.quotationNUM.includes(keyword.trim())
         || el.details[0].description1.toUpperCase().includes(keyword.toUpperCase().trim())
         ) && el.status === 'Sold')
         return (
@@ -74,8 +74,8 @@ class AllPurchases extends Component {
                         </TableHead>
                         <TableBody>
                             {soldQuotsFiltered.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(el => (
-                                    <StyledTableRow className="row-tab-req" key={el.quotationNum} component={Link} to={`/buyer_dashboard/purchases/o/${el._id}/${pathID}`}>
-                                        <StyledTableCell component="th" scope="row">{el.quotationNum}</StyledTableCell>
+                                    <StyledTableRow className="row-tab-req" key={el.quotationNUM} component={Link} to={`/buyer_dashboard/purchases/o/${el._id}/${pathID}`}>
+                                        <StyledTableCell component="th" scope="row">{el.quotationNUM}</StyledTableCell>
                                         <StyledTableCell align="left">{ Object.keys(el.details[0]).length === 3 ? <Chip className={useStyles.chip} label={el.details[0].description1} color="primary" /> : <Chip className={useStyles.chip} label={el.details[0].description1+'  ➕'} color="primary" />}</StyledTableCell>
                                         <StyledTableCell align="center">{el.details[0].quantity1}</StyledTableCell>
                                         <StyledTableCell align="left">Seller Name</StyledTableCell>

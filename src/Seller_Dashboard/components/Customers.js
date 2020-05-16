@@ -36,7 +36,7 @@ function Customers(props) {
     const customersListFiltered = customerList.filter(el =>  el.status === 'Sold')
     
     useEffect(()=>{
-        axios.get('/api/quotations')
+        axios.get('http://localhost:3020/quotation/list')
         .then((res) => props.updateReducer(res.data))
     })
     if(window.location.pathname.split('/').length - 1 >= 2){

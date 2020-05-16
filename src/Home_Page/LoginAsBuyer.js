@@ -3,27 +3,27 @@ import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import {Link, withRouter} from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 
 const useStyles = makeStyles(theme => ({
     container: {
-      display: 'flex',
-      flexWrap: 'wrap',
+        display: 'flex',
+        flexWrap: 'wrap',
     },
     textField: {
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
         width: 200,
-      },
+    },
     button: {
         margin: theme.spacing(1),
     },
-  }));
+}));
 
 
 class LoginAsBuyer extends Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
             email: '',
@@ -38,12 +38,13 @@ class LoginAsBuyer extends Component {
             [input]: e.target.value
         })
     }
-    
+
     login = e => {
         e.preventDefault();
-        axios.post('/users/login', this.state)
-            .then((data) => this.props.history.push(`/buyer_dashboard/${data.data.id}`))
+        axios.post('http://localhost:3020/user/authentication', this.state)
+            .then((data) => this.props.history.push(`/buyer_dashboard/${data.data.data.user._id}`))
             .catch((err) => alert(err))
+
     }
     render() {
         return (
@@ -58,11 +59,11 @@ class LoginAsBuyer extends Component {
                         type="email"
                         autoComplete="email"
                         margin="normal"
-                        fullWidth= {true}
+                        fullWidth={true}
                         defaultValue={this.state.email}
                         onChange={this.handleChange('email')}
                     />
-                    
+
 
                     <TextField
                         id="standard-password-input"
@@ -71,7 +72,7 @@ class LoginAsBuyer extends Component {
                         type="password"
                         autoComplete="current-password"
                         margin="normal"
-                        fullWidth= {true}
+                        fullWidth={true}
                         defaultValue={this.state.password}
                         onChange={this.handleChange('password')}
                     />
@@ -82,7 +83,7 @@ class LoginAsBuyer extends Component {
                         <p><a href="/password">Forget password</a></p>
                         <p>Don't have an account?<Link to="/signupasbuyer">Sign up</Link></p> {/* go to signup as buyer page */}
                     </div>
-                    <Link to="/buyer_dashboard" style={{textDecoration: 'none'}} className="button-login">
+                    <Link to="/buyer_dashboard" style={{ textDecoration: 'none' }} className="button-login">
                         <Button onClick={this.login} variant="contained" color="primary" className={useStyles.button}>
                             Login
                         </Button>

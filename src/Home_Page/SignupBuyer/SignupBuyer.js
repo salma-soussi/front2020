@@ -12,7 +12,7 @@ export class SignupBuyer extends Component {
         this.state={
             step: 1,
             companyName: '',
-            secteur: '',
+            sector: '',
             address: '',
             phone: '',
             email: '',
@@ -48,8 +48,8 @@ export class SignupBuyer extends Component {
 
     render() {
         const { step } = this.state
-        const { companyName, secteur, address, phone, email, firstName, lastName, occupation, governorate, password } = this.state
-        const values = { companyName, secteur, address, phone, email, firstName, lastName, occupation, governorate, password }
+        const { companyName, sector, address, phone, email, firstName, lastName, occupation, governorate, password } = this.state
+        const values = { companyName, sector, address, phone, email, firstName, lastName, occupation, governorate, password }
         switch(step){
             case 1:
                 return (

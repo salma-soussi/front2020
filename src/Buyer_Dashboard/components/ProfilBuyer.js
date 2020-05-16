@@ -16,7 +16,7 @@ class ProfilBuyer extends Component {
             lastName: '',
             phone: '',
             email: '',
-            secteur: '',
+            sector: '',
             address: '',
             occupation: '',
             governorate: '',
@@ -57,8 +57,8 @@ class ProfilBuyer extends Component {
     toggleButton = () => {
         this.setState({editbutton: !this.state.editbutton})
         if(this.state.editbutton === true){
-            axios.put(`/users/buyer-infos/${this.props.buyerID}`,{
-                secteur: this.state.secteur,
+            axios.put(`http://localhost:3020/buyer/update/${this.props.buyerID}`,{
+                sector: this.state.sector,
                 address: this.state.address,
                 phone: this.state.phone,
                 email: this.state.email,
@@ -71,7 +71,7 @@ class ProfilBuyer extends Component {
         }
     }
     componentDidMount() {
-        axios.get(`/users/buyer/${this.props.buyerID}`)
+        axios.get(`http://localhost:3020/buyer/getByID/${this.props.buyerID}`)
             .then((res) => {
                 this.props.updateBuyer(res.data)
                 this.setState({
@@ -132,7 +132,7 @@ class ProfilBuyer extends Component {
                                     <Divider light={true} variant="middle"/>
                                     <h3 className="title-item-buyer">Email Address</h3>
                                     <Divider light={true} variant="middle"/>
-                                    <h3 className="title-item-buyer">Category</h3>
+                                    <h3 className="title-item-buyer">sector</h3>
                                     <Divider light={true} variant="middle"/>
                                     <h3 className="title-item-buyer">Postal Address</h3>
                                     <Divider light={true} variant="middle"/>
@@ -151,7 +151,7 @@ class ProfilBuyer extends Component {
                                     <Divider light={true} variant="middle"/>
                                     <input type="text" onChange={this.handleChange} name="occupation" className={this.state.editbutton ? "content-item-enabled" : "content-item-disabled"} value={this.state.occupation}/>
                                     <Divider light={true} variant="middle"/>
-                                    <input type="text" onChange={this.handleChange} name="secteur" className={this.state.editbutton ? "content-item-enabled" : "content-item-disabled"} value={this.state.secteur}/>
+                                    <input type="text" onChange={this.handleChange} name="sector" className={this.state.editbutton ? "content-item-enabled" : "content-item-disabled"} value={this.state.sector}/>
                                     <Divider light={true} variant="middle"/>
                                     <input type="text" onChange={this.handleChange} name="address" className={this.state.editbutton ? "content-item-enabled" : "content-item-disabled"} value={this.state.address}/>
                                     <Divider light={true} variant="middle"/>

@@ -23,10 +23,10 @@ function CustomerContact(props) {
     const classes = useStyles();
     const [values, setValues] = React.useState({
         companyName: 'Go My Code',
-        customerName: 'Moez',
-        lastTime: '07/12/2018',
+        customerName: 'salma',
+        lastTime: '07/5/2020',
         numberOfTimes: 2,
-        emailCustomer: 'mo.elkouni@gmail.com',
+        emailCustomer: 'just.pfe@gmail.com',
     });
     const [{ message, email, yourName }, setMail] = React.useState(initialState);
     const [{ myName, myEmail, subject, myMessage }, setMessage] = React.useState(messageInitialState);

@@ -40,8 +40,8 @@ class LoginAsSeller extends Component {
     }
     login = e => {
         e.preventDefault();
-        axios.post('/seller/login', this.state)
-            .then((data) => this.props.history.push(`/seller_dashboard/${data.data.id}`))
+        axios.post('http://localhost:3020/user/authentication', this.state)
+            .then((data) => this.props.history.push(`/seller_dashboard/${data.data.data.user._id}`))
             .catch((err) => alert(err))
     }
       render() {

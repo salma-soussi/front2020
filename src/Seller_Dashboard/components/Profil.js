@@ -51,7 +51,7 @@ class Profil extends Component {
     toggleButton = () => {
         this.setState({editbutton: !this.state.editbutton})
         if(this.state.editbutton === true){
-            axios.put(`/seller/seller-infos/${this.props.sellerID}`,{
+            axios.put(`http://localhost:3020/seller/update/${this.props.sellerID}`,{
                 secteur: this.state.secteur,
                 address: this.state.address,
                 phone: this.state.phone,
@@ -65,7 +65,7 @@ class Profil extends Component {
         }
     }
     componentDidMount() {
-        axios.get(`/seller/seller/${this.props.sellerID}`)
+        axios.get(`http://localhost:3020/seller/getByID/${this.props.sellerID}`)
             .then((res) => {
                 this.props.updateSeller(res.data)
                 this.setState({

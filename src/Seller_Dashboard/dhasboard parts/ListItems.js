@@ -20,7 +20,7 @@ class MainListItems extends Component{
     if(window.location.pathname.split('/').length - 1 >= 2){
       var pathID = window.location.pathname.substr(-24)
     }
-    axios.get(`/seller/seller/${pathID}`)
+    axios.get(`http://localhost:3020/seller/getByID/${pathID}`)
         .then((res) => this.props.updateSeller(res.data))
 }
   render(){

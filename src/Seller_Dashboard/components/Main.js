@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import {Drawer, CssBaseline, makeStyles, AppBar, Toolbar, List, Typography, IconButton, Container, Grid} from '@material-ui/core';
+import { Drawer, CssBaseline, makeStyles, AppBar, Toolbar, List, Typography, IconButton, Container, Grid } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import MainListItems from '../dhasboard parts/ListItems'
@@ -10,14 +10,14 @@ import NotificationContainer from './NotificationContainer';
 
 
 function MadeWithLove() {
-return (
-  <Typography variant="body2" color="textSecondary" align="center">
-    {'Built with love by '}
-    <Link className="moez" color="inherit" href="https://github.com/moezKouni">
-      Salwa
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'Built with love by '}
+      <Link className="salma" color="inherit" >
+        salma
     </Link>
-  </Typography>
-);
+    </Typography>
+  );
 }
 
 const drawerWidth = 250;
@@ -110,7 +110,7 @@ function Main(props) {
     setOpen(false);
   };
   return (
-    <div className={classes.root} style={{width: '100%'}}>
+    <div className={classes.root} style={{ width: '100%' }}>
       <CssBaseline />
       <AppBar position="absolute" color="primary" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
@@ -142,7 +142,7 @@ function Main(props) {
           </IconButton>
         </div>
         <List>
-          <MainListItems/>
+          <MainListItems />
         </List>
       </Drawer>
       <main className={classes.content}>
@@ -150,29 +150,29 @@ function Main(props) {
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             {/* <Paper> */}
-              {props.children}
+            {props.children}
             {/* </Paper> */}
           </Grid>
         </Container>
-        <MadeWithLove/>
+        <MadeWithLove />
       </main>
     </div>
   );
 }
 
 const mapStateToProps = state => {
-  return{
+  return {
     notifications: state.NotifReducer
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
-      notifseenReducer: notifseen => {
-          dispatch({
-              type: 'NOTIF_SEEN',
-              notifseen
-          })
-      }
+    notifseenReducer: notifseen => {
+      dispatch({
+        type: 'NOTIF_SEEN',
+        notifseen
+      })
+    }
   }
 }
 

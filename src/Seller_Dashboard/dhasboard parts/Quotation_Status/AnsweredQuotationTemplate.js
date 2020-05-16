@@ -30,7 +30,7 @@ class AnsweredQuotationTemplate extends Component {
         this.setState({
             ...this.props.requestsList.filter(el => el._id === this.props.reqID)[0]
         })
-        axios.get(`/seller/seller/${this.props.sellerID}`)
+        axios.get(`http://localhost:3020/seller/getByID/${this.props.sellerID}`)
                 .then((res) => this.props.updateSeller(res.data))
     }
     render(){
@@ -38,7 +38,7 @@ class AnsweredQuotationTemplate extends Component {
         const requestListFiltered = requestsList.filter((el, index) => el._id === this.props.reqID)
 
         return (
-        <Main pageName={`Quotation N°${requestListFiltered.map(el => el.quotationNum)} Answered`}>
+        <Main pageName={`Quotation N°${requestListFiltered.map(el => el.quotationNUM)} Answered`}>
             <div className="navigation-buttons-req">
                 <Button button component={Link} onClick={() => this.goBack()} /*to={`/seller_dashboard/req-quotations`}*/ variant="contained" id="button-back" className={useStyles.button}>
                     <img src={backarrow} alt="reply page" style={{width: '30px'}}/>
@@ -50,7 +50,7 @@ class AnsweredQuotationTemplate extends Component {
                 </Button>
             </div>
             <Paper className="paper-content">
-                <RequestHeader reqID={requestListFiltered.map(el => el.quotationNum)} date={this.state.date} until={this.state.validUntil}/>
+                <RequestHeader reqID={requestListFiltered.map(el => el.quotationNUM)} date={this.state.date} until={this.state.validUntil}/>
                 <h3 className="customer-info">Customer Informations:</h3>
                 <CustomerInfo infos={this.props.sellersList}/>
                 <div className={useStyles.tableWrapper} style={{marginTop: '20px'}}>

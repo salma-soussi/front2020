@@ -29,7 +29,7 @@ function SoldItems(props) {
     }
     const soldQuotsFiltered = soldQuots.filter(el => el._id !== keyword && el.status === 'Sold')
     useEffect(()=>{
-        axios.get('/api/quotations')
+        axios.get('http://localhost:3020/quotation/list')
         .then((res) => props.updateReducer(res.data))
     })
     if(window.location.pathname.split('/').length - 1 >= 2){
@@ -55,7 +55,7 @@ function SoldItems(props) {
                         inputProps={{ 'aria-label': 'bare' }}
                     />
                     
-                            {soldQuots.filter(el => el.quotationNum === keyword && el.status === 'Sold').slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                            {soldQuots.filter(el => el.quotationNUM === keyword && el.status === 'Sold').slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                             .map(row => (
                                  <Table className={classes.table}>
                                     <TableHead>
@@ -72,8 +72,8 @@ function SoldItems(props) {
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
-                                        <StyledTableRow className="row-tab-req req-selected" key={row.quotationNum} component={Link} to={`/seller_dashboard/sold-items/${row._id}/${row.status}/${pathID}`}>
-                                            <StyledTableCell component="th" scope="row">{row.quotationNum}</StyledTableCell>
+                                        <StyledTableRow className="row-tab-req req-selected" key={row.quotationNUM} component={Link} to={`/seller_dashboard/sold-items/${row._id}/${row.status}/${pathID}`}>
+                                            <StyledTableCell component="th" scope="row">{row.quotationNUM}</StyledTableCell>
                                             <StyledTableCell align="left">{row.companyName}</StyledTableCell>
                                             <StyledTableCell align="left">{row.firstName}</StyledTableCell>
                                             <StyledTableCell align="left">{row.lastName}</StyledTableCell>
@@ -105,8 +105,8 @@ function SoldItems(props) {
                         </TableHead>
                         <TableBody>
                             {soldQuotsFiltered.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => (
-                                <StyledTableRow className="row-tab-req" key={row.quotationNum} component={Link} to={`/seller_dashboard/sold-items/${row._id}/${row.status}/${pathID}`}>
-                                    <StyledTableCell component="th" scope="row">{row.quotationNum}</StyledTableCell>
+                                <StyledTableRow className="row-tab-req" key={row.quotationNUM} component={Link} to={`/seller_dashboard/sold-items/${row._id}/${row.status}/${pathID}`}>
+                                    <StyledTableCell component="th" scope="row">{row.quotationNUM}</StyledTableCell>
                                     <StyledTableCell align="left">{row.companyName}</StyledTableCell>
                                     <StyledTableCell align="left">{row.firstName}</StyledTableCell>
                                     <StyledTableCell align="left">{row.lastName}</StyledTableCell>

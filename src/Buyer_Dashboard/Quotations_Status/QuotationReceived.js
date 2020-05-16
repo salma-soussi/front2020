@@ -37,7 +37,7 @@ class QuotationReceived extends Component {
                 content: this.state.content === 'Your Offer Has Been Denied ' && 'Your Offer Has Been Accepted ',
                 time: new Intl.DateTimeFormat('en-GB', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(Date.now()),
                 description1: this.state.description1,
-                quotationNum: this.state.quotationNum,
+                quotationNUM: this.state.quotationNUM,
                 status: 'Sold',
                 type: 'accepted',
                 seen: 'no'
@@ -69,7 +69,7 @@ class QuotationReceived extends Component {
                         content: this.state.content,
                         time: new Intl.DateTimeFormat('en-GB', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(Date.now()),
                         description1: this.state.description1,
-                        quotationNum: this.state.quotationNum,
+                        quotationNUM: this.state.quotationNUM,
                         status: 'Denied',
                         type: this.state.type,
                         seen: this.state.seen
@@ -93,7 +93,7 @@ class QuotationReceived extends Component {
         this.setState({
             ...this.props.receivedQuot.filter((el ,index) => el._id === this.props.reqID)[0], visible: false
         })
-        axios.get(`/users/buyer/${this.props.buyerID}`)
+        axios.get(`http://localhost:3020/buyer/getByID/${this.props.buyerID}`)
             .then((res) => this.props.updateBuyer(res.data))
     }
 
@@ -108,7 +108,7 @@ class QuotationReceived extends Component {
         // const classes = useStyles();
 
         return (
-            <Main pageName={`Responding to the request quotation n°${quotFiltered.map(el => el.quotationNum)}`}>
+            <Main pageName={`Responding to the request quotation n°${quotFiltered.map(el => el.quotationNUM)}`}>
                 <div className="navigation-buttons-req">
                     <Button button component={Link} onClick={() => this.goBack()} variant="contained" id="button-back" className={useStyles.button}>
                         <img src={backarrow} alt="reply page" style={{ width: '30px' }} />
@@ -153,7 +153,7 @@ class QuotationReceived extends Component {
                     </section>
                 </div>
                 <Paper className="paper-content">
-                    <RequestHeader reqID={quotFiltered.map(el => el.quotationNum)} date={this.state.date} until={this.state.validUntil}/>
+                    <RequestHeader reqID={quotFiltered.map(el => el.quotationNUM)} date={this.state.date} until={this.state.validUntil}/>
                     <h3 className="customer-info">Customer Informations:</h3>
                     <CustomerInfo infos={this.props.buyersList}/>
                     <div className={useStyles.tableWrapper} style={{ marginTop: '20px' }}>

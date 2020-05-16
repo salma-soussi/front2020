@@ -47,7 +47,7 @@ class QuotationSent extends Component {
             ...this.props.requestsSent.filter((el ,index) => el._id === this.props.reqID)[0]
            
         })
-        axios.get(`/users/buyer/${this.props.buyerID}`)
+        axios.get(`http://localhost:3020/buyer/getByID/${this.props.buyerID}`)
             .then((res) => this.props.updateBuyer(res.data))
     }
     
@@ -70,7 +70,7 @@ class QuotationSent extends Component {
                 </Button>
             </div>
             <Paper className="paper-content">
-                <RequestHeader reqID={requestsSentFiltered.map(el => el.quotationNum)} date={this.state.date} until={this.state.validUntil}/>
+                <RequestHeader reqID={requestsSentFiltered.map(el => el.quotationNUM)} date={this.state.date} until={this.state.validUntil}/>
                 <h3 className="customer-info">Customer Informations:</h3>
                 <CustomerInfo infos={this.props.buyersList}/>
                 <div className={useStyles.tableWrapper} style={{marginTop: '20px'}}>

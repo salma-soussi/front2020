@@ -94,7 +94,7 @@ function Dashboard(props) {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
   useEffect(()=>{
-    axios.get('/api/quotations')
+    axios.get('http://localhost:3020/quotation/list')
     .then((res) => props.updateReducer(res.data))
 })
 

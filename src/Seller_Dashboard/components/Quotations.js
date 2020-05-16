@@ -28,9 +28,9 @@ function Quotations(props) {
     }
     
     const { requestsList, updateReducer } = props
-    const requestsListFiltered = requestsList.filter(el => el.quotationNum !== keyword && el.status === 'Answered')
+    const requestsListFiltered = requestsList.filter(el => el.quotationNUM !== keyword && el.status === 'Answered')
     useEffect(()=>{
-        axios.get('/api/quotations')
+        axios.get('http://localhost:3020/quotation/list')
         .then((res)=>updateReducer(res.data))
     })
     if(window.location.pathname.split('/').length - 1 >= 2){
@@ -56,7 +56,7 @@ function Quotations(props) {
                         inputProps={{ 'aria-label': 'bare' }}
                         />
                     
-                        {requestsList.filter(el => el.quotationNum === keyword && el.status === 'Answered').slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(elem => (
+                        {requestsList.filter(el => el.quotationNUM === keyword && el.status === 'Answered').slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(elem => (
                                 <Table className={classes.table}>
                                 <TableHead>
                                     <TableRow>
@@ -72,7 +72,7 @@ function Quotations(props) {
                                 </TableHead>
                                 <TableBody>
                                     <StyledTableRow className="row-tab-req req-selected" key={elem._id} component={Link} to={`/seller_dashboard/quotations/${elem._id}/${elem.status}/${pathID}`}>
-                                        <StyledTableCell component="th" scope="row">{elem.quotationNum}</StyledTableCell>
+                                        <StyledTableCell component="th" scope="row">{elem.quotationNUM}</StyledTableCell>
                                         <StyledTableCell align="left">{elem.companyName}</StyledTableCell>
                                         <StyledTableCell align="left">{elem.firstName}</StyledTableCell>
                                         <StyledTableCell align="left">{elem.lastName}</StyledTableCell>
@@ -104,7 +104,7 @@ function Quotations(props) {
                         <TableBody>
                             {requestsListFiltered.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => row.details.map(el => (
                                 <StyledTableRow className="row-tab-req" key={row._id} component={Link} to={`/seller_dashboard/quotations/${row._id}/${row.status}/${pathID}`}>
-                                    <StyledTableCell component="th" scope="row">{row.quotationNum}</StyledTableCell>
+                                    <StyledTableCell component="th" scope="row">{row.quotationNUM}</StyledTableCell>
                                     <StyledTableCell align="left">{row.companyName}</StyledTableCell>
                                     <StyledTableCell align="left">{row.firstName}</StyledTableCell>
                                     <StyledTableCell align="left">{row.lastName}</StyledTableCell>

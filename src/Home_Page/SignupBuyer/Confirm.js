@@ -13,7 +13,7 @@ export class Confirm extends Component {
         this.props.prevStep()
     }
     render() {
-        const { values: { companyName, secteur, address, phone, email, firstName, lastName, occupation, governorate, password } } = this.props
+        const { values: { companyName, sector, address, phone, email, firstName, lastName, occupation, governorate, password } } = this.props
         return (
             <div>
             <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%'}}>
@@ -25,7 +25,7 @@ export class Confirm extends Component {
                         </ListItem> 
                         
                         <ListItem> 
-                            <ListItemText primary="Activity Sector: " secondary= {secteur}/>
+                            <ListItemText primary="Activity Sector: " secondary= {sector}/>
                         </ListItem>
                         <ListItem> 
                             <ListItemText primary="Postal Address: " secondary= {address}/>

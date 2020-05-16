@@ -18,78 +18,94 @@ import SnackbarError from '../../SnackbarError';
 export class NewRequest extends Component {
     constructor(props) {
         super(props);
-        this.state={
+        this.state = {
             companyName: '',
             firstName: '',
             lastName: '',
             status: 'Waiting',
-            description1:'',
+            description1: '',
             quantity1: '',
-            description2:'',
-            quantity2:'',
-            description3:'',
-            quantity3:'',
-            description4:'',
-            quantity4:'',
+            description2: '',
+            quantity2: '',
+            description3: '',
+            quantity3: '',
+            description4: '',
+            quantity4: '',
             date: new Date(),
             validUntil: '',
             comment: '',
-            quotationNum: String(Math.round(Math.random()*1000000)),
-            customerID: String(Math.round(Math.random()*1000000)),
+            quotationNUM: String(Math.round(Math.random() * 1000000)),
+            customerID: String(Math.round(Math.random() * 1000000)),
             content: 'Someone is Looking for ',
             type: 'new',
             seen: 'no',
             visible: false,
             showError: false,
-            showSuccess: false
+            showSuccess: false,
+            
         }
     }
-    
+
     componentDidMount() {
-        axios.get(`/users/buyer/${this.props.buyerID}`)
+        axios.get(`http://localhost:3020/buyer/getByID/${this.props.buyerID}`)
             .then((res) => this.props.updateBuyer(res.data))
-        this.setState({ 
+        this.setState({
             companyName: this.props.buyersList.companyName,
             firstName: this.props.buyersList.firstName,
             lastName: this.props.buyersList.lastName
-         });
-    }
-    
-    openModal = () => {
-        this.setState({
-            visible : true
         });
     }
- 
+
+    openModal = () => {
+        this.setState({
+            visible: true
+        });
+    }
+
     closeModal = () => {
         this.setState({
-            visible : false
+            visible: false
         });
     }
     closeModalAndConfirm = () => {
-        if((this.state.description1 === '' && this.state.quantity1 === '' &&
+        if ((this.state.description1 === '' && this.state.quantity1 === '' &&
             this.state.description2 === '' && this.state.quantity2 === '' &&
             this.state.description3 === '' && this.state.quantity3 === '' &&
-            this.state.description4 === '' && this.state.quantity4 === '') || 
+            this.state.description4 === '' && this.state.quantity4 === '') ||
             ((this.state.description1 !== '' && this.state.quantity1 === '') ||
-            (this.state.description2 !== '' && this.state.quantity2 === '') ||
-            (this.state.description3 !== '' && this.state.quantity3 === '') ||
-            (this.state.description4 !== '' && this.state.quantity4 === '')) ||
+                (this.state.description2 !== '' && this.state.quantity2 === '') ||
+                (this.state.description3 !== '' && this.state.quantity3 === '') ||
+                (this.state.description4 !== '' && this.state.quantity4 === '')) ||
             ((this.state.description1 === '' && this.state.quantity1 !== '') ||
-            (this.state.description2 === '' && this.state.quantity2 !== '') ||
-            (this.state.description3 === '' && this.state.quantity3 !== '') ||
-            (this.state.description4 === '' && this.state.quantity4 !== ''))
-            ){
-                this.setState({ showError: true })
-                setTimeout(() => this.setState({ showError: false }), 4000)
-            } else {
-                axios.post('/api/new-quotation', {...this.state})
-                    .then(() => this.props.newRequest({
-                        quotationNum: this.state.quotationNum,
+                (this.state.description2 === '' && this.state.quantity2 !== '') ||
+                (this.state.description3 === '' && this.state.quantity3 !== '') ||
+                (this.state.description4 === '' && this.state.quantity4 !== ''))
+        ) {
+            this.setState({ showError: true })
+            setTimeout(() => this.setState({ showError: false }), 4000)
+        } else {
+            
+            const d1= this.state.description1;
+            const q1= this.state.quantity1;
+            const d2= this.state.description2;
+            const q2= this.state.quantity2;
+            const d3= this.state.description3;
+            const q3= this.state.quantity3;
+            const d4= this.state.description4;
+            const q4= this.state.quantity4;
+
+            axios.post('http://localhost:3020/quotation/add', { ...this.state })
+                .then( (res) => {
+                    this.props.newRequest({
+                        quotationNUM: this.state.quotationNUM,
                         companyName: this.state.companyName,
                         firstName: this.state.firstName,
                         lastName: this.state.lastName,
                         customerID: this.state.customerID,
+                        comment: this.state.comment,
+                        date: this.state.date,
+                        validUntil: String(this.state.validUntil),
+                        status: this.state.status,
                         description1: this.state.description1,         
                         description2: this.state.description2,         
                         description3: this.state.description3,         
@@ -97,46 +113,59 @@ export class NewRequest extends Component {
                         quantity1: this.state.quantity1,     
                         quantity2: this.state.quantity2,     
                         quantity3: this.state.quantity3,     
-                        quantity4: this.state.quantity4,      
-                        comment: this.state.comment,
-                        date: this.state.date,
-                        validUntil: String(this.state.validUntil),
-                        status: this.state.status,
+                        quantity4: this.state.quantity4, 
                     })
+                    console.log(res)
+                    axios.put(`http://localhost:3020/quotation/push/${res.data._id}`,{
+                    description1: d1,         
+                    description2: d2,         
+                    description3: d3,         
+                    description4: d4,
+                    quantity1: q1,     
+                    quantity2: q2,     
+                    quantity3: q3,     
+                    quantity4: q4, 
+                })
+                }
                 )
+
+            console.log ("this.props",this.state);
+            
+
             this.setState({ showSuccess: true });
             setTimeout(() => this.setState({ showSuccess: false }), 4000)
-            
-            axios.post('/api/new-notification', {...this.state})
-                    .then(() => this.props.newNotif({
-                        content: this.state.content,
-                        time:new Intl.DateTimeFormat('en-GB', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(Date.now()),
-                        description1: this.state.description1,
-                        quotationNum: this.state.quotationNum,
-                        status: this.state.status,
-                        type: this.state.type,
-                        seen: this.state.seen
-                        })
-                )
-        }
-        
 
-        this.setState({description1: '',description2: '', description3: '', description4: '', quantity1: '', quantity2: '', quantity3: '', quantity4: '', date: '', until:'', comment:''})
-        this.setState({visible : false});
+            axios.post('http://localhost:3020/notification/add', { ...this.state })
+                .then(() => this.props.newNotif({
+                    content: this.state.content,
+                    time: new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(Date.now()),
+                    description1: this.state.description1,
+                    quotationNUM: this.state.quotationNUM,
+                    status: this.state.status,
+                    type: this.state.type,
+                    seen: this.state.seen
+                })
+                )
+                
+        }
+
+
+        this.setState({ description1: '', description2: '', description3: '', description4: '', quantity1: '', quantity2: '', quantity3: '', quantity4: '', date: '', until: '', comment: '' })
+        this.setState({ visible: false });
     }
-    
+
     handleChange = e => {
-        this.setState({[e.target.name]: e.target.value})
+        this.setState({ [e.target.name]: e.target.value })
     }
 
     render() {
         return (
             <Main pageName={'New Request'}>
-                {this.state.showError ? <SnackbarError type={'error'} msg={'You forgot to add quantity or description!'}/> : null}
-                {this.state.showSuccess ? <SnackbarError type={'success'} msg={'Request Sent Successfully!'}/> : null}
+                {this.state.showError ? <SnackbarError type={'error'} msg={'You forgot to add quantity or description!'} /> : null}
+                {this.state.showSuccess ? <SnackbarError type={'success'} msg={'Request Sent Successfully!'} /> : null}
                 <div className="navigation-buttons-req">
                     <Button onClick={this.openModal} id="btn-reply" variant="contained" color="primary" className={useStyles.button}>
-                        <img src={reply} alt="reply page" style={{transform: 'scale(-1, 1)', width: '30px'}}/>
+                        <img src={reply} alt="reply page" style={{ transform: 'scale(-1, 1)', width: '30px' }} />
                         <h5>Send</h5>
                     </Button>
                     {/* Modal */}
@@ -144,7 +173,7 @@ export class NewRequest extends Component {
                         <Modal visible={this.state.visible} width="400" height="300" effect="fadeInDown" onClickAway={this.closeModal}>
                             <div className="modal-wrapper">
                                 <h1>CONFIRMATION</h1>
-                                <p style={{opacity: '.5'}}>Are you sure you want to send this request ?</p>
+                                <p style={{ opacity: '.5' }}>Are you sure you want to send this request ?</p>
                                 <div className="buttons-modal">
                                     <a href="javascript:void(0);" className="cancel-btn" onClick={this.closeModal}>Cancel</a>
                                     <a href="javascript:void(0);" className="confirm-btn" onClick={this.closeModalAndConfirm}>Confirm</a>
@@ -154,23 +183,23 @@ export class NewRequest extends Component {
                     </section>
                 </div>
                 <Paper className="req-header">
-                    <h1 className="page-title" style={{margin: '10px'}}>New Quotation Request</h1>
-                    <div className="dates" style={{margin: '10px'}}>
+                    <h1 className="page-title" style={{ margin: '10px' }}>New Quotation Request</h1>
+                    <div className="dates" style={{ margin: '10px' }}>
                         <div className="icon-and-input">
-                            <img src={calendar} className="icons-req" alt="calendar icon, date of the request"/>
+                            <img src={calendar} className="icons-req" alt="calendar icon, date of the request" />
                             <TextField
-                                value={new Intl.DateTimeFormat('en-GB', {year: 'numeric', month: '2-digit',day: '2-digit'}).format(Date.now())}
-                                style={{pointerEvents: 'none'}}
+                                value={new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: '2-digit', day: '2-digit' }).format(Date.now())}
+                                style={{ pointerEvents: 'none' }}
                                 label="Today"
                                 variant="outlined"
                                 className={useStyles.textField}
                                 InputLabelProps={{
-                                  shrink: true,
+                                    shrink: true,
                                 }}
                             />
                         </div>
-                        <div className="icon-and-input" style={{marginTop: '15px'}}>
-                            <img src={calendar} className="icons-req" alt="calendar icon, date of validation"/>
+                        <div className="icon-and-input" style={{ marginTop: '15px' }}>
+                            <img src={calendar} className="icons-req" alt="calendar icon, date of validation" />
                             <TextField
                                 name="validUntil"
                                 value={this.state.validUntil}
@@ -181,28 +210,30 @@ export class NewRequest extends Component {
                                 variant="outlined"
                                 className={useStyles.textField}
                                 InputLabelProps={{
-                                  shrink: true,
+                                    shrink: true,
                                 }}
                             />
                         </div>
                     </div>
                     <div className="paper-content">
                         <h3 className="customer-info">Customer Informations:</h3>
-                        <CustomerInfo infos={this.props.buyersList}/>
-                        <div className={useStyles.tableWrapper} style={{marginTop: '20px'}}>
+                        <CustomerInfo infos={this.props.buyersList} />
+                        <div className={useStyles.tableWrapper} style={{ marginTop: '20px' }}>
                             <TextField fullWidth={true} variant="outlined" label="Comment (Optional)" onChange={this.handleChange} value={this.state.comment} name="comment" type="text" />
+                            <br />
+                            <br />
                             <Table id='tableDescriptions'>
                                 <TableHead>
                                     <TableRow>
-                                        <StyledTableCell style={{backgroundColor: 'grey'}}>DESCRIPTION</StyledTableCell>
-                                        <StyledTableCell style={{backgroundColor: 'grey'}}>QUANTITY</StyledTableCell>
+                                        <StyledTableCell style={{ backgroundColor: 'grey' }}>DESCRIPTION</StyledTableCell>
+                                        <StyledTableCell style={{ backgroundColor: 'grey' }}>QUANTITY</StyledTableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
                                     <StyledTableRow>
                                         <StyledTableCell>
                                             <TextField
-                                                style={{fontSize: '5px'}}
+                                                style={{ fontSize: '5px' }}
                                                 fullWidth={true}
                                                 label="Description 1"
                                                 name="description1"
@@ -222,7 +253,7 @@ export class NewRequest extends Component {
                                     </StyledTableRow>
                                     <StyledTableRow>
                                         <StyledTableCell>
-                                            <TextField style={{fontSize: '5px'}}
+                                            <TextField style={{ fontSize: '5px' }}
                                                 fullWidth={true}
                                                 label="Description 2"
                                                 name="description2"
@@ -242,7 +273,7 @@ export class NewRequest extends Component {
                                     </StyledTableRow>
                                     <StyledTableRow>
                                         <StyledTableCell>
-                                            <TextField style={{fontSize: '5px'}}
+                                            <TextField style={{ fontSize: '5px' }}
                                                 fullWidth={true}
                                                 label="Description 3"
                                                 name="description3"
@@ -262,7 +293,7 @@ export class NewRequest extends Component {
                                     </StyledTableRow>
                                     <StyledTableRow>
                                         <StyledTableCell>
-                                            <TextField style={{fontSize: '5px'}}
+                                            <TextField style={{ fontSize: '5px' }}
                                                 fullWidth={true}
                                                 label="Description 4"
                                                 name="description4"
@@ -291,7 +322,7 @@ export class NewRequest extends Component {
 }
 
 const mapStateToProps = state => {
-    return{
+    return {
         request: state.reducerReqWaiting,
         buyersList: state.BuyerReducer
     }

@@ -5,7 +5,7 @@ import SnackbarError from '../../SnackbarError'
 export class FormCompanyDetails extends Component {
     state = { visible: false }
     continue = e => {
-        if(this.props.values.companyName === '' || this.props.values.secteur === '' ||
+        if(this.props.values.companyName === '' || this.props.values.sector === '' ||
             this.props.values.address === '' || this.props.values.phone === '' ||
             this.props.values.email === ''){
                 this.setState({ visible: true });
@@ -39,8 +39,8 @@ export class FormCompanyDetails extends Component {
                         <InputLabel>Industry</InputLabel>
                         <Select
                         fullWidth= {true}
-                        value={values.secteur}
-                        onChange={handleChange('secteur')}
+                        value={values.sector}
+                        onChange={handleChange('sector')}
                         >
                         <MenuItem value="Accounting">Accounting</MenuItem>
                         <MenuItem value="ApparelFashion">Apparel & Fashion</MenuItem>

@@ -270,15 +270,15 @@ const reducerReqWaiting = ( state = initialState, action) => {
             )
         case 'UPDATE_TO_ANSWERED':
             return (
-                state.map(el => el.quotationNum === action.quotreq.quotationNum ? action.quotreq : el)
+                state.map(el => el.quotationNUM === action.quotreq.quotationNUM ? action.quotreq : el)
             )
         case 'DENY_QUOT':
             return (
-                state.map(el => el.quotationNum === action.quotResponse.quotationNum ? action.quotResponse : el)
+                state.map(el => el.quotationNUM === action.quotResponse.quotationNUM ? action.quotResponse : el)
             )
         case 'ACCEPT_QUOT':
             return (
-                state.map(el => el.quotationNum === action.quotResponse.quotationNum ? action.quotResponse : el)
+                state.map(el => el.quotationNUM === action.quotResponse.quotationNUM ? action.quotResponse : el)
             )
         case 'UPDATE_TABS':
             return (

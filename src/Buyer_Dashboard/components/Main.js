@@ -11,8 +11,8 @@ function MadeWithLove() {
 return (
   <Typography variant="body2" color="textSecondary" align="center">
     {'Built with love by '}
-    <Link className="moez" color="inherit" href="https://github.com/moezKouni">
-      Moez
+    <Link color="inherit" >
+      salma
     </Link>
   </Typography>
 );

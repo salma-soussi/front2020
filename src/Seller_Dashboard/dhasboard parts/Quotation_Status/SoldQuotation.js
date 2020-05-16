@@ -37,7 +37,7 @@ class SoldQuotation extends Component {
         this.setState({
             ...this.props.soldQuots.filter((el ,index) => el._id === this.props.reqID)[0]
         })
-        axios.get(`/seller/seller/${this.props.sellerID}`)
+        axios.get(`http://localhost:3020/seller/getByID/${this.props.sellerID}`)
                 .then((res) => this.props.updateSeller(res.data))
         
     }
@@ -46,7 +46,7 @@ class SoldQuotation extends Component {
         const soldQuotsFiltered = soldQuots.filter((el, index) => el._id === this.props.reqID)
 
         return (
-        <Main pageName={`Deal N°${soldQuotsFiltered.map(el => el.quotationNum)}`}>
+        <Main pageName={`Deal N°${soldQuotsFiltered.map(el => el.quotationNUM)}`}>
             <div className="navigation-buttons-req">
                 <Button button component={Link} onClick={() => this.goBack()} variant="contained" id="button-back" className={useStyles.button}>
                     <img src={backarrow} alt="reply page" style={{width: '30px'}}/>
@@ -58,7 +58,7 @@ class SoldQuotation extends Component {
                 </Button>
             </div>
             <Paper className="paper-content">
-                <RequestHeader reqID={soldQuotsFiltered.map(el => el.quotationNum)} date={this.state.date} until={this.state.validUntil}/>
+                <RequestHeader reqID={soldQuotsFiltered.map(el => el.quotationNUM)} date={this.state.date} until={this.state.validUntil}/>
                 <div className="sold-done-deal">
                     <h1 className="done-deal">DONE DEAL</h1>
                     <img src={dealdone} alt="deal is done"/>

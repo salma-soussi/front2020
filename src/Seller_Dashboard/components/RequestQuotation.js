@@ -122,7 +122,7 @@ function RequestQuotation(props) {
     const {requestsList, updateReducer} = props
     const requesListFiltered = requestsList.filter(el => el.status === 'Waiting')
     useEffect(()=>{
-        axios.get('/api/quotations')
+        axios.get('http://localhost:3020/quotation/list')
         .then((res)=>updateReducer(res.data))
 
         // axios.get('/api/quotations')
@@ -160,7 +160,7 @@ function RequestQuotation(props) {
                             {requesListFiltered.length === 0 ? <h4 align="center">No requests received!</h4> : 
                                 requesListFiltered.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => row.details.map(el => (
                                     <StyledTableRow className="row-tab-req" key={row._id} component={Link} to={`/seller_dashboard/req-quotations/${row._id}/${row.status}/${pathID}`}>
-                                        <StyledTableCell component="th" scope="row">{row.quotationNum}</StyledTableCell>
+                                        <StyledTableCell component="th" scope="row">{row.quotationNUM}</StyledTableCell>
                                         <StyledTableCell align="left">{row.companyName}</StyledTableCell>
                                         <StyledTableCell align="left">{row.firstName}</StyledTableCell>
                                         <StyledTableCell align="left">{row.lastName}</StyledTableCell>

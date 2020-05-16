@@ -13,13 +13,13 @@ class NotificationContainer extends Component {
         }
 
     componentDidMount() {
-        axios.get('/api/notifications')
+        axios.get('http://localhost:3020/notification/list')
         .then((res)=> {this.props.updateReducer(res.data)})
     }
     notifToggle = () => {
         this.setState({ notif: !this.state.notif });
         this.setState({ newNotif: true });
-        axios.put(`/api/notification-seen`, {
+        axios.put(`http://localhost:3020/notification/seen`, {
             seen: 'yes'
         }).then(() => this.props.notifseenReducer(this.state))
         // for(let x in this.props.notifications){
@@ -41,7 +41,7 @@ class NotificationContainer extends Component {
                 </IconButton>
                 <Paper className={this.state.notif ? 'notifOpen' : 'notifClosed'}>
                 {this.props.notifications.filter(el => el.type === 'new' || el.type === 'accepted' || el.type === 'rejected').map((el, index) => (
-                <Link style={{textDecoration: 'none'}} key={el.quotationNum} to={el.type === 'new' ? `/seller_dashboard/req-quotations/${this.props.requestsList.filter(x => x.quotationNum === el.quotationNum).map(y => y._id)}/${el.status}/${pathID}` : (el.type === 'accepted' ? `/seller_dashboard/sold-items/${this.props.requestsList.filter(x => x.quotationNum === el.quotationNum).map(y => y._id)}/Sold/${pathID}` : null)}>
+                <Link style={{textDecoration: 'none'}} key={el.quotationNUM} to={el.type === 'new' ? `/seller_dashboard/req-quotations/${this.props.requestsList.filter(x => x.quotationNUM === el.quotationNUM).map(y => y._id)}/${el.status}/${pathID}` : (el.type === 'accepted' ? `/seller_dashboard/sold-items/${this.props.requestsList.filter(x => x.quotationNUM === el.quotationNUM).map(y => y._id)}/Sold/${pathID}` : null)}>
                     <div className={el.seen === 'no' ? 'new-notif-item' : "notif-item"}>
                         <p className="notif-item">{el.content} <span className="sender">{el.description1}</span></p>
                         <p className="notif-time">{String(el.time).replace('T', ' ').slice(0, 19)}</p>

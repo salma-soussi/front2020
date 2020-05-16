@@ -41,7 +41,7 @@ class QuotationReqTemplate extends Component {
         this.setState({
             ...this.props.requestsList.filter((el ,index) => el._id === this.props.reqID)[0]
         })
-        axios.get(`/seller/seller/${this.props.sellerID}`)
+        axios.get(`http://localhost:3020/seller/getByID/${this.props.sellerID}`)
             .then((res) => this.props.updateSeller(res.data))
     }
     render(){
@@ -65,7 +65,7 @@ class QuotationReqTemplate extends Component {
                 </Button>
             </div>
             <Paper className="paper-content">
-                <RequestHeader reqID={requestListFiltered.map(el => el.quotationNum)} date={this.state.date} until={this.state.validUntil}/>
+                <RequestHeader reqID={requestListFiltered.map(el => el.quotationNUM)} date={this.state.date} until={this.state.validUntil}/>
                 <h3 className="customer-info">Customer Informations:</h3>
                 <CustomerInfo infos={this.props.sellersList}/>
                 <div className={useStyles.tableWrapper} style={{marginTop: '20px'}}>
