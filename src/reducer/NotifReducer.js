@@ -1,6 +1,6 @@
 const initialState=[
     {
-        quotationNum: "1235",
+        quotationNUM: "1235",
         content: 'Someone is Looking for ',
         time:new Intl.DateTimeFormat('en-GB', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(Date.now()),
         description: 'iPhone',
@@ -23,14 +23,14 @@ const NotifReducer = (state = initialState, action) => {
             return [...state, action.newnotif]
         case 'ANSWERED_NOTIF':
             // return [...state, action.answerednotif]
-            return state.map(el => el.quotationNum === action.answerednotif.quotationNum ? action.answerednotif : el)
+            return state.map(el => el.quotationNUM === action.answerednotif.quotationNUM ? action.answerednotif : el)
         case 'ACCEPTED_NOTIF':
             // return [...state, action.acceptednotif]
-            return state.map(el => el.quotationNum === action.acceptednotif.quotationNum ? action.acceptednotif : el)
+            return state.map(el => el.quotationNUM === action.acceptednotif.quotationNUM ? action.acceptednotif : el)
             // return [...state, action.notifseen]
         case 'NOTIF_SEEN':
             return (
-                state.map(el => el.quotationNum === action.notifseen.quotationNum ? action.notifseen : el)
+                state.map(el => el.quotationNUM === action.notifseen.quotationNUM ? action.notifseen : el)
             )
         case 'UPDATE_NOTIF':
             return (

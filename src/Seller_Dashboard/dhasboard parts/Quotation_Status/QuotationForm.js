@@ -58,14 +58,14 @@ class QuotationForm extends Component {
     closeModalAndConfirm = () => {
         axios.put(`http://localhost:3020/quotation/update/${this.props.reqID}`, {
             status: 'Answered',
-            u0s: this.state.u0s,
-            u1s: this.state.u1s,
-            u2s: this.state.u2s,
-            u3s: this.state.u3s,
-            a5s: this.state.a5s,
-            a6s: this.state.a6s,
-            a7s: this.state.a7s,
-            a8s: this.state.a8s,
+            unitPrice1: this.state.unitPrice1,
+            unitPrice2: this.state.unitPrice2,
+            unitPrice3: this.state.unitPrice3,
+            unitPrice4: this.state.unitPrice4,
+            totalPrice1: this.state.totalPrice1,
+            totalPrice2: this.state.totalPrice2,
+            totalPrice3: this.state.totalPrice3,
+            totalPrice4: this.state.totalPrice4,
             total: this.state.total,
             tax: this.state.tax,
             subtotal: this.state.subtotal
@@ -73,7 +73,7 @@ class QuotationForm extends Component {
             .then(() => this.props.updateStatusReducer(this.state))
 
         // console.log({...this.state})
-        axios.post('/api/answer-notification', { ...this.state })
+        axios.post('http://localhost:3020/notification/accepted', { ...this.state })
             .then(() => this.props.answeredNotifReducer({
                 content: this.state.content,
                 time: new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(Date.now()),
@@ -166,7 +166,7 @@ class QuotationForm extends Component {
 
                                             {Object.keys(x).length >= 3 ? <StyledTableCell>
                                                 <TextField type="number" placeholder="Price/unit (TND)"
-                                                    name='u0s'
+                                                    name='unitPrice1'
                                                     // value={this.state.index}
                                                     // value={x.unit}
                                                     onChange={this.handleChange}
@@ -176,7 +176,7 @@ class QuotationForm extends Component {
                                             {Object.keys(x).length >= 3 ? <StyledTableCell>
                                                 <TextField type="number" placeholder="Amount (TND)"
                                                     // name="amount" 
-                                                    name='a5s'
+                                                    name='totalPrice1'
                                                     // value={x.amount}
                                                     onChange={this.handleChange}
                                                 />
@@ -193,7 +193,7 @@ class QuotationForm extends Component {
 
                                             <StyledTableCell>
                                                 <TextField type="number" placeholder="Price/unit (TND)"
-                                                    name='u1s'
+                                                    name='unitPrice2'
                                                     // value={this.state.index}
                                                     // value={x.unit}
                                                     onChange={this.handleChange}
@@ -203,7 +203,7 @@ class QuotationForm extends Component {
                                             <StyledTableCell>
                                                 <TextField type="number" placeholder="Amount (TND)"
                                                     // name="amount" 
-                                                    name='a6s'
+                                                    name='totalPrice2'
                                                     // value={x.amount}
                                                     onChange={this.handleChange}
                                                 />
@@ -220,7 +220,7 @@ class QuotationForm extends Component {
 
                                             <StyledTableCell>
                                                 <TextField type="number" placeholder="Price/unit (TND)"
-                                                    name='u2s'
+                                                    name='unitPrice3'
                                                     // value={this.state.index}
                                                     // value={x.unit}
                                                     onChange={this.handleChange}
@@ -230,7 +230,7 @@ class QuotationForm extends Component {
                                             <StyledTableCell>
                                                 <TextField type="number" placeholder="Amount (TND)"
                                                     // name="amount" 
-                                                    name='a7s'
+                                                    name='totalPrice3'
                                                     // value={x.amount}
                                                     onChange={this.handleChange}
                                                 />
@@ -247,7 +247,7 @@ class QuotationForm extends Component {
 
                                             <StyledTableCell>
                                                 <TextField type="number" placeholder="Price/unit (TND)"
-                                                    name='u3s'
+                                                    name='unitPrice4'
                                                     // value={this.state.index}
                                                     // value={x.unit}
                                                     onChange={this.handleChange}
@@ -257,7 +257,7 @@ class QuotationForm extends Component {
                                             <StyledTableCell>
                                                 <TextField type="number" placeholder="Amount (TND)"
                                                     // name="amount" 
-                                                    name='a8s'
+                                                    name='totalPrice4'
                                                     // value={x.amount}
                                                     onChange={this.handleChange}
                                                 />

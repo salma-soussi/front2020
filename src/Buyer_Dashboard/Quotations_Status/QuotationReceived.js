@@ -32,7 +32,7 @@ class QuotationReceived extends Component {
         });
     }
     closeModalAndConfirmAccept = () => {
-        axios.post('/api/accepted-notification', {...this.state})
+        axios.post('http://localhost:3020/notification/accepted', {...this.state})
             .then(() => this.props.acceptednotifReducer({
                 content: this.state.content === 'Your Offer Has Been Denied ' && 'Your Offer Has Been Accepted ',
                 time: new Intl.DateTimeFormat('en-GB', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(Date.now()),
@@ -43,7 +43,7 @@ class QuotationReceived extends Component {
                 seen: 'no'
                 })
             )
-        axios.put(`/api/accepted-quotation/${this.props.reqID}`,{status: 'Sold'})
+        axios.put(`http://localhost:3020/quotation/accepted-quotation/${this.props.reqID}`,{status: 'Sold'})
             .then(() => this.props.acceptQuotReducer({...this.state, status: 'Sold'}))
             
         if(window.location.pathname.split('/').length - 1 >= 2){
@@ -64,7 +64,7 @@ class QuotationReceived extends Component {
     }
  
     closeModalAndConfirm = () => {
-        axios.post('/api/denied-notification', {...this.state})
+        axios.post('http://localhost:3020/notification/denied', {...this.state})
                     .then(() => this.props.acceptednotifReducer({
                         content: this.state.content,
                         time: new Intl.DateTimeFormat('en-GB', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(Date.now()),
@@ -76,7 +76,7 @@ class QuotationReceived extends Component {
                         })
                     )
 
-        axios.put(`/api/denied-quotation/${this.props.reqID}`,{status: 'Denied'})
+        axios.put(`http://localhost:3020/quotation/denied-quotation/${this.props.reqID}`,{status: 'Denied'})
             .then(() => this.props.denyQuotReducer({...this.state, status: 'Denied'}))
 
         if(window.location.pathname.split('/').length - 1 >= 2){

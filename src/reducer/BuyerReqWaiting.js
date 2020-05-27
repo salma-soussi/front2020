@@ -1,6 +1,6 @@
 let initialState = [
     // {
-    //     quotationNum:'1235',
+    //     quotationNUM:'1235',
     //     companyName: 'GoMyCode',
     //     firstName: 'Asma',
     //     lastName: 'El kouni',
@@ -17,7 +17,7 @@ let initialState = [
     //     status: 'Waiting'
     // },
     // {
-    //     quotationNum: '7129',
+    //     quotationNUM: '7129',
     //     companyName: 'Talant',
     //     firstName: 'Islem',
     //     lastName: 'El kouni',
@@ -31,7 +31,7 @@ let initialState = [
     //     status: 'Waiting'
     // },
     // {
-    //     quotationNum: '10236',
+    //     quotationNUM: '10236',
     //     companyName: 'Up&Web',
     //     firstName: 'Youssef',
     //     lastName: 'Mestiri',
@@ -45,7 +45,7 @@ let initialState = [
     //     status: 'Waiting'
     // },
     // {
-    //     quotationNum: '55602',
+    //     quotationNUM: '55602',
     //     companyName: 'Satoripop',
     //     firstName: 'Mohamed',
     //     lastName: 'Fraj',
@@ -60,7 +60,7 @@ let initialState = [
     //     status: 'Waiting'
     // },
     // {
-    //     quotationNum: '1508',
+    //     quotationNUM: '1508',
     //     companyName: 'Vermeg',
     //     firstName: 'Moez',
     //     lastName: 'El kouni',
@@ -85,7 +85,7 @@ let initialState = [
     //     status: 'Answered'
     // },
     // {
-    //     quotationNum: '98789',
+    //     quotationNUM: '98789',
     //     companyName: 'HA',
     //     firstName: 'Neji',
     //     lastName: 'Cheibi',
@@ -107,7 +107,7 @@ let initialState = [
     //     status: 'Answered'
     // },
     // {
-    //     quotationNum: '15632',
+    //     quotationNUM: '15632',
     //     companyName: 'LC Waikicki',
     //     firstName: 'Ahmed',
     //     lastName: 'TM',
@@ -132,7 +132,7 @@ let initialState = [
     //     status: 'Answered'
     // },
     // {
-    //     quotationNum: '3302',
+    //     quotationNUM: '3302',
     //     companyName: 'Exist',
     //     firstName: 'Nafaa',
     //     lastName: 'Kacem',
@@ -160,7 +160,7 @@ let initialState = [
     //     status: 'Answered'
     // },
     // {
-    //     quotationNum: '9956',
+    //     quotationNUM: '9956',
     //     companyName: 'Proxym',
     //     firstName: 'Nessrine',
     //     lastName: 'Abdallah',
@@ -182,7 +182,7 @@ let initialState = [
     //     status: 'Sold'
     // },
     // {
-    //     quotationNum: '12359',
+    //     quotationNUM: '12359',
     //     companyName: 'EPI',
     //     firstName: 'Rabeh',
     //     lastName: 'Hamdi',
@@ -201,7 +201,7 @@ let initialState = [
     //     status: 'Sold'
     // },
     // {
-    //     quotationNum: '95623',
+    //     quotationNUM: '95623',
     //     companyName: 'JCI',
     //     firstName: 'Ghafir',
     //     lastName: 'Derouich',
@@ -223,7 +223,7 @@ let initialState = [
     //     status: 'Sold'
     // },
     // {
-    //     quotationNum: '7530',
+    //     quotationNUM: '7530',
     //     companyName: 'GoMyCode',
     //     firstName: 'Bassem',
     //     lastName: 'Ibrahim',
@@ -242,7 +242,7 @@ let initialState = [
     //     status: 'Sold'
     // },
     // {
-    //     quotationNum: '7530',
+    //     quotationNUM: '7530',
     //     companyName: 'GoMyCode',
     //     firstName: 'Bassem',
     //     lastName: 'Ibrahim',

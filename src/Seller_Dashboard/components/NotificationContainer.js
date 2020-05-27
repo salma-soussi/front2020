@@ -39,7 +39,9 @@ class NotificationContainer extends Component {
                     <NotificationsIcon />
                     </Badge>
                 </IconButton>
+                
                 <Paper className={this.state.notif ? 'notifOpen' : 'notifClosed'}>
+                
                 {this.props.notifications.filter(el => el.type === 'new' || el.type === 'accepted' || el.type === 'rejected').map((el, index) => (
                 <Link style={{textDecoration: 'none'}} key={el.quotationNUM} to={el.type === 'new' ? `/seller_dashboard/req-quotations/${this.props.requestsList.filter(x => x.quotationNUM === el.quotationNUM).map(y => y._id)}/${el.status}/${pathID}` : (el.type === 'accepted' ? `/seller_dashboard/sold-items/${this.props.requestsList.filter(x => x.quotationNUM === el.quotationNUM).map(y => y._id)}/Sold/${pathID}` : null)}>
                     <div className={el.seen === 'no' ? 'new-notif-item' : "notif-item"}>
@@ -49,6 +51,14 @@ class NotificationContainer extends Component {
                 </Link>
                 ))}
             </Paper>
+            {
+            console.log('test'),
+            console.log(this.props.notifications.filter(el => el.type === 'new' || el.type === 'accepted' || el.type === 'rejected').map((el, index) => {
+                console.log("tttttt")      
+                console.log(this.props.requestsList)
+                console.log("eeeee") 
+                console.log(el)
+                    }))}
             </div>
         )
     }

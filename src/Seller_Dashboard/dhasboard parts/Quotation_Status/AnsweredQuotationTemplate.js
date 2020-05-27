@@ -75,10 +75,10 @@ class AnsweredQuotationTemplate extends Component {
                                                 <TextField style={{pointerEvents: 'none'}} value={elem.quantity1}/>
                                             </StyledTableCell>
                                             <StyledTableCell>
-                                                <TextField style={{pointerEvents: 'none'}} value={String(x.u0s).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
+                                                <TextField style={{pointerEvents: 'none'}} value={String(x.unitPrice1).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
                                             </StyledTableCell>
                                             <StyledTableCell>
-                                                <TextField style={{pointerEvents: 'none'}} value={String(x.a5s).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
+                                                <TextField style={{pointerEvents: 'none'}} value={String(x.totalPrice1).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
                                             </StyledTableCell>
                                         </StyledTableRow>
                                         {elem.description2 !== '' ? <StyledTableRow key={i+1}>
@@ -89,10 +89,10 @@ class AnsweredQuotationTemplate extends Component {
                                                 <TextField style={{pointerEvents: 'none'}} value={elem.quantity2}/>
                                             </StyledTableCell>
                                             <StyledTableCell>
-                                                <TextField style={{pointerEvents: 'none'}} value={String(x.u1s).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
+                                                <TextField style={{pointerEvents: 'none'}} value={String(x.unitPrice2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
                                             </StyledTableCell>
                                             <StyledTableCell>
-                                                <TextField style={{pointerEvents: 'none'}} value={String(x.a6s).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
+                                                <TextField style={{pointerEvents: 'none'}} value={String(x.totalPrice2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
                                             </StyledTableCell>
                                         </StyledTableRow> : null}
                                         {elem.description3 !== '' ? <StyledTableRow key={i+2}>
@@ -103,10 +103,10 @@ class AnsweredQuotationTemplate extends Component {
                                                 <TextField style={{pointerEvents: 'none'}} value={elem.quantity3}/>
                                             </StyledTableCell>
                                             <StyledTableCell>
-                                                <TextField style={{pointerEvents: 'none'}} value={String(x.u2s).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
+                                                <TextField style={{pointerEvents: 'none'}} value={String(x.unitPrice3).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
                                             </StyledTableCell>
                                             <StyledTableCell>
-                                                <TextField style={{pointerEvents: 'none'}} value={String(x.a7s).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
+                                                <TextField style={{pointerEvents: 'none'}} value={String(x.totalPrice3).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
                                             </StyledTableCell>
                                         </StyledTableRow> : null}
                                         {elem.description4 !== '' ? <StyledTableRow key={i+3}>
@@ -117,10 +117,10 @@ class AnsweredQuotationTemplate extends Component {
                                                 <TextField style={{pointerEvents: 'none'}} value={elem.quantity4}/>
                                             </StyledTableCell>
                                             <StyledTableCell>
-                                                <TextField style={{pointerEvents: 'none'}} value={String(x.u3s).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
+                                                <TextField style={{pointerEvents: 'none'}} value={String(x.unitPrice4).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
                                             </StyledTableCell>
                                             <StyledTableCell>
-                                                <TextField style={{pointerEvents: 'none'}} value={String(x.a8s).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
+                                                <TextField style={{pointerEvents: 'none'}} value={String(x.totalPrice4).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
                                             </StyledTableCell>
                                         </StyledTableRow> : null}
                                     </TableBody>

@@ -21,14 +21,14 @@ class ProfilBuyer extends Component {
             occupation: '',
             governorate: '',
             editbutton: false,
-    };
+        };
     }
     // componentDidMount() {
     //     this.setState({
     //         ...this.props.buyersList.filter(el => el._id === this.props.buyerID)[0]
     //     })
     // }
-    
+
     handleSubmit(e) {
         e.preventDefault();
         // TODO: do something with -> this.state.file
@@ -37,17 +37,17 @@ class ProfilBuyer extends Component {
 
     handleImageChange(e) {
         e.preventDefault();
-    
+
         let reader = new FileReader();
         let file = e.target.files[0];
-    
+
         reader.onloadend = () => {
-          this.setState({
-            file: file,
-            imagePreviewUrl: reader.result
-          });
+            this.setState({
+                file: file,
+                imagePreviewUrl: reader.result
+            });
         }
-    
+
         reader.readAsDataURL(file)
     }
     handleChange = e => {
@@ -55,9 +55,9 @@ class ProfilBuyer extends Component {
     }
 
     toggleButton = () => {
-        this.setState({editbutton: !this.state.editbutton})
-        if(this.state.editbutton === true){
-            axios.put(`http://localhost:3020/buyer/update/${this.props.buyerID}`,{
+        this.setState({ editbutton: !this.state.editbutton })
+        if (this.state.editbutton === true) {
+            axios.put(`http://localhost:3020/buyer/update/${this.props.buyerID}`, {
                 sector: this.state.sector,
                 address: this.state.address,
                 phone: this.state.phone,
@@ -85,15 +85,15 @@ class ProfilBuyer extends Component {
                     governorate: res.data.governorate,
                 })
             })
-            
+
     }
-    
+
 
     render() {
         const { buyersList } = this.props
-        let {imagePreviewUrl} = this.state;
-        let imagePreview = <img src={avatar} className="profil-pic" alt="profil pic"/>;
-        if (imagePreviewUrl) {imagePreview = (<img src={imagePreviewUrl} className="profil-pic" alt="profil pic"/>)}
+        let { imagePreviewUrl } = this.state;
+        let imagePreview = <img src={avatar} className="profil-pic" alt="profil pic" />;
+        if (imagePreviewUrl) { imagePreview = (<img src={imagePreviewUrl} className="profil-pic" alt="profil pic" />) }
         return (
             <Main>
                 <Paper className="paper-content">
@@ -108,54 +108,54 @@ class ProfilBuyer extends Component {
                                 id="outlined-button-file"
                                 multiple
                                 type="file"
-                                onChange={(e)=>this.handleImageChange(e)}
+                                onChange={(e) => this.handleImageChange(e)}
                             />
                             <label htmlFor="outlined-button-file">
                                 <Button variant="outlined" component="span" className={useStyles.button}>
-                                Change Image
+                                    Change Image
                                 </Button>
                             </label>
                             {/* // <input className="fileInput" type="file" onChange={(e)=>this.handleImageChange(e)} /> */}
                         </div>
-                        <Button id='edit-btn' onClick={this.toggleButton}  variant="outlined" color="inherit" className={useStyles.button}>
-                            {this.state.editbutton ? 'Confirm Changes' : <img src={update} alt='update profil'/>}
+                        <Button id='edit-btn' onClick={this.toggleButton} variant="outlined" color="inherit" className={useStyles.button}>
+                            {this.state.editbutton ? 'Confirm Changes' : <img src={update} alt='update profil' />}
                         </Button>
                         <h1 className="company-name-profil">{buyersList.companyName}</h1>
                         <div className="infos-profil">
                             <div className="titles-info">
                                 <div className="list-titles">
                                     <h3 className="title-item-buyer">First Name</h3>
-                                    <Divider light={true} variant="middle"/>
+                                    <Divider light={true} variant="middle" />
                                     <h3 className="title-item-buyer">Last Name</h3>
-                                    <Divider light={true} variant="middle"/>
+                                    <Divider light={true} variant="middle" />
                                     <h3 className="title-item-buyer">Phone Number</h3>
-                                    <Divider light={true} variant="middle"/>
+                                    <Divider light={true} variant="middle" />
                                     <h3 className="title-item-buyer">Email Address</h3>
-                                    <Divider light={true} variant="middle"/>
+                                    <Divider light={true} variant="middle" />
                                     <h3 className="title-item-buyer">sector</h3>
-                                    <Divider light={true} variant="middle"/>
+                                    <Divider light={true} variant="middle" />
                                     <h3 className="title-item-buyer">Postal Address</h3>
-                                    <Divider light={true} variant="middle"/>
+                                    <Divider light={true} variant="middle" />
                                     <h3 className="title-item-buyer">Government</h3>
                                 </div>
                             </div>
                             <div className="content-info">
                                 <div className="list-content">
-                                    <input type="text" onChange={this.handleChange} name="firstName" className={this.state.editbutton ? "content-item-enabled" : "content-item-disabled"} value={this.state.firstName}/>
-                                    <Divider light={true} variant="middle"/>
-                                    <input type="text" onChange={this.handleChange} name="lastName" className={this.state.editbutton ? "content-item-enabled" : "content-item-disabled"} value={this.state.lastName}/>
-                                    <Divider light={true} variant="middle"/>
-                                    <input type="text" onChange={this.handleChange} name="phone" className={this.state.editbutton ? "content-item-enabled" : "content-item-disabled"} value={this.state.phone}/>
-                                    <Divider light={true} variant="middle"/>
-                                    <input type="text" onChange={this.handleChange} name="email" className={this.state.editbutton ? "content-item-enabled" : "content-item-disabled"} value={this.state.email}/>
-                                    <Divider light={true} variant="middle"/>
-                                    <input type="text" onChange={this.handleChange} name="occupation" className={this.state.editbutton ? "content-item-enabled" : "content-item-disabled"} value={this.state.occupation}/>
-                                    <Divider light={true} variant="middle"/>
-                                    <input type="text" onChange={this.handleChange} name="sector" className={this.state.editbutton ? "content-item-enabled" : "content-item-disabled"} value={this.state.sector}/>
-                                    <Divider light={true} variant="middle"/>
-                                    <input type="text" onChange={this.handleChange} name="address" className={this.state.editbutton ? "content-item-enabled" : "content-item-disabled"} value={this.state.address}/>
-                                    <Divider light={true} variant="middle"/>
-                                    <input type="text" onChange={this.handleChange} name="governorate" className={this.state.editbutton ? "content-item-enabled" : "content-item-disabled"} value={this.state.governorate}/>
+                                    <input type="text" onChange={this.handleChange} name="firstName" className={this.state.editbutton ? "content-item-enabled" : "content-item-disabled"} value={this.state.firstName} />
+                                    <Divider light={true} variant="middle" />
+                                    <input type="text" onChange={this.handleChange} name="lastName" className={this.state.editbutton ? "content-item-enabled" : "content-item-disabled"} value={this.state.lastName} />
+                                    <Divider light={true} variant="middle" />
+                                    <input type="text" onChange={this.handleChange} name="phone" className={this.state.editbutton ? "content-item-enabled" : "content-item-disabled"} value={this.state.phone} />
+                                    <Divider light={true} variant="middle" />
+                                    <input type="text" onChange={this.handleChange} name="email" className={this.state.editbutton ? "content-item-enabled" : "content-item-disabled"} value={this.state.email} />
+                                    <Divider light={true} variant="middle" />
+                                    <input type="text" onChange={this.handleChange} name="occupation" className={this.state.editbutton ? "content-item-enabled" : "content-item-disabled"} value={this.state.occupation} />
+                                    <Divider light={true} variant="middle" />
+                                    <input type="text" onChange={this.handleChange} name="sector" className={this.state.editbutton ? "content-item-enabled" : "content-item-disabled"} value={this.state.sector} />
+                                    <Divider light={true} variant="middle" />
+                                    <input type="text" onChange={this.handleChange} name="address" className={this.state.editbutton ? "content-item-enabled" : "content-item-disabled"} value={this.state.address} />
+                                    <Divider light={true} variant="middle" />
+                                    <input type="text" onChange={this.handleChange} name="governorate" className={this.state.editbutton ? "content-item-enabled" : "content-item-disabled"} value={this.state.governorate} />
                                 </div>
                             </div>
                         </div>
@@ -167,15 +167,15 @@ class ProfilBuyer extends Component {
 }
 const useStyles = makeStyles(theme => ({
     button: {
-      margin: theme.spacing(1),
+        margin: theme.spacing(1),
     },
     input: {
-      display: 'none',
+        display: 'none',
     }
 }));
 
 const mapStateToProps = state => {
-    return{
+    return {
         buyersList: state.BuyerReducer
     }
 }

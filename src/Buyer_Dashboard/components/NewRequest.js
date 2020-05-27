@@ -42,7 +42,7 @@ export class NewRequest extends Component {
             visible: false,
             showError: false,
             showSuccess: false,
-            
+
         }
     }
 
@@ -84,18 +84,18 @@ export class NewRequest extends Component {
             this.setState({ showError: true })
             setTimeout(() => this.setState({ showError: false }), 4000)
         } else {
-            
-            const d1= this.state.description1;
-            const q1= this.state.quantity1;
-            const d2= this.state.description2;
-            const q2= this.state.quantity2;
-            const d3= this.state.description3;
-            const q3= this.state.quantity3;
-            const d4= this.state.description4;
-            const q4= this.state.quantity4;
+
+            const d1 = this.state.description1;
+            const q1 = this.state.quantity1;
+            const d2 = this.state.description2;
+            const q2 = this.state.quantity2;
+            const d3 = this.state.description3;
+            const q3 = this.state.quantity3;
+            const d4 = this.state.description4;
+            const q4 = this.state.quantity4;
 
             axios.post('http://localhost:3020/quotation/add', { ...this.state })
-                .then( (res) => {
+                .then((res) => {
                     this.props.newRequest({
                         quotationNUM: this.state.quotationNUM,
                         companyName: this.state.companyName,
@@ -106,31 +106,31 @@ export class NewRequest extends Component {
                         date: this.state.date,
                         validUntil: String(this.state.validUntil),
                         status: this.state.status,
-                        description1: this.state.description1,         
-                        description2: this.state.description2,         
-                        description3: this.state.description3,         
+                        description1: this.state.description1,
+                        description2: this.state.description2,
+                        description3: this.state.description3,
                         description4: this.state.description4,
-                        quantity1: this.state.quantity1,     
-                        quantity2: this.state.quantity2,     
-                        quantity3: this.state.quantity3,     
-                        quantity4: this.state.quantity4, 
+                        quantity1: this.state.quantity1,
+                        quantity2: this.state.quantity2,
+                        quantity3: this.state.quantity3,
+                        quantity4: this.state.quantity4,
                     })
                     console.log(res)
-                    axios.put(`http://localhost:3020/quotation/push/${res.data._id}`,{
-                    description1: d1,         
-                    description2: d2,         
-                    description3: d3,         
-                    description4: d4,
-                    quantity1: q1,     
-                    quantity2: q2,     
-                    quantity3: q3,     
-                    quantity4: q4, 
-                })
+                    axios.put(`http://localhost:3020/quotation/push/${res.data._id}`, {
+                        description1: d1,
+                        description2: d2,
+                        description3: d3,
+                        description4: d4,
+                        quantity1: q1,
+                        quantity2: q2,
+                        quantity3: q3,
+                        quantity4: q4,
+                    })
                 }
                 )
 
-            console.log ("this.props",this.state);
-            
+            console.log("this.props", this.state);
+
 
             this.setState({ showSuccess: true });
             setTimeout(() => this.setState({ showSuccess: false }), 4000)
@@ -146,7 +146,7 @@ export class NewRequest extends Component {
                     seen: this.state.seen
                 })
                 )
-                
+
         }
 
 
