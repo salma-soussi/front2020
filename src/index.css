@@ -856,3 +856,7 @@ body, html{
     margin-top: 10px;
     text-align: center; 
   }
+
+  .input{
+    textField: 280px;
+  }

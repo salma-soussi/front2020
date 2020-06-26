@@ -67,6 +67,7 @@ class QuotationClosed extends Component {
                     <Table>
                         <TableHead>
                             <TableRow>
+                                <StyledTableCell style={{backgroundColor: 'grey'}}>NAME</StyledTableCell>
                                 <StyledTableCell style={{backgroundColor: 'grey'}}>DESCRIPTION</StyledTableCell>
                                 <StyledTableCell style={{backgroundColor: 'grey'}}>QUANTITY</StyledTableCell>
                                 <StyledTableCell style={{backgroundColor: 'grey'}}>UNIT PRICE (TND)</StyledTableCell>
@@ -77,58 +78,70 @@ class QuotationClosed extends Component {
                             <TableBody>
                                 <StyledTableRow key={i}>
                                     <StyledTableCell>
-                                        <TextField style={{pointerEvents: 'none'}} value={elem.description1}/>
+                                        <TextField style={{pointerEvents: 'none'}} value={elem.name1}/>
+                                    </StyledTableCell>
+                                    <StyledTableCell>
+                                        <TextField style={{pointerEvents: 'none'}} multiline value={elem.description1}/>
                                     </StyledTableCell>
                                     <StyledTableCell>
                                         <TextField style={{pointerEvents: 'none'}} value={elem.quantity1}/>
                                     </StyledTableCell>
                                     <StyledTableCell>
-                                        <TextField style={{pointerEvents: 'none'}} value={x.u0s}/>
+                                        <TextField style={{pointerEvents: 'none'}} value={x.unitPrice1}/>
                                     </StyledTableCell>
                                     <StyledTableCell>
-                                        <TextField style={{pointerEvents: 'none'}} value={x.a5s}/>
+                                        <TextField style={{pointerEvents: 'none'}} value={x.totalPrice1}/>
                                     </StyledTableCell>
                                 </StyledTableRow>
-                                {elem.description2 !== '' ? <StyledTableRow key={i+1}>
+                                {elem.name2 !== '' ? <StyledTableRow key={i+1}>
                                     <StyledTableCell>
-                                        <TextField style={{pointerEvents: 'none'}} value={elem.description2}/>
+                                        <TextField style={{pointerEvents: 'none'}} value={elem.name2}/>
+                                    </StyledTableCell>
+                                    <StyledTableCell>
+                                        <TextField style={{pointerEvents: 'none'}} multiline value={elem.description2}/>
                                     </StyledTableCell>
                                     <StyledTableCell>
                                         <TextField style={{pointerEvents: 'none'}} value={elem.quantity2}/>
                                     </StyledTableCell>
                                     <StyledTableCell>
-                                        <TextField style={{pointerEvents: 'none'}} value={x.u1s}/>
+                                        <TextField style={{pointerEvents: 'none'}} value={x.unitPrice2}/>
                                     </StyledTableCell>
                                     <StyledTableCell>
-                                        <TextField style={{pointerEvents: 'none'}} value={x.a6s}/>
+                                        <TextField style={{pointerEvents: 'none'}} value={x.totalPrice2}/>
                                     </StyledTableCell>
                                 </StyledTableRow> : null}
-                                {elem.description3 !== '' ? <StyledTableRow key={i+2}>
+                                {elem.name3 !== '' ? <StyledTableRow key={i+2}>
                                     <StyledTableCell>
-                                        <TextField style={{pointerEvents: 'none'}} value={elem.description3}/>
+                                        <TextField style={{pointerEvents: 'none'}} value={elem.name3}/>
+                                    </StyledTableCell>
+                                    <StyledTableCell>
+                                        <TextField style={{pointerEvents: 'none'}} multiline value={elem.description3}/>
                                     </StyledTableCell>
                                     <StyledTableCell>
                                         <TextField style={{pointerEvents: 'none'}} value={elem.quantity3}/>
                                     </StyledTableCell>
                                     <StyledTableCell>
-                                        <TextField style={{pointerEvents: 'none'}} value={x.u2s}/>
+                                        <TextField style={{pointerEvents: 'none'}} value={x.unitPrice3}/>
                                     </StyledTableCell>
                                     <StyledTableCell>
-                                        <TextField style={{pointerEvents: 'none'}} value={x.a7s}/>
+                                        <TextField style={{pointerEvents: 'none'}} value={x.totalPrice3}/>
                                     </StyledTableCell>
                                 </StyledTableRow> : null}
-                                {elem.description4 !== '' ? <StyledTableRow key={i+3}>
+                                {elem.name4 !== '' ? <StyledTableRow key={i+3}>
                                     <StyledTableCell>
-                                        <TextField style={{pointerEvents: 'none'}} value={elem.description4}/>
+                                        <TextField style={{pointerEvents: 'none'}} value={elem.name4}/>
+                                    </StyledTableCell>
+                                    <StyledTableCell>
+                                        <TextField style={{pointerEvents: 'none'}} multiline value={elem.description4}/>
                                     </StyledTableCell>
                                     <StyledTableCell>
                                         <TextField style={{pointerEvents: 'none'}} value={elem.quantity4}/>
                                     </StyledTableCell>
                                     <StyledTableCell>
-                                        <TextField style={{pointerEvents: 'none'}} value={x.u3s}/>
+                                        <TextField style={{pointerEvents: 'none'}} value={x.unitPrice4}/>
                                     </StyledTableCell>
                                     <StyledTableCell>
-                                        <TextField style={{pointerEvents: 'none'}} value={x.a8s}/>
+                                        <TextField style={{pointerEvents: 'none'}} value={x.totalPrice4}/>
                                     </StyledTableCell>
                                 </StyledTableRow> : null}
                             </TableBody>
@@ -138,6 +151,7 @@ class QuotationClosed extends Component {
                             {soldQuotsFiltered.map(el => (
                             <TableBody>
                             <StyledTableRow>
+                                <StyledTableCell rowSpan={3} />
                                 <StyledTableCell rowSpan={3} />
                                 <StyledTableCell colSpan={2}>Subtotal</StyledTableCell>
                                 <StyledTableCell align="right">

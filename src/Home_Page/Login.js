@@ -26,7 +26,7 @@ class Login extends Component {
             <div className="form-container">
                 <Paper>
                     <div className="media-card">
-                        <h1>BUYER</h1>
+                        <h1 className="h1-name">BUYER</h1>
                         <Link to='/loginasseller' className="button-switch">
                             <button className="seller-btn" onClick={() => this.handleToggle}>Login as a Seller ↪</button>
                         </Link>

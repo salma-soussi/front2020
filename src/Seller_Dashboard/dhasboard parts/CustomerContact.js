@@ -22,7 +22,7 @@ function CustomerContact(props) {
     const { customerInfo } = props
     const classes = useStyles();
     const [values, setValues] = React.useState({
-        companyName: 'Go My Code',
+        companyName: 'just',
         customerName: 'salma',
         lastTime: '07/5/2020',
         numberOfTimes: 2,
@@ -44,32 +44,32 @@ function CustomerContact(props) {
     };
     const resetMessage = () => {
         setMessage({ ...messageInitialState });
-      };
+    };
 
 
     const handleChange = name => event => {
         setValues({ ...values, [name]: event.target.value });
-      };
-      const fetchCustomer = () => {
-          customerInfo.filter(el => el.customerID === props.customerID)
-        }
-        useEffect(() => fetchCustomer(), [])
-        if(window.location.pathname.split('/').length - 1 >= 2){
-            var pathID = window.location.pathname.substr(-24)
-        }
+    };
+    const fetchCustomer = () => {
+        customerInfo.filter(el => el.customerID === props.customerID)
+    }
+    useEffect(() => fetchCustomer(), [])
+    if (window.location.pathname.split('/').length - 1 >= 2) {
+        var pathID = window.location.pathname.substr(-24)
+    }
     return (
         <Main>
             <div className="navigation-buttons-req">
                 <Button button component={Link} to={`/seller_dashboard/o/customers/${pathID}`} variant="contained" id="button-back" className={useStyles.button}>
-                    <img src={backarrow} alt="reply page" style={{width: '30px'}}/>
+                    <img src={backarrow} alt="reply page" style={{ width: '30px' }} />
                     <h5>Customers</h5>
                 </Button>
             </div>
             <Paper>
 
-                    {customerInfo.map((x, index) => index <= 0 && (
-                        <div className="customer-infos" key={index}>
-                            <TextField
+                {customerInfo.map((x, index) => index <= 0 && (
+                    <div className="customer-infos" key={index}>
+                        <TextField
                             id="standard-name"
                             multiline={true}
                             label="Company Name"
@@ -77,61 +77,61 @@ function CustomerContact(props) {
                             value={x.companyName}
                             margin="normal"
                             onChange={handleChange('companyName')}
-                            style={{pointerEvents: 'none'}}
-                            />
-                        
-                            <TextField
-                                id="standard-name"
-                                multiline={true}
-                                label="Customer Name"
-                                className={classes.textField}
-                                value={x.firstName + ' ' + x.lastName}
-                                margin="normal"
-                                onChange={handleChange('customerName')}
-                                style={{pointerEvents: 'none'}}
-                                />
+                            style={{ pointerEvents: 'none' }}
+                        />
 
-                            <TextField
-                                id="standard-name"
-                                multiline={true}
-                                label="Last Operation"
-                                className={classes.textField}
-                                value={String(x.date).slice(0, 10)}
-                                margin="normal"
-                                onChange={handleChange('lastTime')}
-                                style={{pointerEvents: 'none'}}
-                                />
+                        <TextField
+                            id="standard-name"
+                            multiline={true}
+                            label="Customer Name"
+                            className={classes.textField}
+                            value={x.firstName + ' ' + x.lastName}
+                            margin="normal"
+                            onChange={handleChange('customerName')}
+                            style={{ pointerEvents: 'none' }}
+                        />
 
-                            <TextField
-                                id="standard-name"
-                                multiline={true}
-                                label="Times dealt with"
-                                className={classes.textField}
-                                value={customerInfo.filter(el => el.status === 'Sold' && el.customerID === props.customerID).length}
-                                margin="normal"
-                                onChange={handleChange('numberOfTimes')}
-                                style={{pointerEvents: 'none'}}
-                                />
+                        <TextField
+                            id="standard-name"
+                            multiline={true}
+                            label="Last Operation"
+                            className={classes.textField}
+                            value={String(x.date).slice(0, 10)}
+                            margin="normal"
+                            onChange={handleChange('lastTime')}
+                            style={{ pointerEvents: 'none' }}
+                        />
 
-                            <TextField
-                                id="outlined-email-input"
-                                label="Email"
-                                className={classes.textField}
-                                name="email"
-                                // value={x.emailCustomer}
-                                value="this-email-is-static@gmail.com"
-                                margin="normal"
-                                style={{pointerEvents: 'none'}}
-                            />
-                        </div>
-                        ))
-                    }
-                <br/>
-                <br/>
+                        <TextField
+                            id="standard-name"
+                            multiline={true}
+                            label="Times dealt with"
+                            className={classes.textField}
+                            value={customerInfo.filter(el => el.status === 'Sold' && el.customerID === props.customerID).length}
+                            margin="normal"
+                            onChange={handleChange('numberOfTimes')}
+                            style={{ pointerEvents: 'none' }}
+                        />
+
+                        <TextField
+                            id="outlined-email-input"
+                            label="Email"
+                            className={classes.textField}
+                            name="email"
+                            // value={x.emailCustomer}
+                            value="this-email-is-static@gmail.com"
+                            margin="normal"
+                            style={{ pointerEvents: 'none' }}
+                        />
+                    </div>
+                ))
+                }
+                <br />
+                <br />
                 <div className="contact-field">
                     <form action={`mailto:${values.emailCustomer}`} method="post" enctype="text/plain">
-                        <h1 style={{marginBottom: '0'}}>Send Email:</h1>
-                        <p style={{opacity: '.5', margin: '0px'}}>If you are using Outlook as mailing tool</p>
+                        <h1 style={{ marginBottom: '0' }}>Send Email:</h1>
+                        <p style={{ opacity: '.5', margin: '0px' }}>If you are using Outlook as mailing tool</p>
                         <TextField
                             id="outlined-email-input"
                             label="Your Name"
@@ -141,7 +141,7 @@ function CustomerContact(props) {
                             value={yourName}
                             variant="outlined"
                             margin="normal"
-                        /><br/>
+                        /><br />
                         <TextField
                             id="outlined-email-input"
                             label="Your Email"
@@ -153,7 +153,7 @@ function CustomerContact(props) {
                             value={email}
                             variant="outlined"
                             margin="normal"
-                        /><br/>
+                        /><br />
                         <TextField
                             id="outlined-multiline-input"
                             label="Your Message"
@@ -166,7 +166,7 @@ function CustomerContact(props) {
                             margin="normal"
                             rows={7}
                             rowsMax={10}
-                        /><br/>
+                        /><br />
                         <Button variant="outlined" color="primary" type="submit" className={classes.button}>
                             Send E-mail
                         </Button>
@@ -180,8 +180,8 @@ function CustomerContact(props) {
                     {/********** OR  *****************/}
 
                     <form action={`mailto:${values.emailCustomer}`} method="post" enctype="text/plain">
-                        <h1 style={{marginBottom: '0'}}>Direct Messaging:</h1>
-                        <p style={{opacity: '.5', margin: '0px'}}>Use direct message with our app, the receiver will be notified.</p>
+                        <h1 style={{ marginBottom: '0' }}>Direct Messaging:</h1>
+                        <p style={{ opacity: '.5', margin: '0px' }}>Use direct message with our app, the receiver will be notified.</p>
                         <TextField
                             id="outlined-name-input"
                             label="Your Name"
@@ -191,7 +191,7 @@ function CustomerContact(props) {
                             value={myName}
                             variant="outlined"
                             margin="normal"
-                        /><br/>
+                        /><br />
                         <TextField
                             id="outlined-email-input"
                             label="Your Email"
@@ -203,7 +203,7 @@ function CustomerContact(props) {
                             value={myEmail}
                             variant="outlined"
                             margin="normal"
-                        /><br/>
+                        /><br />
                         <TextField
                             id="outlined-subject-input"
                             label="Subject"
@@ -214,7 +214,7 @@ function CustomerContact(props) {
                             value={subject}
                             variant="outlined"
                             margin="normal"
-                        /><br/>
+                        /><br />
                         <TextField
                             id="outlined-multiline-input"
                             label="Your Message"
@@ -227,7 +227,7 @@ function CustomerContact(props) {
                             margin="normal"
                             rows={3}
                             rowsMax={6}
-                        /><br/>
+                        /><br />
                         <Button variant="outlined" color="primary" type="submit" className={classes.button}>
                             Send Message
                         </Button>
@@ -239,7 +239,7 @@ function CustomerContact(props) {
 
                 </div>
 
-                
+
             </Paper>
         </Main>
     )
@@ -247,12 +247,12 @@ function CustomerContact(props) {
 
 const useStyles = makeStyles(theme => ({
     textField: {
-      marginLeft: theme.spacing(1),
-      marginRight: theme.spacing(1),
-      width: 300,
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        width: 300,
     },
     button: {
-      margin: theme.spacing(1),
+        margin: theme.spacing(1),
     },
 }));
 

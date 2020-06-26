@@ -2,37 +2,51 @@ import React, { Component } from 'react'
 import { Button, TextField, makeStyles, ButtonGroup, FormControl, MenuItem, InputLabel, Select } from '@material-ui/core'
 import SnackbarError from '../../SnackbarError'
 
+
 export class FormPersonalDetails extends Component {
-    state = { visible: false }
+    state = { visible: false, errorText: '',error : false, repeatPassword: '' }
+
     continue = e => {
-        if(this.props.values.firstName === '' || this.props.values.lastName === '' ||
-            this.props.values.governorate === '' || this.props.values.occupation === '' || this.props.values.password === ''){
-                this.setState({ visible: true });
-                setTimeout(() => this.setState({ visible: false }),4000)
+        if (this.props.values.firstName === '' || this.props.values.lastName === '' ||
+            this.props.values.governorate === '' || this.props.values.occupation === '' || this.props.values.password === '') {
+            this.setState({ visible: true });
+            setTimeout(() => this.setState({ visible: false }), 4000)
             return e.preventDefault()
-            
-        }else{
+
+        } else {
             e.preventDefault()
             this.props.nextStep()
         }
     }
 
+
     back = e => {
         e.preventDefault()
         this.props.prevStep()
     }
+    onChange(event) {
+        if (event.target.value === this.props.values.password) {
+            this.setState({ errorText: '',error: false })
+        } else {
+            this.setState({ errorText: 'invalid password', error: true })
+        }
+    }
+
     render() {
         const { values, handleChange } = this.props
+
+
         return (
-            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%'}}>
-                <h2 style={{alignSelf: 'center', zIndex: '2', flex: '1', opacity: '0.5'}}>Personal Informations</h2>
-                {this.state.visible ? <SnackbarError type={'error'} msg={'Fill in all the required fields!'}/> : null}
-                <div style={{marginTop: '100px', flex: '1 1 16%', display: 'flex', flexDirection: 'column'}}>
+            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
+                <h2 style={{ alignSelf: 'center', zIndex: '2', flex: '1', opacity: '0.5' }}>Personal Informations</h2>
+                {this.state.visible ? <SnackbarError type={'error'} msg={'Fill in all the required fields!'} /> : null}
+
+                <div style={{ marginTop: '100px', flex: '1 1 16%', display: 'flex', flexDirection: 'column' }}>
                     <TextField
                         id="standard-name-input"
                         className={useStyles.textField}
                         margin="normal"
-                        label= "First Name"
+                        label="First Name"
                         onChange={handleChange('firstName')}
                         defaultValue={values.firstName}
                         fullWidth={true}
@@ -41,7 +55,7 @@ export class FormPersonalDetails extends Component {
                         id="standard-name-input"
                         className={useStyles.textField}
                         margin="normal"
-                        label= "Last Name"
+                        label="Last Name"
                         onChange={handleChange('lastName')}
                         defaultValue={values.lastName}
                         fullWidth={true}
@@ -50,7 +64,7 @@ export class FormPersonalDetails extends Component {
                         id="standard-name-input"
                         className={useStyles.textField}
                         margin="normal"
-                        label= "Occupation"
+                        label="Occupation"
                         onChange={handleChange('occupation')}
                         defaultValue={values.occupation}
                         fullWidth={true}
@@ -58,11 +72,11 @@ export class FormPersonalDetails extends Component {
                     <FormControl className={useStyles.formControl}>
                         <InputLabel>Governorate</InputLabel>
                         <Select
-                        fullWidth= {true}
-                        value={values.governorate}
-                        onChange={handleChange('governorate')}
+                            fullWidth={true}
+                            value={values.governorate}
+                            onChange={handleChange('governorate')}
                         >
-                            <MenuItem value='Ariana'>Ariana</MenuItem>    
+                            <MenuItem value='Ariana'>Ariana</MenuItem>
                             <MenuItem value='Béja'>Béja</MenuItem>
                             <MenuItem value='Ben Arous'>Ben Arous</MenuItem>
                             <MenuItem value='Bizerte'>Bizerte</MenuItem>
@@ -88,6 +102,8 @@ export class FormPersonalDetails extends Component {
                             <MenuItem value='Zaghouan'>Zaghouan</MenuItem>
                         </Select>
                     </FormControl>
+
+
                     <TextField
                         id="standard-password-input"
                         label="Password"
@@ -99,10 +115,26 @@ export class FormPersonalDetails extends Component {
                         defaultValue={values.password}
                         fullWidth={true}
                     />
-                        <ButtonGroup fullWidth style={{marginTop: "20px"}} color="primary" variant="contained">
-                            <Button variant="outlined" onClick={this.back} style={{backgroundColor: 'white', color: '#032952'}}>Back</Button>
-                            <Button onClick={this.continue} style={{color: 'white'}}>Continue</Button>
-                        </ButtonGroup>
+                    <TextField
+                        id="standard-password-input"
+                        label="repeatPassword"
+                        type="password"
+                        autoComplete="current-password"
+                        className={useStyles.textField}
+                        margin="normal"
+                        required
+                        onChange={this.onChange.bind(this)}
+                        helperText={this.state.errorText}
+                        error={this.state.error}
+                        onChange={this.onChange.bind(this)}
+                        defaultValue={this.state.repeatPassword}
+                        fullWidth={true}
+                    />
+
+                    <ButtonGroup fullWidth style={{ marginTop: "20px" }} color="primary" variant="contained">
+                        <Button variant="outlined" onClick={this.back} style={{ backgroundColor: 'white', color: '#032952' }}>Back</Button>
+                        <Button onClick={this.continue} style={{ color: 'white' }}>Continue</Button>
+                    </ButtonGroup>
                 </div>
             </div>
         )
@@ -114,7 +146,7 @@ const useStyles = makeStyles(theme => ({
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
         width: 200,
-      },
+    },
     button: {
         margin: theme.spacing(1),
     },
@@ -122,7 +154,7 @@ const useStyles = makeStyles(theme => ({
         margin: theme.spacing(1),
         width: 200,
     },
-  }));
+}));
 
 
 export default FormPersonalDetails

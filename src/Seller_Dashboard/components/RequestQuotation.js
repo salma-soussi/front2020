@@ -150,7 +150,7 @@ function RequestQuotation(props) {
                                 <StyledTableCell align="left">Company Name</StyledTableCell>
                                 <StyledTableCell align="left">First Name</StyledTableCell>
                                 <StyledTableCell align="left">Last Name</StyledTableCell>
-                                <StyledTableCell align="left">Description</StyledTableCell>
+                                <StyledTableCell align="left">Name</StyledTableCell>
                                 <StyledTableCell align="left">Quantity</StyledTableCell>
                                 <StyledTableCell align="left">Date</StyledTableCell>
                                 <StyledTableCell align="left">Valid Until</StyledTableCell>
@@ -164,7 +164,7 @@ function RequestQuotation(props) {
                                         <StyledTableCell align="left">{row.companyName}</StyledTableCell>
                                         <StyledTableCell align="left">{row.firstName}</StyledTableCell>
                                         <StyledTableCell align="left">{row.lastName}</StyledTableCell>
-                                        <StyledTableCell align="left">{ (el.description2 !== '' || el.description3 !== '' || el.description4 !== '')  ? <Chip className={classes.chip} label={el.description1+'  ➕'} color="primary" /> : <Chip className={classes.chip} label={el.description1} color="primary" />}</StyledTableCell>
+                                        <StyledTableCell align="left">{ (el.name2 !== '' || el.name3 !== '' || el.name3 !== '')  ? <Chip className={classes.chip} label={el.name1+'  ➕'} color="primary" /> : <Chip className={classes.chip} label={el.name1} color="primary" />}</StyledTableCell>
                                         <StyledTableCell align="center">{el.quantity1}</StyledTableCell>                                    
                                         <StyledTableCell align="left">{String(row.date).slice(0, 10)}</StyledTableCell>
                                         <StyledTableCell align="left">{String(row.validUntil).slice(0, 10)}</StyledTableCell>

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import "./style-visiteur.css"
-import logof from "../../img01/footer-logo.png"
+import logof from "../../img01/hhh.png"
 class Footer extends Component {
   render() {
     return (

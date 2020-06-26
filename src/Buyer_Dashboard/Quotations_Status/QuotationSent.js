@@ -78,6 +78,7 @@ class QuotationSent extends Component {
                     <Table>
                         <TableHead>
                             <TableRow>
+                                <StyledTableCell style={{backgroundColor: 'grey'}}>Name</StyledTableCell>
                                 <StyledTableCell style={{backgroundColor: 'grey'}}>DESCRIPTION</StyledTableCell>
                                 <StyledTableCell style={{backgroundColor: 'grey'}}>QUANTITY</StyledTableCell>
                             </TableRow>
@@ -85,32 +86,44 @@ class QuotationSent extends Component {
                             {requestsSentFiltered.map((x, i) => x.details.map((el, index) => (
                             <TableBody>
                                 <StyledTableRow key={index}>
+                                <StyledTableCell>
+                                        <TextField style={{fontSize: '5px', pointerEvents: 'none'}} fullWidth={true} value={el.name1}/>
+                                    </StyledTableCell>
                                     <StyledTableCell>
-                                        <TextField style={{fontSize: '5px', pointerEvents: 'none'}} fullWidth={true} value={el.description1}/>
+                                        <TextField style={{fontSize: '5px', pointerEvents: 'none'}} multiline  value={el.description1}/>
                                     </StyledTableCell>
                                     <StyledTableCell>
                                         <TextField style={{pointerEvents: 'none'}} type="number" value={el.quantity1}/>
                                     </StyledTableCell>
                                 </StyledTableRow>
-                            {el.description2 !== '' ? <StyledTableRow key={index+1}>
+                            {el.name2 !== '' ? <StyledTableRow key={index+1}>
                                     <StyledTableCell>
-                                        <TextField style={{fontSize: '5px', pointerEvents: 'none'}} fullWidth={true} value={el.description2}/>
+                                        <TextField style={{fontSize: '5px', pointerEvents: 'none'}} fullWidth={true} value={el.name2}/>
+                                    </StyledTableCell>
+                                    <StyledTableCell>
+                                        <TextField style={{pointerEvents: 'none'}} type="number" multiline value={el.description2}/>
                                     </StyledTableCell>
                                     <StyledTableCell>
                                         <TextField style={{pointerEvents: 'none'}} type="number" value={el.quantity2}/>
                                     </StyledTableCell>
                                 </StyledTableRow> : null}
-                            {el.description3 !== '' ? <StyledTableRow key={index+2}>
+                            {el.name3 !== '' ? <StyledTableRow key={index+2}>
                                     <StyledTableCell>
-                                        <TextField style={{fontSize: '5px', pointerEvents: 'none'}} fullWidth={true} value={el.description3}/>
+                                        <TextField style={{fontSize: '5px', pointerEvents: 'none'}} fullWidth={true} value={el.name3}/>
+                                    </StyledTableCell>
+                                    <StyledTableCell>
+                                        <TextField style={{pointerEvents: 'none'}} type="number" multiline value={el.description3}/>
                                     </StyledTableCell>
                                     <StyledTableCell>
                                         <TextField style={{pointerEvents: 'none'}} type="number" value={el.quantity3}/>
                                     </StyledTableCell>
                                 </StyledTableRow> : null}
-                            {el.description4 !== '' ? <StyledTableRow key={index+3}>
+                            {el.name4 !== '' ? <StyledTableRow key={index+3}>
                                     <StyledTableCell>
-                                        <TextField style={{fontSize: '5px', pointerEvents: 'none'}} fullWidth={true} value={el.description4}/>
+                                        <TextField style={{fontSize: '5px', pointerEvents: 'none'}} fullWidth={true} value={el.name4}/>
+                                    </StyledTableCell>
+                                    <StyledTableCell>
+                                        <TextField style={{pointerEvents: 'none'}} type="number" multiline value={el.description4}/>
                                     </StyledTableCell>
                                     <StyledTableCell>
                                         <TextField style={{pointerEvents: 'none'}} type="number" value={el.quantity4}/>

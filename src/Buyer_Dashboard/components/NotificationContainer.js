@@ -10,14 +10,13 @@ class NotificationContainer extends Component {
         super(props);
         this.state = {
             notif: false,
-            newNotif: false
+            newNotif: false,
+            seen: 'yes'
         }
     }
     componentDidMount() {
         axios.get('http://localhost:3020/notification/list')
-        .then((res)=> {
-            this.props.updateReducer(res.data)
-        })
+        .then((res)=> {this.props.updateReducer(res.data)})
     }
     notifToggle = () => {
         this.setState({ notif: !this.state.notif });
@@ -46,7 +45,7 @@ class NotificationContainer extends Component {
                 {this.props.notifications.filter(el => el.type === 'response').map((el, index) => (
                 <Link style={{textDecoration: 'none'}} key={el.quotationNUM} to={`/buyer_dashboard/req-received/o/${this.props.requestsList.filter(x => x.quotationNUM === el.quotationNUM).map(y => y._id)}/${pathID}`}>
                     <div className={el.seen === 'no' ? 'new-notif-item' : "notif-item"}>
-                        <p className="notif-item">{el.content} <span className="sender">{el.description1}</span></p>
+                        <p className="notif-item">{el.content} <span className="sender">{el.name1}</span></p>
                         <p className="notif-time">{String(el.time).replace('T', ' ').slice(0, 19)}</p>
                     </div>
                 </Link>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import prod1 from "../../img01/select-product-1.jpg"
 import prod2 from "../../img01/select-product-2.jpg"
+import logo from "../../img01/hhh.png"
 import "./style-visiteur.css"
 import { Route, Link,NavLink, BrowserRouter as Router } from 'react-router-dom'
 class Header extends Component {
@@ -40,9 +41,9 @@ class Header extends Component {
                         <div class="inner-header">
                             <div class="row">
                                 <div class="col-lg-3 col-md-3">
-                                    <div class="logo">
-                                        <a href="index-2.html">
-                                            <img src="./img/logo.png" alt="" />
+                                    <div class="logo-1">
+                                        <a href="">
+                                            <img src={logo} alt="" />
                                         </a>
                                     </div>
                                 </div>

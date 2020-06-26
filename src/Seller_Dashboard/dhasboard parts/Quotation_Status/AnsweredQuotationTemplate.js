@@ -58,6 +58,7 @@ class AnsweredQuotationTemplate extends Component {
                     <Table>
                         <TableHead>
                             <TableRow>
+                                <StyledTableCell style={{backgroundColor: 'grey'}}>NAME</StyledTableCell>
                                 <StyledTableCell style={{backgroundColor: 'grey'}}>DESCRIPTION</StyledTableCell>
                                 <StyledTableCell style={{backgroundColor: 'grey'}}>QUANTITY</StyledTableCell>
                                 <StyledTableCell style={{backgroundColor: 'grey'}}>UNIT PRICE (TND)</StyledTableCell>
@@ -69,7 +70,10 @@ class AnsweredQuotationTemplate extends Component {
                                     <TableBody>
                                         <StyledTableRow key={i}>
                                             <StyledTableCell>
-                                                <TextField style={{pointerEvents: 'none'}} value={elem.description1}/>
+                                                <TextField style={{pointerEvents: 'none'}} value={elem.name1}/>
+                                            </StyledTableCell>
+                                            <StyledTableCell>
+                                                <TextField style={{pointerEvents: 'none'}} multiline value={elem.description1}/>
                                             </StyledTableCell>
                                             <StyledTableCell>
                                                 <TextField style={{pointerEvents: 'none'}} value={elem.quantity1}/>
@@ -81,9 +85,12 @@ class AnsweredQuotationTemplate extends Component {
                                                 <TextField style={{pointerEvents: 'none'}} value={String(x.totalPrice1).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
                                             </StyledTableCell>
                                         </StyledTableRow>
-                                        {elem.description2 !== '' ? <StyledTableRow key={i+1}>
+                                        {elem.name2 !== '' ? <StyledTableRow key={i+1}>
                                             <StyledTableCell>
-                                                <TextField style={{pointerEvents: 'none'}} value={elem.description2}/>
+                                                <TextField style={{pointerEvents: 'none'}} value={elem.name2}/>
+                                            </StyledTableCell>
+                                            <StyledTableCell>
+                                                <TextField style={{pointerEvents: 'none'}} multiline value={elem.description2}/>
                                             </StyledTableCell>
                                             <StyledTableCell>
                                                 <TextField style={{pointerEvents: 'none'}} value={elem.quantity2}/>
@@ -95,9 +102,12 @@ class AnsweredQuotationTemplate extends Component {
                                                 <TextField style={{pointerEvents: 'none'}} value={String(x.totalPrice2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
                                             </StyledTableCell>
                                         </StyledTableRow> : null}
-                                        {elem.description3 !== '' ? <StyledTableRow key={i+2}>
+                                        {elem.name3 !== '' ? <StyledTableRow key={i+2}>
                                             <StyledTableCell>
-                                                <TextField style={{pointerEvents: 'none'}} value={elem.description3}/>
+                                                <TextField style={{pointerEvents: 'none'}} value={elem.name3}/>
+                                            </StyledTableCell>
+                                            <StyledTableCell>
+                                                <TextField style={{pointerEvents: 'none'}} multiline value={elem.description3}/>
                                             </StyledTableCell>
                                             <StyledTableCell>
                                                 <TextField style={{pointerEvents: 'none'}} value={elem.quantity3}/>
@@ -109,12 +119,15 @@ class AnsweredQuotationTemplate extends Component {
                                                 <TextField style={{pointerEvents: 'none'}} value={String(x.totalPrice3).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
                                             </StyledTableCell>
                                         </StyledTableRow> : null}
-                                        {elem.description4 !== '' ? <StyledTableRow key={i+3}>
+                                        {elem.name4 !== '' ? <StyledTableRow key={i+3}>
+                                            <StyledTableCell>
+                                                <TextField style={{pointerEvents: 'none'}} value={elem.name4}/>
+                                            </StyledTableCell>
                                             <StyledTableCell>
                                                 <TextField style={{pointerEvents: 'none'}} value={elem.description4}/>
                                             </StyledTableCell>
                                             <StyledTableCell>
-                                                <TextField style={{pointerEvents: 'none'}} value={elem.quantity4}/>
+                                                <TextField style={{pointerEvents: 'none'}} multiline value={elem.quantity4}/>
                                             </StyledTableCell>
                                             <StyledTableCell>
                                                 <TextField style={{pointerEvents: 'none'}} value={String(x.unitPrice4).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
@@ -127,6 +140,7 @@ class AnsweredQuotationTemplate extends Component {
                                 ))
                                 )}
                         <StyledTableRow>
+                                <StyledTableCell rowSpan={3}/>
                                 <StyledTableCell rowSpan={3}/>
                                 <StyledTableCell colSpan={2}>Subtotal</StyledTableCell>
                                 <StyledTableCell align="right">

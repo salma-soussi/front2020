@@ -80,8 +80,8 @@ class LoginAsBuyer extends Component {
                 </form>
                 <div className="login-footer">
                     <div className="login-options">
-                        <p><a href="/password">Forget password</a></p>
-                        <p>Don't have an account?<Link to="/signupasbuyer">Sign up</Link></p> {/* go to signup as buyer page */}
+                    <br/>
+                        <p>Don't have an account? <Link to="/signupasbuyer">Sign up</Link></p> {/* go to signup as buyer page */}
                     </div>
                     <Link to="/buyer_dashboard" style={{ textDecoration: 'none' }} className="button-login">
                         <Button onClick={this.login} variant="contained" color="primary" className={useStyles.button}>

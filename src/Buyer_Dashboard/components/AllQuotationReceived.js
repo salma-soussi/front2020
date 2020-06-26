@@ -75,7 +75,7 @@ class AllQuotationReceived extends Component {
                                 <StyledTableCell style={{backgroundColor: '#46b081'}} align="left">Quot.N°</StyledTableCell>
                                 <StyledTableCell style={{backgroundColor: '#46b081'}} align="left">FirstName</StyledTableCell>
                                 <StyledTableCell style={{backgroundColor: '#46b081'}} align="left">LastName</StyledTableCell>
-                                <StyledTableCell style={{backgroundColor: '#46b081'}} align="left">Description</StyledTableCell>
+                                <StyledTableCell style={{backgroundColor: '#46b081'}} align="left">Name</StyledTableCell>
                                 <StyledTableCell style={{backgroundColor: '#46b081'}} align="left">Quantity</StyledTableCell>
                                 <StyledTableCell style={{backgroundColor: '#46b081'}} align="left">Date</StyledTableCell>
                                 <StyledTableCell style={{backgroundColor: '#46b081'}} align="left">Valid Until</StyledTableCell>
@@ -87,7 +87,7 @@ class AllQuotationReceived extends Component {
                                     <StyledTableCell component="th" scope="row">{row.quotationNUM}</StyledTableCell>
                                     <StyledTableCell align="left">{row.firstName}</StyledTableCell>
                                     <StyledTableCell align="left">{row.lastName}</StyledTableCell>
-                                    <StyledTableCell align="left">{ (el.description2 !== '' || el.description3 !== '' || el.description4 !== '')  ? <Chip className={useStyles.chip} label={el.description1+'  ➕'} color="primary" /> : <Chip className={useStyles.chip} label={el.description1} color="primary" />}</StyledTableCell>
+                                    <StyledTableCell align="left">{ (el.name2 !== '' || el.name3 !== '' || el.name4 !== '')  ? <Chip className={useStyles.chip} label={el.name1+'  ➕'} color="primary" /> : <Chip className={useStyles.chip} label={el.name1} color="primary" />}</StyledTableCell>
                                     <StyledTableCell align="center">{el.quantity1}</StyledTableCell> 
                                     <StyledTableCell align="left">{String(row.date).slice(0, 10)}</StyledTableCell>
                                     <StyledTableCell align="left">{String(row.validUntil).slice(0, 10)}</StyledTableCell>

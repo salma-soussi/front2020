@@ -73,6 +73,7 @@ class QuotationReqTemplate extends Component {
                     <Table>
                         <TableHead>
                             <TableRow>
+                                <StyledTableCell style={{backgroundColor: 'grey'}}>NAME</StyledTableCell>
                                 <StyledTableCell style={{backgroundColor: 'grey'}}>DESCRIPTION</StyledTableCell>
                                 <StyledTableCell style={{backgroundColor: 'grey'}}>QUANTITY</StyledTableCell>
                             </TableRow>
@@ -84,31 +85,43 @@ class QuotationReqTemplate extends Component {
                                     <TableBody>
                                         <StyledTableRow key={index}>
                                             {Object.keys(x).length >= 3 ? <StyledTableCell>
-                                                <TextField style={{fontSize: '5px'}} fullWidth={true} name="description" onChange={this.handleChange} value={x.description1}/>
+                                                <TextField style={{fontSize: '5px'}} fullWidth={true} name="name" onChange={this.handleChange} value={x.name1}/>
+                                            </StyledTableCell> : null}
+                                            {Object.keys(x).length >= 3 ? <StyledTableCell>
+                                                <TextField  name="description" multiline fullWidth={true} onChange={this.handleChange} value={x.description1}/>
                                             </StyledTableCell> : null}
                                             {Object.keys(x).length >= 3 ? <StyledTableCell>
                                                 <TextField type="number" name="quantity" onChange={this.handleChange} value={x.quantity1}/>
                                             </StyledTableCell> : null}
                                         </StyledTableRow>
-                                        {x.description2 !== '' ? <StyledTableRow key={index+1}>
+                                        {x.name2 !== '' ? <StyledTableRow key={index+1}>
                                             <StyledTableCell>
-                                                <TextField style={{fontSize: '5px'}} fullWidth={true} name="description" onChange={this.handleChange} value={x.description2}/>
+                                                <TextField style={{fontSize: '5px'}} fullWidth={true} name="name" onChange={this.handleChange} value={x.name2}/>
+                                            </StyledTableCell>
+                                            <StyledTableCell>
+                                                <TextField  name="description" multiline fullWidth={true} onChange={this.handleChange} value={x.description2}/>
                                             </StyledTableCell>
                                             <StyledTableCell>
                                                 <TextField type="number" name="quantity" onChange={this.handleChange} value={x.quantity2}/>
                                             </StyledTableCell>
                                         </StyledTableRow> : null }
-                                        {x.description3 !== '' ? <StyledTableRow key={index+2}>
+                                        {x.name3 !== '' ? <StyledTableRow key={index+2}>
                                             <StyledTableCell>
-                                                <TextField style={{fontSize: '5px'}} fullWidth={true} name="description" onChange={this.handleChange} value={x.description3}/>
+                                                <TextField style={{fontSize: '5px'}} fullWidth={true} name="name" onChange={this.handleChange} value={x.name3}/>
+                                            </StyledTableCell>
+                                            <StyledTableCell>
+                                                <TextField  name="description" multiline fullWidth={true} onChange={this.handleChange} value={x.description3}/>
                                             </StyledTableCell>
                                             <StyledTableCell>
                                                 <TextField type="number" name="quantity" onChange={this.handleChange} value={x.quantity3}/>
                                             </StyledTableCell>
                                         </StyledTableRow> : null}
-                                        {x.description4 !== '' ? <StyledTableRow key={index+3}>
+                                        {x.name4 !== '' ? <StyledTableRow key={index+3}>
                                             <StyledTableCell>
-                                                <TextField style={{fontSize: '5px'}} fullWidth={true} name="description" onChange={this.handleChange} value={x.description4}/>
+                                                <TextField style={{fontSize: '5px'}} fullWidth={true} name="name" onChange={this.handleChange} value={x.name4}/>
+                                            </StyledTableCell>
+                                            <StyledTableCell>
+                                                <TextField  name="quantity" multiline fullWidth={true} onChange={this.handleChange} value={x.description4}/>
                                             </StyledTableCell>
                                             <StyledTableCell>
                                                 <TextField type="number" name="quantity" onChange={this.handleChange} value={x.quantity4}/>

@@ -41,6 +41,7 @@ class QuotationForm extends Component {
         seen: 'no',
         type: 'response',
         description1: '',
+        name1: '',
         content: 'A response received '
 
     }
@@ -78,6 +79,7 @@ class QuotationForm extends Component {
                 content: this.state.content,
                 time: new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(Date.now()),
                 description1: this.state.description1,
+                name1: this.state.name1,
                 quotationNUM: this.state.quotationNUM,
                 status: 'Answered',
                 type: this.state.type,
@@ -145,6 +147,7 @@ class QuotationForm extends Component {
                         <Table>
                             <TableHead>
                                 <TableRow>
+                                    <StyledTableCell style={{ backgroundColor: 'grey' }}>NAME</StyledTableCell>
                                     <StyledTableCell style={{ backgroundColor: 'grey' }}>DESCRIPTION</StyledTableCell>
                                     <StyledTableCell style={{ backgroundColor: 'grey' }}>QUANTITY</StyledTableCell>
                                     <StyledTableCell style={{ backgroundColor: 'grey' }}>UNIT PRICE (TND)</StyledTableCell>
@@ -157,7 +160,11 @@ class QuotationForm extends Component {
                                     <TableBody>
                                         <StyledTableRow key={index}>
                                             {Object.keys(x).length >= 3 ? <StyledTableCell>
-                                                <TextField style={{ fontSize: '5px' }} disabled fullWidth={true} value={x.description1} />
+                                                <TextField style={{ fontSize: '5px' }} disabled fullWidth={true} value={x.name1} />
+                                            </StyledTableCell> : null}
+
+                                            {Object.keys(x).length >= 3 ? <StyledTableCell>
+                                                <TextField style={{ fontSize: '5px' }} multiline disabled fullWidth={true} value={x.description1} />
                                             </StyledTableCell> : null}
 
                                             {Object.keys(x).length >= 3 ? <StyledTableCell>
@@ -182,9 +189,13 @@ class QuotationForm extends Component {
                                                 />
                                             </StyledTableCell> : null}
                                         </StyledTableRow>
-                                        {x.description2 !== '' ? <StyledTableRow key={index + 1}>
+                                        {x.name2 !== '' ? <StyledTableRow key={index + 1}>
                                             <StyledTableCell>
-                                                <TextField style={{ fontSize: '5px' }} disabled fullWidth={true} value={x.description2} />
+                                                <TextField style={{ fontSize: '5px' }} disabled fullWidth={true} value={x.name2} />
+                                            </StyledTableCell>
+
+                                            <StyledTableCell>
+                                                <TextField disabled type="number" multiline value={x.description2} />
                                             </StyledTableCell>
 
                                             <StyledTableCell>
@@ -209,9 +220,13 @@ class QuotationForm extends Component {
                                                 />
                                             </StyledTableCell>
                                         </StyledTableRow> : null}
-                                        {x.description3 !== '' ? <StyledTableRow key={index + 2}>
+                                        {x.name3 !== '' ? <StyledTableRow key={index + 2}>
                                             <StyledTableCell>
-                                                <TextField style={{ fontSize: '5px' }} disabled fullWidth={true} value={x.description3} />
+                                                <TextField style={{ fontSize: '5px' }} disabled fullWidth={true} value={x.name3} />
+                                            </StyledTableCell>
+
+                                            <StyledTableCell>
+                                                <TextField disabled type="number" multiline value={x.description3} />
                                             </StyledTableCell>
 
                                             <StyledTableCell>
@@ -236,9 +251,13 @@ class QuotationForm extends Component {
                                                 />
                                             </StyledTableCell>
                                         </StyledTableRow> : null}
-                                        {x.description4 !== '' ? <StyledTableRow key={index + 3}>
+                                        {x.name4 !== '' ? <StyledTableRow key={index + 3}>
                                             <StyledTableCell>
-                                                <TextField style={{ fontSize: '5px' }} disabled fullWidth={true} value={x.description4} />
+                                                <TextField style={{ fontSize: '5px' }} disabled fullWidth={true} value={x.name4} />
+                                            </StyledTableCell>
+
+                                            <StyledTableCell>
+                                                <TextField disabled type="number" multiline value={x.description4} />
                                             </StyledTableCell>
 
                                             <StyledTableCell>
@@ -269,6 +288,7 @@ class QuotationForm extends Component {
                             ))}
                             <TableBody>
                                 <StyledTableRow>
+                                    <StyledTableCell rowSpan={3} />
                                     <StyledTableCell rowSpan={3} />
                                     <StyledTableCell colSpan={2}>Subtotal</StyledTableCell>
                                     <StyledTableCell align="right">

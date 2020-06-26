@@ -64,7 +64,8 @@ function Quotations(props) {
                                         <StyledTableCell style={{backgroundColor: '#ff4242'}} align="left">Company Name</StyledTableCell>
                                         <StyledTableCell style={{backgroundColor: '#ff4242'}} align="left">First Name</StyledTableCell>
                                         <StyledTableCell style={{backgroundColor: '#ff4242'}} align="left">Last Name</StyledTableCell>
-                                        <StyledTableCell style={{backgroundColor: '#ff4242'}} align="left">Description</StyledTableCell>
+                                        <StyledTableCell style={{backgroundColor: '#ff4242'}} align="left">Name</StyledTableCell>
+                                        <StyledTableCell style={{backgroundColor: '#ff4242'}} align="left">DESCRIPTION</StyledTableCell>
                                         <StyledTableCell style={{backgroundColor: '#ff4242'}} align="left">Quantity</StyledTableCell>
                                         <StyledTableCell style={{backgroundColor: '#ff4242'}} align="left">Date</StyledTableCell>
                                         <StyledTableCell style={{backgroundColor: '#ff4242'}} align="left">Valid Until</StyledTableCell>
@@ -76,7 +77,8 @@ function Quotations(props) {
                                         <StyledTableCell align="left">{elem.companyName}</StyledTableCell>
                                         <StyledTableCell align="left">{elem.firstName}</StyledTableCell>
                                         <StyledTableCell align="left">{elem.lastName}</StyledTableCell>
-                                        <StyledTableCell align="left">{ Object.keys(elem.details[0]).length === 3 ? <Chip className={classes.chip} label={elem.details[0].description1} color="primary" /> : <Chip className={classes.chip} label={elem.details[0].description1+'  ➕'} color="primary" />}</StyledTableCell>
+                                        <StyledTableCell align="left">{ Object.keys(elem.details[0]).length === 3 ? <Chip className={classes.chip} label={elem.details[0].name1} color="primary" /> : <Chip className={classes.chip} label={elem.details[0].name1+'  ➕'} color="primary" />}</StyledTableCell>
+                                        <StyledTableCell align="center">{elem.details[0].description1}</StyledTableCell>                                    
                                         <StyledTableCell align="center">{elem.details[0].quantity1}</StyledTableCell>                                    
                                         <StyledTableCell align="left">{String(elem.date).slice(0, 10)}</StyledTableCell>
                                         <StyledTableCell align="left">{String(elem.validUntil).slice(0, 10)}</StyledTableCell>
@@ -109,7 +111,7 @@ function Quotations(props) {
                                     <StyledTableCell align="left">{row.firstName}</StyledTableCell>
                                     <StyledTableCell align="left">{row.lastName}</StyledTableCell>
                                     {/* <StyledTableCell align="left">{ Object.keys(row.details[0]).length === 3 ? <Chip className={classes.chip} label={row.details[0].description1} color="primary" /> : <Chip className={classes.chip} label={row.details[0].description1+'  ➕'} color="primary" />}</StyledTableCell> */}
-                                    <StyledTableCell align="left">{ (el.description2 !== '' || el.description3 !== '' || el.description4 !== '')  ? <Chip className={classes.chip} label={el.description1+'  ➕'} color="primary" /> : <Chip className={classes.chip} label={el.description1} color="primary" />}</StyledTableCell>
+                                    <StyledTableCell align="left">{ (el.name2 !== '' || el.name3 !== '' || el.name4 !== '')  ? <Chip className={classes.chip} label={el.name1+'  ➕'} color="primary" /> : <Chip className={classes.chip} label={el.name1} color="primary" />}</StyledTableCell>
                                     <StyledTableCell align="center">{el.quantity1}</StyledTableCell>                                    
                                     <StyledTableCell align="left">{String(row.date).slice(0, 10)}</StyledTableCell>
                                     <StyledTableCell align="left">{String(row.validUntil).slice(0, 10)}</StyledTableCell>

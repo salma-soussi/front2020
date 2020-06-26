@@ -26,7 +26,7 @@ class Login2 extends Component{
         <div className="form-container">
             <Paper>
                     <div className="media-card-seller">
-                        <h1>SELLER</h1>
+                        <h1 className="h1-name">SELLER</h1>
                         <Link to='/loginasbuyer' className="button-switch"><button className={this.state.isBuyer ? "seller-btn" : "buyer-btn"}>Login as a Buyer ↪</button></Link>
                     </div>
                     <LoginAsSeller/>

@@ -23,6 +23,7 @@ class QuotationReceived extends Component {
         seen: 'no',
         type: 'rejected',
         description1: '',
+        name1: '',
         content: 'Your Offer Has Been Denied '
     }
     
@@ -37,6 +38,7 @@ class QuotationReceived extends Component {
                 content: this.state.content === 'Your Offer Has Been Denied ' && 'Your Offer Has Been Accepted ',
                 time: new Intl.DateTimeFormat('en-GB', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(Date.now()),
                 description1: this.state.description1,
+                name1: this.state.name1,
                 quotationNUM: this.state.quotationNUM,
                 status: 'Sold',
                 type: 'accepted',
@@ -69,6 +71,7 @@ class QuotationReceived extends Component {
                         content: this.state.content,
                         time: new Intl.DateTimeFormat('en-GB', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(Date.now()),
                         description1: this.state.description1,
+                        name1: this.state.name1,
                         quotationNUM: this.state.quotationNUM,
                         status: 'Denied',
                         type: this.state.type,
@@ -161,6 +164,7 @@ class QuotationReceived extends Component {
                         <Table>
                             <TableHead>
                                 <TableRow>
+                                    <StyledTableCell style={{ backgroundColor: 'grey' }}>NAME</StyledTableCell>
                                     <StyledTableCell style={{ backgroundColor: 'grey' }}>DESCRIPTION</StyledTableCell>
                                     <StyledTableCell style={{ backgroundColor: 'grey' }}>QUANTITY</StyledTableCell>
                                     <StyledTableCell style={{ backgroundColor: 'grey' }}>UNIT PRICE (TND)</StyledTableCell>
@@ -168,61 +172,74 @@ class QuotationReceived extends Component {
                                 </TableRow>
                             </TableHead>
                             {quotFiltered.map(x => x.details.map((el, i) => (
+                                
                                 <TableBody>
                                     <StyledTableRow key={i}>
                                         <StyledTableCell>
-                                            <TextField style={{pointerEvents: 'none'}} value={el.description1}/>
+                                            <TextField style={{pointerEvents: 'none'}} value={el.name1}/>
+                                        </StyledTableCell>
+                                        <StyledTableCell>
+                                            <TextField style={{pointerEvents: 'none'}} multiline value={el.description1}/>
                                         </StyledTableCell>
                                         <StyledTableCell>
                                             <TextField style={{pointerEvents: 'none'}} value={el.quantity1}/>
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            <TextField style={{pointerEvents: 'none'}} value={String(x.u0s).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
+                                            <TextField style={{pointerEvents: 'none'}} value={String(x.unitPrice1).replace(/\B(?=(\d{3})+(?!\d))/g, ",")} />
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            <TextField style={{pointerEvents: 'none'}} value={String(x.a5s).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
+                                            <TextField style={{pointerEvents: 'none'}} value={String(x.totalPrice1).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
                                         </StyledTableCell>
                                     </StyledTableRow>
                                     {el.description2 !== '' ? <StyledTableRow key={i+1}>
                                         <StyledTableCell>
-                                            <TextField style={{pointerEvents: 'none'}} value={el.description2}/>
+                                            <TextField style={{pointerEvents: 'none'}} value={el.name2}/>
+                                        </StyledTableCell>
+                                        <StyledTableCell>
+                                            <TextField style={{pointerEvents: 'none'}} multiline value={el.description2}/>
                                         </StyledTableCell>
                                         <StyledTableCell>
                                             <TextField style={{pointerEvents: 'none'}} value={el.quantity2}/>
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            <TextField style={{pointerEvents: 'none'}} value={String(x.u1s).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
+                                            <TextField style={{pointerEvents: 'none'}} value={String(x.unitPrice2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            <TextField style={{pointerEvents: 'none'}} value={String(x.a6s).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
+                                            <TextField style={{pointerEvents: 'none'}} value={String(x.totalPrice2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
                                         </StyledTableCell>
                                     </StyledTableRow> : null}
                                     {el.description3 !== '' ? <StyledTableRow key={i+2}>
                                         <StyledTableCell>
-                                            <TextField style={{pointerEvents: 'none'}} value={el.description3}/>
+                                            <TextField style={{pointerEvents: 'none'}} value={el.name3}/>
+                                        </StyledTableCell>
+                                        <StyledTableCell>
+                                            <TextField style={{pointerEvents: 'none'}} multiline value={el.description3}/>
                                         </StyledTableCell>
                                         <StyledTableCell>
                                             <TextField style={{pointerEvents: 'none'}} value={el.quantity3}/>
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            <TextField style={{pointerEvents: 'none'}} value={String(x.u2s).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
+                                            <TextField style={{pointerEvents: 'none'}} value={String(x.unitPrice3).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            <TextField style={{pointerEvents: 'none'}} value={String(x.a7s).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
+                                            <TextField style={{pointerEvents: 'none'}} value={String(x.totalPrice3).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
                                         </StyledTableCell>
                                     </StyledTableRow> : null}
                                     {el.description4 !== '' ? <StyledTableRow key={i+3}>
                                         <StyledTableCell>
-                                            <TextField style={{pointerEvents: 'none'}} value={el.description4}/>
+                                            <TextField style={{pointerEvents: 'none'}} value={el.name4}/>
+                                        </StyledTableCell>
+                                        <StyledTableCell>
+                                            <TextField style={{pointerEvents: 'none'}} multiline value={el.description4}/>
                                         </StyledTableCell>
                                         <StyledTableCell>
                                             <TextField style={{pointerEvents: 'none'}} value={el.quantity4}/>
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            <TextField style={{pointerEvents: 'none'}} value={String(x.u3s).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
+                                            <TextField style={{pointerEvents: 'none'}} value={String(x.unitPrice4).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
                                         </StyledTableCell>
                                         <StyledTableCell>
-                                            <TextField style={{pointerEvents: 'none'}} value={String(x.a8s).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
+                                            <TextField style={{pointerEvents: 'none'}} value={String(el.totalPrice4).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
                                         </StyledTableCell>
                                     </StyledTableRow> : null}
                                 </TableBody>
@@ -232,6 +249,7 @@ class QuotationReceived extends Component {
                             {quotFiltered.map(el => (
                             <TableBody>
                             <StyledTableRow>
+                                <StyledTableCell rowSpan={3} />
                                 <StyledTableCell rowSpan={3} />
                                 <StyledTableCell colSpan={2}>Subtotal</StyledTableCell>
                                 <StyledTableCell align="right">

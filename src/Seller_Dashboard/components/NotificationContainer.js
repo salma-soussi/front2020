@@ -45,7 +45,7 @@ class NotificationContainer extends Component {
                 {this.props.notifications.filter(el => el.type === 'new' || el.type === 'accepted' || el.type === 'rejected').map((el, index) => (
                 <Link style={{textDecoration: 'none'}} key={el.quotationNUM} to={el.type === 'new' ? `/seller_dashboard/req-quotations/${this.props.requestsList.filter(x => x.quotationNUM === el.quotationNUM).map(y => y._id)}/${el.status}/${pathID}` : (el.type === 'accepted' ? `/seller_dashboard/sold-items/${this.props.requestsList.filter(x => x.quotationNUM === el.quotationNUM).map(y => y._id)}/Sold/${pathID}` : null)}>
                     <div className={el.seen === 'no' ? 'new-notif-item' : "notif-item"}>
-                        <p className="notif-item">{el.content} <span className="sender">{el.description1}</span></p>
+                        <p className="notif-item">{el.content} <span className="sender">{el.name1}</span></p>
                         <p className="notif-time">{String(el.time).replace('T', ' ').slice(0, 19)}</p>
                     </div>
                 </Link>

@@ -22,17 +22,17 @@ function Orders(props) {
             <TableCell>Name</TableCell>
             <TableCell>Company Name</TableCell>
             <TableCell>Status</TableCell>
-            <TableCell align="center">Description</TableCell>
+            <TableCell align="center">Name</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {allQuots.slice(0, 6).map((row, index) => (
+          {allQuots.slice(10, 30).map((row, index) => (
             <TableRow key={index} style={{opacity: '.9'}}>
               <TableCell>{String(row.date).slice(0, 10)}</TableCell>
               <TableCell>{row.firstName + ' ' + row.lastName}</TableCell>
               <TableCell>{row.companyName}</TableCell>
               <TableCell>{row.status}</TableCell>
-              <TableCell align="center">{row.details.map(el => el.description1)}</TableCell>
+              <TableCell align="center">{row.details.map(el => el.name1)}</TableCell>
             </TableRow>
           ))}
         </TableBody>

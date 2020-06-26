@@ -51,6 +51,7 @@ function DashboardBuyer(props) {
                                     <TableHead>
                                         <TableRow>
                                             <TableCell>Req.N°</TableCell>
+                                            <TableCell>Name</TableCell>
                                             <TableCell>Requirement</TableCell>
                                             <TableCell align="center">Quantity</TableCell>
                                             <TableCell align="center">Date</TableCell>
@@ -61,6 +62,7 @@ function DashboardBuyer(props) {
                                             <TableRow key={item.quotationNUM} className='row-tab-req' component={Link} to={`/buyer_dashboard/req-sent/o/${item._id}/${item.status}/${pathID}`}>
                                                 <TableCell component="th" scope="row">{item.quotationNUM}</TableCell>
                                                 {console.log("item is" + item)}
+                                                <TableCell align="left">{item.details[0].name1}</TableCell>
                                                 <TableCell align="left">{item.details[0].description1}</TableCell>
                                                 <TableCell align="center">{item.details[0].quantity1}</TableCell>
                                                 <TableCell align="center">{String(item.date).slice(0, 10)}</TableCell>
@@ -92,6 +94,7 @@ function DashboardBuyer(props) {
                                     <TableHead>
                                         <TableRow>
                                             <TableCell>Req.N°</TableCell>
+                                            <TableCell>Name</TableCell>
                                             <TableCell>Requirement</TableCell>
                                             <TableCell align="center">Quantity</TableCell>
                                             <TableCell align="center">Total Price</TableCell>
@@ -101,6 +104,7 @@ function DashboardBuyer(props) {
                                         {quotsListReceivedFiltered.slice(0, 4).map(item => (
                                             <TableRow className='row-tab-req' key={item.quotationNUM} button component={Link} to={`/buyer_dashboard/req-received/o/${item._id}/${pathID}`}>
                                                 <TableCell component="th" scope="row">{item.quotationNUM}</TableCell>
+                                                <TableCell align="left">{item.details[0].name1}</TableCell>
                                                 <TableCell align="left">{item.details[0].description1}</TableCell>
                                                 <TableCell align="center">{item.details[0].quantity1}</TableCell>
                                                 <TableCell align="center">{String(item.total).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</TableCell>
@@ -132,6 +136,7 @@ function DashboardBuyer(props) {
                                     <TableHead>
                                         <TableRow>
                                             <TableCell>Req.N°</TableCell>
+                                            <TableCell>Name</TableCell>
                                             <TableCell>Requirement</TableCell>
                                             <TableCell align="center">Quantity</TableCell>
                                             <TableCell align="center">Total Price</TableCell>
@@ -141,6 +146,7 @@ function DashboardBuyer(props) {
                                         {quotsListSoldFiltered.slice(0, 4).map(item => (
                                             <TableRow className='row-tab-req' key={item.quotationNUM} button component={Link} to={`/buyer_dashboard/purchases/o/${item._id}/${pathID}`}>
                                                 <TableCell component="th" scope="row">{item.quotationNUM}</TableCell>
+                                                <TableCell align="left">{item.details[0].name1}</TableCell>
                                                 <TableCell align="left">{item.details[0].description1}</TableCell>
                                                 <TableCell align="center">{item.details[0].quantity1}</TableCell>
                                                 <TableCell align="center">{String(item.total).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</TableCell>

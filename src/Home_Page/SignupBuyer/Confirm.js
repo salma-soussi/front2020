@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, List, ListItem, ListItemText, Divider, ButtonGroup } from '@material-ui/core'
+import { Button, List,InputBase, ListItem, ListItemText, Divider, ButtonGroup } from '@material-ui/core'
 
 export class Confirm extends Component {
     continue = e => {
@@ -14,13 +14,14 @@ export class Confirm extends Component {
     }
     render() {
         const { values: { companyName, sector, address, phone, email, firstName, lastName, occupation, governorate, password } } = this.props
+        const secondary = false
         return (
             <div>
             <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '100%'}}>
                 <h2 style={{alignSelf: 'center', zIndex: '2', flex: '1', opacity: '0.5'}}>Confirm Your Informations</h2>
-                <div style={{display: 'flex', marginTop: '100px', flex: '1 1 16%'}}>
+                <div style={{display: 'flex', marginTop: '100px',marginRight:'-100px' ,flex: '1 1 16%'}}>
                     <List>
-                        <ListItem>
+                        <ListItem >
                             <ListItemText primary="Company Name: " secondary={companyName}/>
                         </ListItem> 
                         
@@ -52,7 +53,13 @@ export class Confirm extends Component {
                             <ListItemText primary="Governorate: " secondary= {governorate}/>
                         </ListItem>
                         <ListItem> 
-                            <ListItemText primary="Password: " secondary= {password}/>
+                            <ListItemText primary="Password: " secondary= { <InputBase
+                                    id="my-input" 
+                                    defaultValue={password}
+                                    inputProps={{ 'aria-label': 'naked' }}
+                                    disabled
+                                    type="password"
+                                />}/>
                         </ListItem>
                     </List>
                 </div>

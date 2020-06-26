@@ -10,8 +10,10 @@ const SellerReducer = ( state = [], action) => {
             )
         case 'EDIT_SELLER':
             return (
-                state.map(el => el._id === action.sellerInfos._id ? action.sellerInfos : el)
-        )
+                state.map(el => 
+                    el._id === action.sellerInfos._id ? action.sellerInfos : el,console.log("bbbbb".action.sellerInfos)
+                )
+                        )
         default:
             return state
 }

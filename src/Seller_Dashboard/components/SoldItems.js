@@ -65,7 +65,7 @@ function SoldItems(props) {
                                             <StyledTableCell style={{backgroundColor: '#ff4242'}} align="left">Company Name</StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: '#ff4242'}} align="left">First Name</StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: '#ff4242'}} align="left">Last Name</StyledTableCell>
-                                            <StyledTableCell style={{backgroundColor: '#ff4242'}} align="left">Description</StyledTableCell>
+                                            <StyledTableCell style={{backgroundColor: '#ff4242'}} align="left">Name</StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: '#ff4242'}} align="left">Quantity</StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: '#ff4242'}} align="left">Total Price (TND)</StyledTableCell>
                                             <StyledTableCell style={{backgroundColor: '#ff4242'}} align="left">Date</StyledTableCell>
@@ -78,7 +78,7 @@ function SoldItems(props) {
                                             <StyledTableCell align="left">{row.firstName}</StyledTableCell>
                                             <StyledTableCell align="left">{row.lastName}</StyledTableCell>
                                             {/* <StyledTableCell align="left">{ Object.keys(row.details[0]).length === 3 ? <Chip className={classes.chip} label={row.details[0].description1} color="primary" /> : <Chip className={classes.chip} label={row.details[0].description1+'  ➕'} color="primary" />}</StyledTableCell> */}
-                                            <StyledTableCell align="left">{ (row.details[0].description2 !== '' || row.details[0].description3 !== '' || row.details[0].description4 !== '')  ? <Chip className={classes.chip} label={row.details[0].description1+'  ➕'} color="primary" /> : <Chip className={classes.chip} label={row.details[0].description1} color="primary" />}</StyledTableCell>
+                                            <StyledTableCell align="left">{ (row.details[0].name2 !== '' || row.details[0].name3 !== '' || row.details[0].name3 !== '')  ? <Chip className={classes.chip} label={row.details[0].name1+'  ➕'} color="primary" /> : <Chip className={classes.chip} label={row.details[0].name1} color="primary" />}</StyledTableCell>
                                             <StyledTableCell align="center">{row.details[0].quantity1}</StyledTableCell>                                    
                                             <StyledTableCell align="center">{row.total}</StyledTableCell>
                                             <StyledTableCell align="left">{String(row.date).slice(0, 10)}</StyledTableCell>
@@ -110,7 +110,7 @@ function SoldItems(props) {
                                     <StyledTableCell align="left">{row.companyName}</StyledTableCell>
                                     <StyledTableCell align="left">{row.firstName}</StyledTableCell>
                                     <StyledTableCell align="left">{row.lastName}</StyledTableCell>
-                                    <StyledTableCell align="left">{ Object.keys(row.details[0]).length === 3 ? <Chip className={classes.chip} label={row.details[0].description1} color="primary" /> : <Chip className={classes.chip} label={row.details[0].description1+'  ➕'} color="primary" />}</StyledTableCell>
+                                    <StyledTableCell align="left">{ Object.keys(row.details[0]).length === 3 ? <Chip className={classes.chip} label={row.details[0].name1} color="primary" /> : <Chip className={classes.chip} label={row.details[0].name1+'  ➕'} color="primary" />}</StyledTableCell>
                                     <StyledTableCell align="center">{row.details[0].quantity1}</StyledTableCell>                                    
                                     <StyledTableCell align="center">{row.total}</StyledTableCell>
                                     <StyledTableCell align="left">{String(row.date).slice(0, 10)}</StyledTableCell>

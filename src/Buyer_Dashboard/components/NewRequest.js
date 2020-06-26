@@ -23,12 +23,16 @@ export class NewRequest extends Component {
             firstName: '',
             lastName: '',
             status: 'Waiting',
+            name1: '',
             description1: '',
             quantity1: '',
+            name2: '',
             description2: '',
             quantity2: '',
+            name3: '',
             description3: '',
             quantity3: '',
+            name4: '',
             description4: '',
             quantity4: '',
             date: new Date(),
@@ -68,30 +72,38 @@ export class NewRequest extends Component {
         });
     }
     closeModalAndConfirm = () => {
-        if ((this.state.description1 === '' && this.state.quantity1 === '' &&
-            this.state.description2 === '' && this.state.quantity2 === '' &&
-            this.state.description3 === '' && this.state.quantity3 === '' &&
-            this.state.description4 === '' && this.state.quantity4 === '') ||
-            ((this.state.description1 !== '' && this.state.quantity1 === '') ||
-                (this.state.description2 !== '' && this.state.quantity2 === '') ||
-                (this.state.description3 !== '' && this.state.quantity3 === '') ||
-                (this.state.description4 !== '' && this.state.quantity4 === '')) ||
-            ((this.state.description1 === '' && this.state.quantity1 !== '') ||
-                (this.state.description2 === '' && this.state.quantity2 !== '') ||
-                (this.state.description3 === '' && this.state.quantity3 !== '') ||
-                (this.state.description4 === '' && this.state.quantity4 !== ''))
+        if ((this.state.description1 === '' && this.state.quantity1 === '' && this.state.name1 === '' &&
+            this.state.description2 === '' && this.state.quantity2 === '' && this.state.name2 === '' &&
+            this.state.description3 === '' && this.state.quantity3 === '' && this.state.name3 === '' &&
+            this.state.description4 === '' && this.state.quantity4 === '' && this.state.name4 === '') ||
+            ((this.state.description1 !== '' && this.state.quantity1 === '' && this.state.name1 === '') ||
+                (this.state.description2 !== '' && this.state.quantity2 === '' && this.state.name2 === '') ||
+                (this.state.description3 !== '' && this.state.quantity3 === '' && this.state.name3 === '') ||
+                (this.state.description4 !== '' && this.state.quantity4 === '' && this.state.name4 === '')) ||
+            ((this.state.description1 === '' && this.state.quantity1 !== '' && this.state.name1 === '') ||
+                (this.state.description2 === '' && this.state.quantity2 !== '' && this.state.name2 === '') ||
+                (this.state.description3 === '' && this.state.quantity3 !== '' && this.state.name3 === '') ||
+                (this.state.description4 === '' && this.state.quantity4 !== '' && this.state.name4 === '')) ||
+            ((this.state.description1 === '' && this.state.quantity1 === '' && this.state.name1 !== '') ||
+                (this.state.description2 === '' && this.state.quantity2 === '' && this.state.name2 !== '') ||
+                (this.state.description3 === '' && this.state.quantity3 === '' && this.state.name3 !== '') ||
+                (this.state.description4 === '' && this.state.quantity4 === '' && this.state.name4 !== ''))
         ) {
             this.setState({ showError: true })
             setTimeout(() => this.setState({ showError: false }), 4000)
         } else {
 
             const d1 = this.state.description1;
+            const n1 = this.state.name1;
             const q1 = this.state.quantity1;
             const d2 = this.state.description2;
+            const n2 = this.state.name2;
             const q2 = this.state.quantity2;
             const d3 = this.state.description3;
+            const n3 = this.state.name3;
             const q3 = this.state.quantity3;
             const d4 = this.state.description4;
+            const n4 = this.state.name3;
             const q4 = this.state.quantity4;
 
             axios.post('http://localhost:3020/quotation/add', { ...this.state })
@@ -114,9 +126,17 @@ export class NewRequest extends Component {
                         quantity2: this.state.quantity2,
                         quantity3: this.state.quantity3,
                         quantity4: this.state.quantity4,
+                        name1: this.state.name1,
+                        name2: this.state.name2,
+                        name3: this.state.name3,
+                        name4: this.state.name4,
                     })
                     console.log(res)
                     axios.put(`http://localhost:3020/quotation/push/${res.data._id}`, {
+                        name1: n1,
+                        name2: n2,
+                        name3: n3,
+                        name4: n4,
                         description1: d1,
                         description2: d2,
                         description3: d3,
@@ -139,6 +159,7 @@ export class NewRequest extends Component {
                 .then(() => this.props.newNotif({
                     content: this.state.content,
                     time: new Intl.DateTimeFormat('en-GB', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(Date.now()),
+                    name1: this.state.name1,
                     description1: this.state.description1,
                     quotationNUM: this.state.quotationNUM,
                     status: this.state.status,
@@ -150,7 +171,7 @@ export class NewRequest extends Component {
         }
 
 
-        this.setState({ description1: '', description2: '', description3: '', description4: '', quantity1: '', quantity2: '', quantity3: '', quantity4: '', date: '', until: '', comment: '' })
+        this.setState({ description1: '', description2: '', description3: '', description4: '',name1: '', name2: '', name3: '', name4: '', quantity1: '', quantity2: '', quantity3: '', quantity4: '', date: '', until: '', comment: '' })
         this.setState({ visible: false });
     }
 
@@ -225,12 +246,23 @@ export class NewRequest extends Component {
                             <Table id='tableDescriptions'>
                                 <TableHead>
                                     <TableRow>
+                                        <StyledTableCell style={{ backgroundColor: 'grey' }}>NAME</StyledTableCell>
                                         <StyledTableCell style={{ backgroundColor: 'grey' }}>DESCRIPTION</StyledTableCell>
                                         <StyledTableCell style={{ backgroundColor: 'grey' }}>QUANTITY</StyledTableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
                                     <StyledTableRow>
+                                        <StyledTableCell>
+                                            <TextField
+                                                style={{ fontSize: '5px' }}
+                                                fullWidth={true}
+                                                label="Name 1"
+                                                name="name1"
+                                                value={this.state.name1}
+                                                onChange={this.handleChange}
+                                            />
+                                        </StyledTableCell>
                                         <StyledTableCell>
                                             <TextField
                                                 style={{ fontSize: '5px' }}
@@ -253,6 +285,16 @@ export class NewRequest extends Component {
                                     </StyledTableRow>
                                     <StyledTableRow>
                                         <StyledTableCell>
+                                            <TextField
+                                                style={{ fontSize: '5px' }}
+                                                fullWidth={true}
+                                                label="Name 2"
+                                                name="name2"
+                                                value={this.state.name2}
+                                                onChange={this.handleChange}
+                                            />
+                                        </StyledTableCell>
+                                        <StyledTableCell>
                                             <TextField style={{ fontSize: '5px' }}
                                                 fullWidth={true}
                                                 label="Description 2"
@@ -273,6 +315,16 @@ export class NewRequest extends Component {
                                     </StyledTableRow>
                                     <StyledTableRow>
                                         <StyledTableCell>
+                                            <TextField
+                                                style={{ fontSize: '5px' }}
+                                                fullWidth={true}
+                                                label="Name 3"
+                                                name="name3"
+                                                value={this.state.name3}
+                                                onChange={this.handleChange}
+                                            />
+                                        </StyledTableCell>
+                                        <StyledTableCell>
                                             <TextField style={{ fontSize: '5px' }}
                                                 fullWidth={true}
                                                 label="Description 3"
@@ -292,6 +344,16 @@ export class NewRequest extends Component {
                                         </StyledTableCell>
                                     </StyledTableRow>
                                     <StyledTableRow>
+                                        <StyledTableCell>
+                                            <TextField
+                                                style={{ fontSize: '5px' }}
+                                                fullWidth={true}
+                                                label="Name 4"
+                                                name="name4"
+                                                value={this.state.name4}
+                                                onChange={this.handleChange}
+                                            />
+                                        </StyledTableCell>
                                         <StyledTableCell>
                                             <TextField style={{ fontSize: '5px' }}
                                                 fullWidth={true}
