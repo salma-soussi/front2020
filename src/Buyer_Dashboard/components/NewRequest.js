@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Paper, TextField, Button, Table, TableHead, TableRow, TableBody } from '@material-ui/core'
+import { Paper, TextField, Button, Table, TableHead, TableRow, TableBody ,InputLabel ,FormControl,Select,MenuItem } from '@material-ui/core'
 import { useStyles } from './Main'
 import { connect } from 'react-redux'
 import axios from 'axios'
@@ -10,7 +10,6 @@ import { StyledTableCell, StyledTableRow } from '../../Seller_Dashboard/componen
 import CustomerInfo from '../../Seller_Dashboard/dhasboard parts/Quotation_Common/CustomerInfo';
 import Modal from 'react-awesome-modal';
 import SnackbarError from '../../SnackbarError';
-
 
 
 
@@ -46,10 +45,10 @@ export class NewRequest extends Component {
             visible: false,
             showError: false,
             showSuccess: false,
-
+            sector:this.props.buyersList.sector,
         }
     }
-
+ 
     componentDidMount() {
         axios.get(`http://localhost:3020/buyer/getByID/${this.props.buyerID}`)
             .then((res) => this.props.updateBuyer(res.data))
@@ -180,6 +179,7 @@ export class NewRequest extends Component {
     }
 
     render() {
+        let secto = this.props.buyersList.sector
         return (
             <Main pageName={'New Request'}>
                 {this.state.showError ? <SnackbarError type={'error'} msg={'You forgot to add quantity or description!'} /> : null}
@@ -241,6 +241,28 @@ export class NewRequest extends Component {
                         <CustomerInfo infos={this.props.buyersList} />
                         <div className={useStyles.tableWrapper} style={{ marginTop: '20px' }}>
                             <TextField fullWidth={true} variant="outlined" label="Comment (Optional)" onChange={this.handleChange} value={this.state.comment} name="comment" type="text" />
+                            <FormControl fullWidth={true} className={useStyles.tableWrapper} style={{ marginTop: '20px' }}>
+                                <InputLabel className="page-title" id="demo-simple-select-placeholder-label-label">
+                                sector
+                                </InputLabel>
+                                <Select
+                                labelId="demo-simple-select-placeholder-label-label"
+                                id="demo-simple-select-placeholder-label"
+                                onChange={this.handleChange}
+                                displayEmpty
+                                className={useStyles.selectEmpty}
+                                fullWidth={true}
+                                name="sector"
+                                value={this.state.sector}
+                                >
+                                    <MenuItem value="beaute">beauté</MenuItem>
+                                    <MenuItem value="electronique">électronique</MenuItem>
+                                    <MenuItem value="fourniture">fourniture</MenuItem>
+                                    <MenuItem value="informatique">informatique</MenuItem>
+                                    <MenuItem value="mode">mode</MenuItem>
+                                    <MenuItem value="sport">sport</MenuItem>
+                                </Select>
+                            </FormControl>
                             <br />
                             <br />
                             <Table id='tableDescriptions'>
