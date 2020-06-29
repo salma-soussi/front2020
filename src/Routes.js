@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 
 import Home from "./Home_Page/site-visiteur/home"
+import Home1 from "./Home_Page/onePage/logged_out/components/Main"
 import Contact from "./Home_Page/site-visiteur/contact"
 import Mode from "./collection/mode/mode"
 import Eletronique from "./collection/electronique/eletro"
@@ -51,7 +52,7 @@ class Routes extends Component {
         return (
             <div>
                 {/******************* Home + Login + Signup PAGES ********************/}
-                <Route exact path="/" component={Home} />
+                <Route exact path="/" component={Home1} />
                 <Route exact path="/contact" component={Contact} />
                 <Route exact path="/shop" component={Shop} />
                 <Route exact path="/signupasbuyer" component={Signup} />

@@ -34,7 +34,12 @@ function Customers(props) {
     //     (customer.date.includes(keyword))) && customer.status === 'Sold')
     // const customersListFiltered = customerList.filter(el => (el.firstName.toUpperCase().includes(keyword)) && el.status === 'Sold')
     const customersListFiltered = customerList.filter(el =>  el.status === 'Sold')
-    
+
+    console.log("customersListFiltered")
+    console.log(customersListFiltered)
+    console.log("props")
+    console.log(props)
+
     useEffect(()=>{
         axios.get('http://localhost:3020/quotation/list')
         .then((res) => props.updateReducer(res.data))
@@ -54,7 +59,7 @@ function Customers(props) {
                         id="outlined-bare"
                         className={classes.textField}
                         value={keyword}
-                        placeholder={"Type the Company Name, Customer Name or Date (𝑒.𝑔: Go My Code or Moez or 30/07/2019)"}
+                        placeholder={"Type the Company Name, Customer Name or Date (𝑒.𝑔: home or salma or 25/05/2020)"}
                         onChange={handleChangeSearch}
                         fullWidth={true}
                         margin="normal"
@@ -76,7 +81,7 @@ function Customers(props) {
                         </TableHead>
                         <TableBody>
                             {customersListFiltered.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((customer, index) => (
-                                    <StyledTableRow key={index} className="row-tab-req" key={customer.customerID} component={Link} to={`/seller_dashboard/customers/${customer.customerID}/${pathID}`}>
+                                    <StyledTableRow key={index} className="row-tab-req" key={customer._id} component={Link} to={`/seller_dashboard/customers/${customer._id}/${pathID}`}>
                                         <StyledTableCell align="left">{customer.companyName.toUpperCase()}</StyledTableCell>
                                         <StyledTableCell align="left">{customer.firstName.toUpperCase()}</StyledTableCell>
                                         <StyledTableCell align="left">{customer.lastName.toUpperCase()}</StyledTableCell>

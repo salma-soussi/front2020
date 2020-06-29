@@ -51,13 +51,13 @@ function CustomerContact(props) {
         setValues({ ...values, [name]: event.target.value });
       };
       const fetchCustomer = () => {
-          customerInfo.filter(el => el.customerID === props.customerID)
+          customerInfo.filter(el => el._id === props.customerID)
         }
         useEffect(() => fetchCustomer(), [])
         if(window.location.pathname.split('/').length - 1 >= 2){
             var pathID = window.location.pathname.substr(-24)
         }
-
+    const customersListFiltered = customerInfo.filter(el =>  el._id === props.customerID)
     return (
         <Main>
             <div className="navigation-buttons-req">
@@ -69,7 +69,7 @@ function CustomerContact(props) {
             <Container maxWidth="md">
             <Paper>
 
-                    {customerInfo.map((x, index) => index <= 0 && (
+                    {customersListFiltered.map((x, index) => index <= 0 && (
                         <div className="customer-infos" key={index}>
                             <TextField
                             id="standard-name"
