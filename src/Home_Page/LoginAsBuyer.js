@@ -4,7 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Link, withRouter } from 'react-router-dom'
-
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
+import SnackbarError from '../SnackbarError'
 
 const useStyles = makeStyles(theme => ({
     container: {
@@ -28,6 +29,7 @@ class LoginAsBuyer extends Component {
         this.state = {
             email: '',
             password: '',
+            visible: false
             // userID: ''
         }
     }
@@ -40,44 +42,56 @@ class LoginAsBuyer extends Component {
     }
 
     login = e => {
-        e.preventDefault();
-        axios.post('http://localhost:3020/user/authentication', this.state)
-            .then((data) => this.props.history.push(`/buyer_dashboard/${data.data.data.user._id}`))
-            .catch((err) => alert(err))
-
+        
+        if(this.state.password !== '' && this.state.email !== ''){
+            e.preventDefault();
+            axios.post('http://localhost:3020/user/authentication', this.state)
+                .then((data) => this.props.history.push(`/buyer_dashboard/${data.data.data.user._id}`))
+                .catch((err) => alert(err))
+        }else {
+            this.setState({ visible: true });
+            setTimeout(() => this.setState({ visible: false }), 4000)
+            return e.preventDefault()
+        }
     }
     render() {
         return (
             <div className="as-buyer-container">
                 <h2>Login as a Buyer</h2>
-                <form className={useStyles.container} id="form-login" noValidate autoComplete="off">
+                {/* <form className={useStyles.container} id="form-login" noValidate autoComplete="off"> */}
+                {this.state.visible ? <SnackbarError type={'error'} msg={'Fill in all the required fields!'} /> : null}
+            
+                    <ValidatorForm  style={{ marginTop: '80px', marginBottom: '30px', marginLeft: '60px',marginRight: '60px', flex: '1'  }}>
+                        <TextValidator
+                            type="email"
+                            name="email"
+                            className={useStyles.textField}
+                            margin="normal"
+                            label="Email "
+                            fullWidth={true}
+                            validators={['required', 'isEmail']}
+                            errorMessages={['required field', 'invalid email']}
+                            defaultValue={this.state.email}
+                            value={this.state.email}
+                            onChange={this.handleChange('email')}
+                            validatorListener={this.validatorListener}
+                        />
+                        <TextField
+                            id="standard-password-input"
+                            label="Password"
+                            className={useStyles.textField}
+                            type="password"
+                            autoComplete="current-password"
+                            margin="normal"
+                            fullWidth={true}
+                            defaultValue={this.state.password}
+                            onChange={this.handleChange('password')}
+                        />
+                    </ValidatorForm>
 
-                    <TextField
-                        id="standard-email-input"
-                        label="Email"
-                        className={useStyles.textField}
-                        type="email"
-                        autoComplete="email"
-                        margin="normal"
-                        fullWidth={true}
-                        defaultValue={this.state.email}
-                        onChange={this.handleChange('email')}
-                    />
-
-
-                    <TextField
-                        id="standard-password-input"
-                        label="Password"
-                        className={useStyles.textField}
-                        type="password"
-                        autoComplete="current-password"
-                        margin="normal"
-                        fullWidth={true}
-                        defaultValue={this.state.password}
-                        onChange={this.handleChange('password')}
-                    />
-
-                </form>
+                    
+{/* 
+                </form> */}
                 <div className="login-footer">
                     <div className="login-options">
                     <br/>

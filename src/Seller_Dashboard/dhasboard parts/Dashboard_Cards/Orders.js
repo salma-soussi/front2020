@@ -26,7 +26,7 @@ function Orders(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {allQuots.slice(10, 30).map((row, index) => (
+          {allQuots.slice(allQuots.length-15, allQuots.length).map((row, index) => (
             <TableRow key={index} style={{opacity: '.9'}}>
               <TableCell>{String(row.date).slice(0, 10)}</TableCell>
               <TableCell>{row.firstName + ' ' + row.lastName}</TableCell>
