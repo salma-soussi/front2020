@@ -47,7 +47,7 @@ export class FormCompanyDetails extends Component {
                     /> */}
 
                     <FormControl className={useStyles.formControl}>
-                        <InputLabel>Industry</InputLabel>
+                        <InputLabel>Sector</InputLabel>
                         <Select
                             fullWidth={true}
                             value={values.sector}

@@ -8,7 +8,8 @@
     height: 100vh;
     width: 100vw;
     background: rgb(220,217,207);
-background: radial-gradient(circle, rgba(220,217,207,1) 0%, rgba(255,253,253,1) 100%);
+    background-size: cover;
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.823), rgba(255, 255, 255, 0.496)),url(../img01/img11.jpg);
 }
 .media-card-seller{
     background-image: linear-gradient(to right, rgba(0, 0, 0,  0.496), rgba(0, 0, 0, 0.496)),url(../img/login-seller-img.jpg);

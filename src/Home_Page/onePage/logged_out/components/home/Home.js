@@ -1,7 +1,9 @@
 import React, { Fragment, useEffect } from "react";
 import PropTypes from "prop-types";
 import HeadSection from "./HeadSection";
+import HeadSection2 from "./HeadSection2";
 import FeatureSection from "./FeatureSection";
+import FeatureSection2 from "./FeatureSection2";
 import PricingSection from "./PricingSection";
 
 function Home(props) {
@@ -12,16 +14,16 @@ function Home(props) {
   return (
     <Fragment>
       <HeadSection />
-      <br/>
+      <br />
       <FeatureSection />
-      <br/>
-      <br/>
-      <br/>
+      <br />
+      <br />
+      <br />
       <PricingSection />
-      <br/>
-      <FeatureSection />
-      <br/>
-      <br/>
+      <br />
+      <FeatureSection2 />
+      <br />
+      <br />
     </Fragment>
   );
 }

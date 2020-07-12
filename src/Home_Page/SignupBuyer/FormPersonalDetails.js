@@ -117,12 +117,11 @@ export class FormPersonalDetails extends Component {
                     />
                     <TextField
                         id="standard-password-input"
-                        label="repeatPassword"
+                        label="Repeat Password"
                         type="password"
                         autoComplete="current-password"
                         className={useStyles.textField}
                         margin="normal"
-                        required
                         onChange={this.onChange.bind(this)}
                         helperText={this.state.errorText}
                         error={this.state.error}

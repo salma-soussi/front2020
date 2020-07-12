@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Paper, TextField, Button, Table, TableHead, TableRow, TableBody ,InputLabel ,FormControl,Select,MenuItem } from '@material-ui/core'
+import { Paper , TextField, Button, Table, TableHead, TableRow, TableBody ,InputLabel ,FormControl,Select,MenuItem } from '@material-ui/core'
+
 import { useStyles } from './Main'
 import { connect } from 'react-redux'
 import axios from 'axios'
@@ -13,10 +14,10 @@ import SnackbarError from '../../SnackbarError';
 
 
 
-
 export class NewRequest extends Component {
     constructor(props) {
         super(props);
+        
         this.state = {
             companyName: '',
             firstName: '',
@@ -45,7 +46,7 @@ export class NewRequest extends Component {
             visible: false,
             showError: false,
             showSuccess: false,
-            sector:this.props.buyersList.sector,
+            
         }
     }
  
@@ -177,9 +178,10 @@ export class NewRequest extends Component {
     handleChange = e => {
         this.setState({ [e.target.name]: e.target.value })
     }
-
+    
     render() {
-        let secto = this.props.buyersList.sector
+        let sector = this.props.buyersList.sector
+        const minDate = new Date(Date.now());
         return (
             <Main pageName={'New Request'}>
                 {this.state.showError ? <SnackbarError type={'error'} msg={'You forgot to add quantity or description!'} /> : null}
@@ -206,6 +208,7 @@ export class NewRequest extends Component {
                 <Paper className="req-header">
                     <h1 className="page-title" style={{ margin: '10px' }}>New Quotation Request</h1>
                     <div className="dates" style={{ margin: '10px' }}>
+                   
                         <div className="icon-and-input">
                             <img src={calendar} className="icons-req" alt="calendar icon, date of the request" />
                             <TextField
@@ -229,31 +232,35 @@ export class NewRequest extends Component {
                                 label="Valid Until"
                                 type="date"
                                 variant="outlined"
+                                
                                 className={useStyles.textField}
                                 InputLabelProps={{
                                     shrink: true,
                                 }}
                             />
+
                         </div>
+                        
                     </div>
                     <div className="paper-content">
                         <h3 className="customer-info">Customer Informations:</h3>
                         <CustomerInfo infos={this.props.buyersList} />
                         <div className={useStyles.tableWrapper} style={{ marginTop: '20px' }}>
-                            <TextField fullWidth={true} variant="outlined" label="Comment (Optional)" onChange={this.handleChange} value={this.state.comment} name="comment" type="text" />
-                            <FormControl fullWidth={true} className={useStyles.tableWrapper} style={{ marginTop: '20px' }}>
+                          
+                            <FormControl fullWidth={true} className={useStyles.tableWrapper} style={{ marginBottom: '20px' }}>
                                 <InputLabel className="page-title" id="demo-simple-select-placeholder-label-label">
                                 sector
                                 </InputLabel>
+                                
                                 <Select
                                 labelId="demo-simple-select-placeholder-label-label"
                                 id="demo-simple-select-placeholder-label"
-                                onChange={this.handleChange}
+                                
                                 displayEmpty
                                 className={useStyles.selectEmpty}
                                 fullWidth={true}
                                 name="sector"
-                                value={this.state.sector}
+                                value={sector}
                                 >
                                     <MenuItem value="beaute">beauté</MenuItem>
                                     <MenuItem value="electronique">électronique</MenuItem>
@@ -264,6 +271,8 @@ export class NewRequest extends Component {
                                 </Select>
                             </FormControl>
                             <br />
+                            
+                            <TextField fullWidth={true} variant="outlined" label="Comment (Optional)" style={{ marginBottom: '20px' }} onChange={this.handleChange} value={this.state.comment} name="comment" type="text" />
                             <br />
                             <Table id='tableDescriptions'>
                                 <TableHead>

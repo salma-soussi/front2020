@@ -18,40 +18,49 @@ function Customers(props) {
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
     const [keyword, setKeyword] = React.useState('');
 
-    function handleChangePage(event, newPage){
+    function handleChangePage(event, newPage) {
         setPage(newPage);
     }
 
-    function handleChangeRowsPerPage(event){
+    function handleChangeRowsPerPage(event) {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     }
-    function handleChangeSearch(event){
+    function handleChangeSearch(event) {
         setKeyword(event.target.value.toUpperCase());
     }
     // const customersListFiltered = customerList.filter(customer => ((customer.companyName.toUpperCase().includes(keyword)) || 
     //     (customer.firstName.toUpperCase().includes(keyword)) || (customer.lastName.toUpperCase().includes(keyword)) || 
     //     (customer.date.includes(keyword))) && customer.status === 'Sold')
     // const customersListFiltered = customerList.filter(el => (el.firstName.toUpperCase().includes(keyword)) && el.status === 'Sold')
-    const customersListFiltered = customerList.filter(el =>  el.status === 'Sold')
-
+    const customersListFiltered = customerList.filter(el => el.status === 'Sold')
     console.log("customersListFiltered")
     console.log(customersListFiltered)
     console.log("props")
     console.log(props)
-
-    useEffect(()=>{
+    var resArr = [];
+    customersListFiltered.forEach(function (item) {
+        var i = resArr.findIndex(x => x.firstName == item.firstName && x.lastName == item.lastName);
+        console.log("resArr")
+    console.log(resArr)
+        if (i <= -1) {
+            resArr.push(item);
+        }
+    });
+    console.log("resArr")
+    console.log(resArr)
+    useEffect(() => {
         axios.get('http://localhost:3020/quotation/list')
-        .then((res) => props.updateReducer(res.data))
+            .then((res) => props.updateReducer(res.data))
     })
-    if(window.location.pathname.split('/').length - 1 >= 2){
+    if (window.location.pathname.split('/').length - 1 >= 2) {
         var pathID = window.location.pathname.substr(-24)
     }
     return (
         <Main pageName={'Sold Items'}>
             <Paper className={classes.root}>
-                <p className="note-customer">In this section, you will find all the answered requests. 
-                    This section is created to give you the opportunity to check <span style={{textDecoration: "underline", fontWeight: 'bold'}}>All </span>
+                <p className="note-customer">In this section, you will find all the answered requests.
+                    This section is created to give you the opportunity to check <span style={{ textDecoration: "underline", fontWeight: 'bold' }}>All </span>
                     your responses. Click on the quotation that you are looking for then you will be directed to see all the details. If you did not found it,
                     use the search bar, you can search by Company Name, the Customer Name or last operation date . And that's it!</p>
                 <div className={classes.tableWrapper}>
@@ -59,35 +68,35 @@ function Customers(props) {
                         id="outlined-bare"
                         className={classes.textField}
                         value={keyword}
-                        placeholder={"Type the Company Name, Customer Name or Date (𝑒.𝑔: home or salma or 25/05/2020)"}
+                        placeholder={"Type the Company Name, Customer Name or Date (𝑒.𝑔: home or thouraya or 25/05/2020)"}
                         onChange={handleChangeSearch}
                         fullWidth={true}
                         margin="normal"
                         variant="outlined"
                         inputProps={{ 'aria-label': 'bare' }}
                     />
-                    <br/>
-                    <Divider/>
-                    <Divider/>
-                    <br/>
+                    <br />
+                    <Divider />
+                    <Divider />
+                    <br />
                     <Table className={classes.table}>
                         <TableHead>
                             <TableRow>
-                                <StyledTableCell style={{backgroundColor: '#032952'}} align="left">Company Name</StyledTableCell>
-                                <StyledTableCell style={{backgroundColor: '#143963'}} align="left">First Name</StyledTableCell>
-                                <StyledTableCell style={{backgroundColor: '#032952'}} align="left">Last Name</StyledTableCell>
-                                <StyledTableCell style={{backgroundColor: '#143963'}} align="left">Last Operation</StyledTableCell>
+                                <StyledTableCell style={{ backgroundColor: '#032952' }} align="left">Company Name</StyledTableCell>
+                                <StyledTableCell style={{ backgroundColor: '#143963' }} align="left">First Name</StyledTableCell>
+                                <StyledTableCell style={{ backgroundColor: '#032952' }} align="left">Last Name</StyledTableCell>
+                                <StyledTableCell style={{ backgroundColor: '#143963' }} align="left">Last Operation</StyledTableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {customersListFiltered.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((customer, index) => (
-                                    <StyledTableRow key={index} className="row-tab-req" key={customer._id} component={Link} to={`/seller_dashboard/customers/${customer._id}/${pathID}`}>
-                                        <StyledTableCell align="left">{customer.companyName.toUpperCase()}</StyledTableCell>
-                                        <StyledTableCell align="left">{customer.firstName.toUpperCase()}</StyledTableCell>
-                                        <StyledTableCell align="left">{customer.lastName.toUpperCase()}</StyledTableCell>
-                                        <StyledTableCell align="left">{String(customer.date).slice(0, 10)}</StyledTableCell>
-                                    </StyledTableRow>
-                                ))
+                            {resArr.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((customer, index) => (
+                                <StyledTableRow key={index} className="row-tab-req" key={customer._id} component={Link} to={`/seller_dashboard/customers/${customer._id}/${pathID}`}>
+                                    <StyledTableCell align="left">{customer.companyName.toUpperCase()}</StyledTableCell>
+                                    <StyledTableCell align="left">{customer.firstName.toUpperCase()}</StyledTableCell>
+                                    <StyledTableCell align="left">{customer.lastName.toUpperCase()}</StyledTableCell>
+                                    <StyledTableCell align="left">{String(customer.date).slice(0, 10)}</StyledTableCell>
+                                </StyledTableRow>
+                            ))
                             }
                         </TableBody>
                         <TableFooter>
@@ -99,8 +108,8 @@ function Customers(props) {
                                     rowsPerPage={rowsPerPage}
                                     page={page}
                                     SelectProps={{
-                                    inputProps: { 'aria-label': 'rows per page' },
-                                    native: true,
+                                        inputProps: { 'aria-label': 'rows per page' },
+                                        native: true,
                                     }}
                                     onChangePage={handleChangePage}
                                     onChangeRowsPerPage={handleChangeRowsPerPage}

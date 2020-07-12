@@ -150,6 +150,7 @@ class QuotationForm extends Component {
                                     <StyledTableCell style={{ backgroundColor: 'grey' }}>NAME</StyledTableCell>
                                     <StyledTableCell style={{ backgroundColor: 'grey' }}>DESCRIPTION</StyledTableCell>
                                     <StyledTableCell style={{ backgroundColor: 'grey' }}>QUANTITY</StyledTableCell>
+                                    <StyledTableCell style={{ backgroundColor: 'grey' }}>FACT SHEET</StyledTableCell>
                                     <StyledTableCell style={{ backgroundColor: 'grey' }}>UNIT PRICE (TND)</StyledTableCell>
                                     <StyledTableCell style={{ backgroundColor: 'grey' }}>AMOUNT (TND)</StyledTableCell>
                                 </TableRow>
@@ -170,7 +171,20 @@ class QuotationForm extends Component {
                                             {Object.keys(x).length >= 3 ? <StyledTableCell>
                                                 <TextField disabled type="number" value={x.quantity1} />
                                             </StyledTableCell> : null}
-
+                                            {Object.keys(x).length >= 3 ? <StyledTableCell>
+                                                <input
+                                                accept="image/*"
+                                                id="contained-button-file"
+                                                multiple
+                                                type="file"
+                                                style={{  display: 'none' }}
+                                            />
+                                            <label htmlFor="contained-button-file">
+                                                <Button variant="contained" color="primary" component="span">
+                                                Upload
+                                                </Button>
+                                            </label>
+                                            </StyledTableCell> : null}
                                             {Object.keys(x).length >= 3 ? <StyledTableCell>
                                                 <TextField type="number" placeholder="Price/unit (TND)"
                                                     name='unitPrice1'
@@ -288,6 +302,7 @@ class QuotationForm extends Component {
                             ))}
                             <TableBody>
                                 <StyledTableRow>
+                                    <StyledTableCell rowSpan={3} />
                                     <StyledTableCell rowSpan={3} />
                                     <StyledTableCell rowSpan={3} />
                                     <StyledTableCell colSpan={2}>Subtotal</StyledTableCell>
