@@ -173,17 +173,17 @@ class QuotationForm extends Component {
                                             </StyledTableCell> : null}
                                             {Object.keys(x).length >= 3 ? <StyledTableCell>
                                                 <input
-                                                accept="image/*"
-                                                id="contained-button-file"
-                                                multiple
-                                                type="file"
-                                                style={{  display: 'none' }}
-                                            />
-                                            <label htmlFor="contained-button-file">
-                                                <Button variant="contained" color="primary" component="span">
-                                                Upload
+                                                    accept="image/*"
+                                                    id="contained-button-file"
+                                                    multiple
+                                                    type="file"
+                                                    style={{ display: 'none' }}
+                                                />
+                                                <label htmlFor="contained-button-file">
+                                                    <Button variant="contained" color="primary" component="span">
+                                                        Upload
                                                 </Button>
-                                            </label>
+                                                </label>
                                             </StyledTableCell> : null}
                                             {Object.keys(x).length >= 3 ? <StyledTableCell>
                                                 <TextField type="number" placeholder="Price/unit (TND)"
@@ -318,7 +318,7 @@ class QuotationForm extends Component {
                                     </StyledTableCell>
                                 </StyledTableRow>
                                 <StyledTableRow>
-                                    <StyledTableCell colSpan={2}>Tax</StyledTableCell>
+                                    <StyledTableCell colSpan={2}>Tax (%)</StyledTableCell>
                                     <StyledTableCell align="right">
                                         <TextField
                                             onChange={this.handleChange}

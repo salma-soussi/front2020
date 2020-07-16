@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Paper , TextField, Button, Table, TableHead, TableRow, TableBody ,InputLabel ,FormControl,Select,MenuItem } from '@material-ui/core'
+import { Paper, TextField, Button, Table, TableHead, TableRow, TableBody, InputLabel, FormControl, Select, MenuItem } from '@material-ui/core'
 
 import { useStyles } from './Main'
 import { connect } from 'react-redux'
@@ -17,7 +17,7 @@ import SnackbarError from '../../SnackbarError';
 export class NewRequest extends Component {
     constructor(props) {
         super(props);
-        
+
         this.state = {
             companyName: '',
             firstName: '',
@@ -46,10 +46,10 @@ export class NewRequest extends Component {
             visible: false,
             showError: false,
             showSuccess: false,
-            
+
         }
     }
- 
+
     componentDidMount() {
         axios.get(`http://localhost:3020/buyer/getByID/${this.props.buyerID}`)
             .then((res) => this.props.updateBuyer(res.data))
@@ -90,7 +90,7 @@ export class NewRequest extends Component {
                 (this.state.description4 === '' && this.state.quantity4 === '' && this.state.name4 !== ''))
         ) {
             this.setState({ showError: true })
-            setTimeout(() => this.setState({ showError: false }), 4000)
+            setTimeout(() => this.setState({ showError: false }), 3000)
         } else {
 
             const d1 = this.state.description1;
@@ -153,7 +153,10 @@ export class NewRequest extends Component {
 
 
             this.setState({ showSuccess: true });
-            setTimeout(() => this.setState({ showSuccess: false }), 4000)
+            setTimeout(() => {
+                this.setState({ showSuccess: false })
+                window.location.href = "/buyer_dashboard/"+this.props.buyerID+""
+            }, 4000)
 
             axios.post('http://localhost:3020/notification/add', { ...this.state })
                 .then(() => this.props.newNotif({
@@ -168,17 +171,18 @@ export class NewRequest extends Component {
                 })
                 )
 
+            
         }
 
 
-        this.setState({ description1: '', description2: '', description3: '', description4: '',name1: '', name2: '', name3: '', name4: '', quantity1: '', quantity2: '', quantity3: '', quantity4: '', date: '', until: '', comment: '' })
+        this.setState({ description1: '', description2: '', description3: '', description4: '', name1: '', name2: '', name3: '', name4: '', quantity1: '', quantity2: '', quantity3: '', quantity4: '', date: '', until: '', comment: '' })
         this.setState({ visible: false });
     }
 
     handleChange = e => {
         this.setState({ [e.target.name]: e.target.value })
     }
-    
+
     render() {
         let sector = this.props.buyersList.sector
         const minDate = new Date(Date.now());
@@ -208,7 +212,7 @@ export class NewRequest extends Component {
                 <Paper className="req-header">
                     <h1 className="page-title" style={{ margin: '10px' }}>New Quotation Request</h1>
                     <div className="dates" style={{ margin: '10px' }}>
-                   
+
                         <div className="icon-and-input">
                             <img src={calendar} className="icons-req" alt="calendar icon, date of the request" />
                             <TextField
@@ -232,7 +236,7 @@ export class NewRequest extends Component {
                                 label="Valid Until"
                                 type="date"
                                 variant="outlined"
-                                
+
                                 className={useStyles.textField}
                                 InputLabelProps={{
                                     shrink: true,
@@ -240,27 +244,27 @@ export class NewRequest extends Component {
                             />
 
                         </div>
-                        
+
                     </div>
                     <div className="paper-content">
                         <h3 className="customer-info">Customer Informations:</h3>
                         <CustomerInfo infos={this.props.buyersList} />
                         <div className={useStyles.tableWrapper} style={{ marginTop: '20px' }}>
-                          
+
                             <FormControl fullWidth={true} className={useStyles.tableWrapper} style={{ marginBottom: '20px' }}>
                                 <InputLabel className="page-title" id="demo-simple-select-placeholder-label-label">
-                                sector
+                                    sector
                                 </InputLabel>
-                                
+
                                 <Select
-                                labelId="demo-simple-select-placeholder-label-label"
-                                id="demo-simple-select-placeholder-label"
-                                
-                                displayEmpty
-                                className={useStyles.selectEmpty}
-                                fullWidth={true}
-                                name="sector"
-                                value={sector}
+                                    labelId="demo-simple-select-placeholder-label-label"
+                                    id="demo-simple-select-placeholder-label"
+
+                                    displayEmpty
+                                    className={useStyles.selectEmpty}
+                                    fullWidth={true}
+                                    name="sector"
+                                    value={sector}
                                 >
                                     <MenuItem value="beaute">beauté</MenuItem>
                                     <MenuItem value="electronique">électronique</MenuItem>
@@ -271,7 +275,7 @@ export class NewRequest extends Component {
                                 </Select>
                             </FormControl>
                             <br />
-                            
+
                             <TextField fullWidth={true} variant="outlined" label="Comment (Optional)" style={{ marginBottom: '20px' }} onChange={this.handleChange} value={this.state.comment} name="comment" type="text" />
                             <br />
                             <Table id='tableDescriptions'>

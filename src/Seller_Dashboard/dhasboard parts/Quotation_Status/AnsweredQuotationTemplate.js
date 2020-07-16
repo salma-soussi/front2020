@@ -61,6 +61,7 @@ class AnsweredQuotationTemplate extends Component {
                                 <StyledTableCell style={{backgroundColor: 'grey'}}>NAME</StyledTableCell>
                                 <StyledTableCell style={{backgroundColor: 'grey'}}>DESCRIPTION</StyledTableCell>
                                 <StyledTableCell style={{backgroundColor: 'grey'}}>QUANTITY</StyledTableCell>
+                                <StyledTableCell style={{backgroundColor: 'grey'}}>FACT SHEET</StyledTableCell>
                                 <StyledTableCell style={{backgroundColor: 'grey'}}>UNIT PRICE (TND)</StyledTableCell>
                                 <StyledTableCell style={{backgroundColor: 'grey'}}>AMOUNT (TND)</StyledTableCell>
                             </TableRow>
@@ -77,6 +78,9 @@ class AnsweredQuotationTemplate extends Component {
                                             </StyledTableCell>
                                             <StyledTableCell>
                                                 <TextField style={{pointerEvents: 'none'}} value={elem.quantity1}/>
+                                            </StyledTableCell>
+                                            <StyledTableCell>
+                                                <p> hiiii </p>
                                             </StyledTableCell>
                                             <StyledTableCell>
                                                 <TextField style={{pointerEvents: 'none'}} value={String(x.unitPrice1).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
@@ -142,7 +146,9 @@ class AnsweredQuotationTemplate extends Component {
                         <StyledTableRow>
                                 <StyledTableCell rowSpan={3}/>
                                 <StyledTableCell rowSpan={3}/>
-                                <StyledTableCell colSpan={2}>Subtotal</StyledTableCell>
+                                <StyledTableCell rowSpan={3}/>
+                                <StyledTableCell rowSpan={3}/>
+                                <StyledTableCell colSpan={1}>Subtotal</StyledTableCell>
                                 <StyledTableCell align="right">
                                     <TextField 
                                         value={String(this.state.subtotal).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -152,7 +158,7 @@ class AnsweredQuotationTemplate extends Component {
                                 </StyledTableCell>
                             </StyledTableRow>
                             <StyledTableRow>
-                                <StyledTableCell colSpan={2}>Tax</StyledTableCell>
+                                <StyledTableCell colSpan={1}>Tax (%)</StyledTableCell>
                                 <StyledTableCell align="right">
                                     <TextField 
                                         value={String(this.state.tax).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -162,7 +168,7 @@ class AnsweredQuotationTemplate extends Component {
                                 </StyledTableCell>
                             </StyledTableRow>
                             <StyledTableRow>
-                                <StyledTableCell colSpan={2}>Total</StyledTableCell>
+                                <StyledTableCell colSpan={1}>Total</StyledTableCell>
                                 <StyledTableCell align="right">
                                     <TextField 
                                         value={String(this.state.total).replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 
