@@ -41,8 +41,7 @@ function Customers(props) {
     var resArr = [];
     customersListFiltered.forEach(function (item) {
         var i = resArr.findIndex(x => x.firstName == item.firstName && x.lastName == item.lastName);
-        console.log("resArr")
-    console.log(resArr)
+
         if (i <= -1) {
             resArr.push(item);
         }

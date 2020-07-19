@@ -103,7 +103,7 @@ export class NewRequest extends Component {
             const n3 = this.state.name3;
             const q3 = this.state.quantity3;
             const d4 = this.state.description4;
-            const n4 = this.state.name3;
+            const n4 = this.state.name4;
             const q4 = this.state.quantity4;
 
             axios.post('http://localhost:3020/quotation/add', { ...this.state })

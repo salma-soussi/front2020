@@ -32,11 +32,12 @@ class AnsweredQuotationTemplate extends Component {
         })
         axios.get(`http://localhost:3020/seller/getByID/${this.props.sellerID}`)
                 .then((res) => this.props.updateSeller(res.data))
+             
     }
     render(){
         const {reqID, requestsList} = this.props
         const requestListFiltered = requestsList.filter((el, index) => el._id === this.props.reqID)
-
+        console.log(requestListFiltered)
         return (
         <Main pageName={`Quotation N°${requestListFiltered.map(el => el.quotationNUM)} Answered`}>
             <div className="navigation-buttons-req">
@@ -79,9 +80,11 @@ class AnsweredQuotationTemplate extends Component {
                                             <StyledTableCell>
                                                 <TextField style={{pointerEvents: 'none'}} value={elem.quantity1}/>
                                             </StyledTableCell>
+
                                             <StyledTableCell>
-                                                <p> hiiii </p>
+                                                <p>{console.log(elem.file1)}</p>
                                             </StyledTableCell>
+
                                             <StyledTableCell>
                                                 <TextField style={{pointerEvents: 'none'}} value={String(x.unitPrice1).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
                                             </StyledTableCell>

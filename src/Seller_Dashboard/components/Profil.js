@@ -430,7 +430,7 @@ const useStyles = makeStyles(theme => ({
 
 const mapStateToProps = state => {
     return {
-        sellersList: state.SellerReducer
+        sellersList: state. b
     }
 }
 const mapDispatchToProps = (dispatch) => {

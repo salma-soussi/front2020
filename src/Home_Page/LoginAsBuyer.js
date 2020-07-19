@@ -45,7 +45,7 @@ class LoginAsBuyer extends Component {
         
         if(this.state.password !== '' && this.state.email !== ''){
             e.preventDefault();
-            axios.post('http://localhost:3020/user/authentication', this.state)
+            axios.post('http://localhost:3020/buyer/authentication', this.state)
                 .then((data) => this.props.history.push(`/buyer_dashboard/${data.data.data.user._id}`))
                 .catch((err) => alert(err))
         }else {

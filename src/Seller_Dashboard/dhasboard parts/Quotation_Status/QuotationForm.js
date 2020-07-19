@@ -42,7 +42,11 @@ class QuotationForm extends Component {
         type: 'response',
         description1: '',
         name1: '',
-        content: 'A response received '
+        content: 'A response received ',
+        file1: "",
+        file2: "",
+        file3: "",
+        file4: "",
 
     }
     openModal = () => {
@@ -57,6 +61,54 @@ class QuotationForm extends Component {
         });
     }
     closeModalAndConfirm = () => {
+        let tab = []
+        if (this.state.file2 !== "") {
+            let formData = new FormData();
+
+            formData.append(
+                "file2",
+                this.state.file2
+            );
+            axios.post(`http://localhost:3020/quotation/pushFile2/${this.props.reqID}`, formData)
+            .then((res) => {
+                console.log("data", res.data);
+            })
+        } 
+        if (this.state.file3 !== "") {
+            let formData = new FormData();
+
+            formData.append(
+                "file3",
+                this.state.file3
+            );
+            axios.post(`http://localhost:3020/quotation/pushFile3/${this.props.reqID}`, formData)
+            .then((res) => {
+                console.log("data", res.data);
+            })
+        }
+        if (this.state.file4 !== "") {
+            let formData = new FormData();
+
+            formData.append(
+                "file4",
+                this.state.file4
+            );
+            axios.post(`http://localhost:3020/quotation/pushFile4/${this.props.reqID}`, formData)
+            .then((res) => {
+                console.log("data", res.data);
+            })
+        } 
+        let formData1 = new FormData();
+
+        formData1.append(
+            "file1",
+            this.state.file1
+        );
+        axios.post(`http://localhost:3020/quotation/pushFile1/${this.props.reqID}`, formData1)
+            .then((res) => {
+                console.log("data", res.data);
+            })
+
         axios.put(`http://localhost:3020/quotation/update/${this.props.reqID}`, {
             status: 'Answered',
             unitPrice1: this.state.unitPrice1,
@@ -69,9 +121,10 @@ class QuotationForm extends Component {
             totalPrice4: this.state.totalPrice4,
             total: this.state.total,
             tax: this.state.tax,
-            subtotal: this.state.subtotal
+            subtotal: this.state.subtotal,
         })
             .then(() => this.props.updateStatusReducer(this.state))
+
 
         // console.log({...this.state})
         axios.post('http://localhost:3020/notification/accepted', { ...this.state })
@@ -94,6 +147,34 @@ class QuotationForm extends Component {
     }
     handleChange = e => {
         this.setState({ [e.target.name]: e.target.value })
+    }
+    handleChangeFile = e => {
+        const file1 = e.target.files[0]
+            this.setState({
+                file1: file1,
+                });
+        console.log(this.state)
+    }
+    handleChangeFile2 = ev => {
+        const file2 = ev.target.files[0]
+            this.setState({
+               file2: file2,
+            });
+        console.log(this.state)
+    }
+    handleChangeFile3 = e => {
+            const file3 = e.target.files[0]
+              this.setState({
+                file3: file3,
+            });     
+        console.log(this.state)
+    }
+    handleChangeFile4 = e => {
+        const file4 = e.target.files[0]
+               this.setState({
+               file4: file4,
+            });
+         console.log(this.state)
     }
     componentDidMount = () => {
         this.setState({
@@ -173,14 +254,15 @@ class QuotationForm extends Component {
                                             </StyledTableCell> : null}
                                             {Object.keys(x).length >= 3 ? <StyledTableCell>
                                                 <input
-                                                    accept="image/*"
+                                                    accept="application/pdf"
                                                     id="contained-button-file"
-                                                    multiple
                                                     type="file"
                                                     style={{ display: 'none' }}
+                                                    name="file1"
+                                                    onChange={(e) => this.handleChangeFile(e)}
                                                 />
                                                 <label htmlFor="contained-button-file">
-                                                    <Button variant="contained" color="primary" component="span">
+                                                    <Button variant="contained" color={this.state.file1 === "" ? "primary" : "secondary"} component="span">
                                                         Upload
                                                 </Button>
                                                 </label>
@@ -217,6 +299,22 @@ class QuotationForm extends Component {
                                             </StyledTableCell>
 
                                             <StyledTableCell>
+                                                <input
+                                                    accept="application/pdf"
+                                                    id="contained-button-file2"
+                                                    type="file"
+                                                    style={{ display: 'none' }}
+                                                    name="file2"
+                                                    onChange={(ev) => this.handleChangeFile2(ev)}
+                                                />
+                                                <label htmlFor="contained-button-file2">
+                                                    <Button variant="contained" color={this.state.file2 === "" ? "primary" : "secondary"} component="span">
+                                                        Upload
+                                                </Button>
+                                                </label>
+                                            </StyledTableCell>
+
+                                            <StyledTableCell>
                                                 <TextField type="number" placeholder="Price/unit (TND)"
                                                     name='unitPrice2'
                                                     // value={this.state.index}
@@ -246,7 +344,21 @@ class QuotationForm extends Component {
                                             <StyledTableCell>
                                                 <TextField disabled type="number" value={x.quantity3} />
                                             </StyledTableCell>
-
+                                            <StyledTableCell>
+                                                <input
+                                                    accept="application/pdf"
+                                                    id="contained-button-file3"
+                                                    type="file"
+                                                    style={{ display: 'none' }}
+                                                    name="file3"
+                                                    onChange={(e) => this.handleChangeFile3(e)}
+                                                />
+                                                <label htmlFor="contained-button-file3">
+                                                    <Button variant="contained" color={this.state.file3 === "" ? "primary" : "secondary"} component="span">
+                                                        Upload
+                                                </Button>
+                                                </label>
+                                            </StyledTableCell>
                                             <StyledTableCell>
                                                 <TextField type="number" placeholder="Price/unit (TND)"
                                                     name='unitPrice3'
@@ -277,7 +389,21 @@ class QuotationForm extends Component {
                                             <StyledTableCell>
                                                 <TextField disabled type="number" value={x.quantity4} />
                                             </StyledTableCell>
-
+                                            <StyledTableCell>
+                                                <input
+                                                    accept="application/pdf"
+                                                    id="contained-button-file4"
+                                                    type="file"
+                                                    style={{ display: 'none' }}
+                                                    name="file4"
+                                                    onChange={(e) => this.handleChangeFile4(e)}
+                                                />
+                                                <label htmlFor="contained-button-file4">
+                                                    <Button variant="contained" color={this.state.file4 === "" ? "primary" : "secondary"} component="span">
+                                                        Upload
+                                                </Button>
+                                                </label>
+                                            </StyledTableCell>
                                             <StyledTableCell>
                                                 <TextField type="number" placeholder="Price/unit (TND)"
                                                     name='unitPrice4'
