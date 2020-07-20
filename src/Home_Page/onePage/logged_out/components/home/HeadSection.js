@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import {  NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import {
@@ -13,7 +13,7 @@ import {
   withWidth,
   isWidthUp
 } from "@material-ui/core";
-import headerImage from "../../dummy_data/images/headerImage.jpg";
+import headerImage from "../../dummy_data/images/img1.png";
 import WaveBorder from "../../../shared/components/WaveBorder";
 
 const styles = theme => ({
@@ -122,7 +122,7 @@ function HeadSection(props) {
                       display="flex"
                       flexDirection="column"
                       justifyContent="space-between"
-                      height="100%"
+                      height="90%"
                     >
                       <Box mb={4}>
                         <Typography
@@ -134,13 +134,13 @@ function HeadSection(props) {
                       <div>
                         <Box mb={2}>
                           <Typography
-                            variant={isWidthUp("lg", width) ? "h6" : "body1"}
+                            variant={isWidthUp("lg", width) ? "h5" : "body1"}
                             color="textprimary"
                           >
-                            Lorem ipsum dolor sit amet, consetetur sadipscing
-                            elitr, sed diam nonumy eirmod tempor invidunt
+                            To register as buyer click on the button below
                           </Typography>
                         </Box>
+                        <br />
                         <Button
                           variant="contained"
                           color="primary"

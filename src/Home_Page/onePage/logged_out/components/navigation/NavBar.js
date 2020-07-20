@@ -110,7 +110,12 @@ function NavBar(props) {
                   size="large"
                   classes={{ text: classes.menuButtonText }}
                 >
-                  <NavLink exact to="/loginasbuyer">Login</NavLink>
+                  <Typography
+                          variant= "h6"
+                        >
+                          <NavLink exact to="/loginasbuyer">Login</NavLink>
+                        </Typography>
+                  
                 </Button>
               </Fragment>
 

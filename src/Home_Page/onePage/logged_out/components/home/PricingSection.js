@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import {  NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import {
@@ -14,7 +14,7 @@ import {
   isWidthUp,
   Container
 } from "@material-ui/core";
-import headerImage from "../../dummy_data/images/headerImage.jpg";
+import headerImage from "../../dummy_data/images/img2.png";
 import WaveBorder from "../../../shared/components/WaveBorder";
 
 const styles = theme => ({
@@ -103,23 +103,21 @@ const styles = theme => ({
 function HeadSection(props) {
   const { classes, theme, width } = props;
   return (
-    
+
     <Fragment>
-      
-      <div  className="lg-p-top" style={{ backgroundColor: "#FFFFFF" }}>
-      <WaveBorder
-        upperColor="#FFFFFF"
-        lowerColor={theme.palette.secondary.main}
-        animationNegativeDelay={4}
-        style={{ marginBottom:"-70px" }}
-      />
-        <div className={classNames("container-fluid", classes.container)} style={{ backgroundColor: "#fdbb2d", height: '100vh' }}>
-        
-          <br/>
-          <br/>
-          <br/>
-          <br/>
-          <br/>
+
+      <div className="lg-p-top" style={{ backgroundColor: "#FFFFFF" }}>
+        <WaveBorder
+          upperColor="#FFFFFF"
+          lowerColor={theme.palette.secondary.main}
+          animationNegativeDelay={4}
+          style={{ marginBottom: "-70px" }}
+        />
+        <br />
+        <div className={classNames("container-fluid", classes.container)} style={isWidthUp("lg", width) ? { backgroundColor: "#fdbb2d", height: '100vh' } : { backgroundColor: "#fdbb2d", height: '80vh' }}>
+
+
+          <br />
           <Box display="flex" justifyContent="center" className="row">
             <Card
               className={classes.card}
@@ -139,20 +137,19 @@ function HeadSection(props) {
                         <Typography
                           variant={isWidthUp("lg", width) ? "h3" : "h4"}
                         >
-                          Free Template for building an SaaS app using
-                          Material-UI
+                          Just - The new standard Quotation Manager
                         </Typography>
                       </Box>
                       <div>
                         <Box mb={2}>
                           <Typography
-                            variant={isWidthUp("lg", width) ? "h6" : "body1"}
-                            color="textSecondary"
+                            variant={isWidthUp("lg", width) ? "h5" : "body1"}
+                            color="textprimary"
                           >
-                            Lorem ipsum dolor sit amet, consetetur sadipscing
-                            elitr, sed diam nonumy eirmod tempor invidunt
+                            To register as seller click on the button below
                           </Typography>
                         </Box>
+                        <br />
                         <Button
                           variant="contained"
                           color="Secondary"
@@ -178,19 +175,17 @@ function HeadSection(props) {
               </div>
             </Card>
           </Box>
-         
-          
-        
-        </div>
-        <div style={{ marginTop:"-100px" }}>
-        <WaveBorder
-        upperColor={theme.palette.secondary.main}
-        lowerColor="#FFFFFF"
-        animationNegativeDelay={4}
-        />
-      </div>
-      </div>
 
+        </div>
+        <div style={isWidthUp("lg", width) ? { marginTop: "-180px" } : { marginTop: "-60px" }}>
+          <WaveBorder
+            upperColor={theme.palette.secondary.main}
+            lowerColor="#FFFFFF"
+            animationNegativeDelay={4}
+          />
+        </div>
+      </div>
+      <br /><br />
     </Fragment>
   );
 }

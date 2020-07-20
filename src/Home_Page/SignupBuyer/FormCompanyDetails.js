@@ -44,12 +44,15 @@ export class FormCompanyDetails extends Component {
                             value={values.sector}
                             onChange={handleChange('sector')}
                         >
-                            <MenuItem value="beaute">beauté</MenuItem>
-                            <MenuItem value="electronique">électronique</MenuItem>
-                            <MenuItem value="fourniture">fourniture</MenuItem>
-                            <MenuItem value="informatique">informatique</MenuItem>
-                            <MenuItem value="mode">mode</MenuItem>
-                            <MenuItem value="sport">sport</MenuItem>
+                            <MenuItem value="ApparelFashion">Apparel & Fashion</MenuItem>
+                            <MenuItem value="ArtCraft">Art & Craft</MenuItem>
+                            <MenuItem value="Automative">Automative</MenuItem>
+                            <MenuItem value="Furniture">Furniture</MenuItem>
+                            <MenuItem value="BusinessSuppliesEquipement">Business Supplies & Equipement</MenuItem>
+                            <MenuItem value="ComputerNetworkSecurity">Computer Network & Security</MenuItem>
+                            <MenuItem value="Construction">Construction</MenuItem>
+                            <MenuItem value="Cosmitics">Cosmitics</MenuItem>
+                            <MenuItem value="Electrical">Electrical and Eletronic Manufacturing</MenuItem>
                         </Select>
                     </FormControl>
 

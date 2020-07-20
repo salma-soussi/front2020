@@ -78,11 +78,11 @@ const styles = theme => ({
 const infos = [
   {
     icon: <PhoneIcon />,
-    description: "+1 555 123456"
+    description: "+216 22 336 644"
   },
   {
     icon: <MailIcon />,
-    description: "support@company.com"
+    description: "justtn.pfe@gmail.com"
   }
 ];
 
@@ -223,14 +223,13 @@ function Footer(props) {
           </Hidden>
           <Grid item xs={12} md={6} lg={4}>
             <Typography variant="h6" paragraph className="text-white">
-              About the Company
+              About JUST
             </Typography>
             <Typography style={{ color: "#8f9296" }} paragraph>
-              Lorem ipsum dolor sit amet, consectateur adispicing elit. Fusce
-              euismod convallis velit, eu auctor lacus vehicula sit amet.
+              JUST is a website intended for trading professionals: wholesalers, suppliers, manufacturers, liquidators, etc. Each day, our quotations connect many buyers and sellers from different sectors and horizons.
             </Typography>
             <Box display="flex">
-              {socialIcons.map((socialIcon, index) => (
+              {/* {socialIcons.map((socialIcon, index) => (
                 <Box key={index} mr={index !== socialIcons.length - 1 ? 1 : 0}>
                   <IconButton
                     aria-label={socialIcon.label}
@@ -240,7 +239,7 @@ function Footer(props) {
                     {socialIcon.icon}
                   </IconButton>
                 </Box>
-              ))}
+              ))} */}
             </Box>
           </Grid>
         </Grid>

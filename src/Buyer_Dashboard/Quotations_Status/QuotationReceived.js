@@ -167,6 +167,7 @@ class QuotationReceived extends Component {
                                     <StyledTableCell style={{ backgroundColor: 'grey' }}>NAME</StyledTableCell>
                                     <StyledTableCell style={{ backgroundColor: 'grey' }}>DESCRIPTION</StyledTableCell>
                                     <StyledTableCell style={{ backgroundColor: 'grey' }}>QUANTITY</StyledTableCell>
+                                    <StyledTableCell style={{ backgroundColor: 'grey' }}>FACT SHEET</StyledTableCell>
                                     <StyledTableCell style={{ backgroundColor: 'grey' }}>UNIT PRICE (TND)</StyledTableCell>
                                     <StyledTableCell style={{ backgroundColor: 'grey' }}>AMOUNT (TND)</StyledTableCell>
                                 </TableRow>
@@ -183,6 +184,13 @@ class QuotationReceived extends Component {
                                         </StyledTableCell>
                                         <StyledTableCell>
                                             <TextField style={{pointerEvents: 'none'}} value={el.quantity1}/>
+                                        </StyledTableCell>
+                                        <StyledTableCell>
+                                        <a href={x.file1 !== "" ? `http://localhost:3020/quotation/getFile1/${x.file1}` : "http://www.google.com"} target="_blank">
+                                                <Button variant="contained" color="secondary" component="span" >
+                                                    F.S
+                                            </Button>
+                                            </a>
                                         </StyledTableCell>
                                         <StyledTableCell>
                                             <TextField style={{pointerEvents: 'none'}} value={String(x.unitPrice1).replace(/\B(?=(\d{3})+(?!\d))/g, ",")} />
@@ -202,6 +210,13 @@ class QuotationReceived extends Component {
                                             <TextField style={{pointerEvents: 'none'}} value={el.quantity2}/>
                                         </StyledTableCell>
                                         <StyledTableCell>
+                                        <a href={x.file2 !== "" ? `http://localhost:3020/quotation/getFile2/${x.file2}` : "http://www.google.com"} target="_blank">
+                                                <Button variant="contained" color="secondary" component="span" >
+                                                    F.S
+                                            </Button>
+                                            </a>
+                                        </StyledTableCell>
+                                        <StyledTableCell>
                                             <TextField style={{pointerEvents: 'none'}} value={String(x.unitPrice2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
                                         </StyledTableCell>
                                         <StyledTableCell>
@@ -217,6 +232,13 @@ class QuotationReceived extends Component {
                                         </StyledTableCell>
                                         <StyledTableCell>
                                             <TextField style={{pointerEvents: 'none'}} value={el.quantity3}/>
+                                        </StyledTableCell>
+                                        <StyledTableCell>
+                                        <a href={x.file3 !== "" ? `http://localhost:3020/quotation/getFile3/${x.file3}` : "http://www.google.com"} target="_blank">
+                                                <Button variant="contained" color="secondary" component="span" >
+                                                    F.S
+                                            </Button>
+                                            </a>
                                         </StyledTableCell>
                                         <StyledTableCell>
                                             <TextField style={{pointerEvents: 'none'}} value={String(x.unitPrice3).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
@@ -236,6 +258,13 @@ class QuotationReceived extends Component {
                                             <TextField style={{pointerEvents: 'none'}} value={el.quantity4}/>
                                         </StyledTableCell>
                                         <StyledTableCell>
+                                        <a href={x.file4 !== "" ? `http://localhost:3020/quotation/getFile4/${x.file4}` : "http://www.google.com"} target="_blank">
+                                                <Button variant="contained" color="secondary" component="span" >
+                                                    F.S
+                                            </Button>
+                                            </a>
+                                        </StyledTableCell>
+                                        <StyledTableCell>
                                             <TextField style={{pointerEvents: 'none'}} value={String(x.unitPrice4).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}/>
                                         </StyledTableCell>
                                         <StyledTableCell>
@@ -251,6 +280,7 @@ class QuotationReceived extends Component {
                             <StyledTableRow>
                                 <StyledTableCell rowSpan={3} />
                                 <StyledTableCell rowSpan={3} />
+                                <StyledTableCell rowSpan={3} />
                                 <StyledTableCell colSpan={2}>Subtotal</StyledTableCell>
                                 <StyledTableCell align="right">
                                     <TextField
@@ -261,7 +291,7 @@ class QuotationReceived extends Component {
                                 </StyledTableCell>
                             </StyledTableRow>
                             <StyledTableRow>
-                                <StyledTableCell colSpan={2}>Tax</StyledTableCell>
+                                <StyledTableCell colSpan={2}>Tax (%)</StyledTableCell>
                                 <StyledTableCell align="right">
                                     <TextField
                                         value={String(el.tax).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
